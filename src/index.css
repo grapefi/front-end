@@ -196,7 +196,8 @@ code {
 
 .MuiPaper-root {
   color: #322f32 !important;
-  background-color: rgba(255, 255, 255, 0.8) !important;
+  /* background-color: rgba(255, 255, 255, 0.8) !important; */
+  background-color: #f6ebff !important;
 }
 
 .MuiAppBar-positionSticky {

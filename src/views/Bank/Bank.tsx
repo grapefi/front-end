@@ -10,6 +10,7 @@ import {Box, Button, Card, CardContent, Typography, Grid} from '@material-ui/cor
 import PageHeader from '../../components/PageHeader';
 import Spacer from '../../components/Spacer';
 import UnlockWallet from '../../components/UnlockWallet';
+import StyledCardAccent from '../../components/StyledCardAccent';
 import Harvest from './components/Harvest';
 import Stake from './components/Stake';
 import useBank from '../../hooks/useBank';
@@ -158,10 +159,14 @@ const Bank: React.FC = () => {
         <StyledBank>
           <StyledCardsWrapper>
             <StyledCardWrapper>
+              <StyledCardAccent />
               <Harvest bank={bank} />
             </StyledCardWrapper>
             <Spacer />
-            <StyledCardWrapper>{<Stake bank={bank} />}</StyledCardWrapper>
+            <StyledCardWrapper>
+              <StyledCardAccent />
+              <Stake bank={bank} />
+            </StyledCardWrapper>
           </StyledCardsWrapper>
           <Spacer size="lg" />
           {bank.depositTokenName.includes('LP') && <LPTokenHelpText bank={bank} />}
@@ -253,6 +258,7 @@ const StyledCardsWrapper = styled.div`
 `;
 
 const StyledCardWrapper = styled.div`
+  position: relative;
   display: flex;
   flex: 1;
   flex-direction: column;

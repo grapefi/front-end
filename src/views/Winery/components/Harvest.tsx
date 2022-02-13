@@ -7,6 +7,7 @@ import TokenSymbol from '../../../components/TokenSymbol';
 import Label from '../../../components/Label';
 import Value from '../../../components/Value';
 import CardIcon from '../../../components/CardIcon';
+import StyledCardAccent from '../../../components/StyledCardAccent';
 import useClaimRewardTimerBoardroom from '../../../hooks/boardroom/useClaimRewardTimerBoardroom';
 import useClaimRewardCheck from '../../../hooks/boardroom/useClaimRewardCheck';
 import ProgressCountdown from './ProgressCountdown';
@@ -31,8 +32,9 @@ const Harvest: React.FC = () => {
   const {from, to} = useClaimRewardTimerBoardroom();
 
   return (
-    <Box>
-      <Card>
+    <Box position='relative'>
+      <StyledCardAccent />
+      <Card >
         <CardContent>
           <StyledCardContentInner>
             <StyledCardHeader>
@@ -57,7 +59,7 @@ const Harvest: React.FC = () => {
           </StyledCardContentInner>
         </CardContent>
       </Card>
-      <Box mt={2} style={{color: '#FFF'}}>
+      <Box mt={canClaimReward? 0: 2} style={{color: '#FFF'}}>
         {canClaimReward ? (
           ''
         ) : (

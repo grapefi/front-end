@@ -11,6 +11,7 @@ import {AddIcon, RemoveIcon} from '../../../components/icons';
 import IconButton from '../../../components/IconButton';
 import Label from '../../../components/Label';
 import Value from '../../../components/Value';
+import StyledCardAccent from '../../../components/StyledCardAccent';
 
 import useApprove, {ApprovalState} from '../../../hooks/useApprove';
 import useModal from '../../../hooks/useModal';
@@ -79,7 +80,8 @@ const Stake: React.FC = () => {
 
   return (
     
-    <Box>
+    <Box position='relative'>
+      <StyledCardAccent />
       <Card>
         <CardContent>
           <StyledCardContentInner>
@@ -119,7 +121,7 @@ const Stake: React.FC = () => {
           </StyledCardContentInner>
         </CardContent>
       </Card>
-      <Box mt={2} style={{color: '#FFF'}}>
+      <Box mt={canWithdrawFromBoardroom? 0: 2} style={{color: '#FFF'}}>
         {canWithdrawFromBoardroom ? (
           ''
         ) : (
