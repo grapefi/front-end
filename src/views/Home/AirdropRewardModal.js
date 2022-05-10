@@ -161,17 +161,21 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
             }}
           >
             <Box>
-              <h2 style={{fontSize: '22px'}}>In the Reward Pool, we currently have</h2>
-              <Typography className={classes.text}>{getNumberOfNodes('GRAPE')} Total Grape Nodes & (≈${getPriceForNodes('GRAPE')}) Grape in the reward pool</Typography>
-              <Typography className={classes.text}>{getNumberOfNodes('WINE')} Total Wine Nodes & (≈${getPriceForNodes('WINE')}) Wine in the reward pool</Typography>
+              <h2 style={{fontSize: '22px'}}>Details</h2>
+              <Typography className={classes.text}>{getNumberOfNodes('GRAPE')} Total Grape Nodes</Typography>
+              <Typography className={classes.text}>{getNumberOfNodes('WINE')} Total Wine Nodes</Typography>
               <Typography className={classes.text}>Total Tickets from Nodes: {getTotalNumberOfNodes()}</Typography>
               <Typography className={classes.text}>Total Tickets from NFTs: {NFT_TICKET_COUNT}</Typography>
               <Typography className={classes.text}><b>TOTAL TICKETS: {getTotalNumberOfNodes() + NFT_TICKET_COUNT}</b></Typography>
 
+              <Typography style={{marginTop: '10px'}} className={classes.text}>≈${getPriceForNodes('GRAPE')} Grape to be airdropped</Typography>
+              <Typography className={classes.text}>≈${getPriceForNodes('WINE')} Wine to be airdropped</Typography>
+
+              
               <Box sx={{ marginTop: '10px'}} className={classes.text}>{getTotalNumberOfNodes() + NFT_TICKET_COUNT} tickets are worth ≈${getPriceForNodes('GRAPE') + getPriceForNodes('WINE')}</Box>
               <Typography className={classes.yourText}><b>Your {ticketNumber} tickets are worth approx. ≈${getShareValue()}</b></Typography>
 
-              <Box sx={{ fontStyle: 'italic', marginTop: '10px', fontSize: '11px' }}>Please note that the numbers are only an estimation, they are based upon the current balance of the reward pool and the current prices. They also aestimate that all NFTs are held by node holders. Do not consider the results as your final reward amount.</Box>
+              <Box sx={{ fontStyle: 'italic', marginTop: '10px', fontSize: '11px' }}>Please note that the numbers are only an estimation, they are based upon the current balance of the reward pool and the current prices. They also estimate that all NFTs are held by node holders. Do not consider the results as your final reward amount.</Box>
             </Box>
           </Box>
         </Box>
