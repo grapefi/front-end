@@ -95,6 +95,14 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
     return Number(((ticketNumber * (getPriceForNodes('GRAPE') + getPriceForNodes('WINE'))) / (getTotalNumberOfNodes() + 9600)).toFixed(0));
   }
 
+  const getShareGrapes = () => {
+    return Number((ticketNumber * totalGrapes) / (getTotalNumberOfNodes() + NFT_TICKET_COUNT));
+  }
+
+  const getShareWines = () => {
+    return Number((ticketNumber * totalWine) / (getTotalNumberOfNodes() + NFT_TICKET_COUNT));
+  }
+
   const getTotalNumberOfNodes = () => {
     return getNumberOfNodes('GRAPE') + getNumberOfNodes('WINE');
   }
@@ -162,15 +170,17 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
             }}
           >
             <Box>
-              <h2 style={{fontSize: '22px'}}>In the Reward Pool, we currently have</h2>
-              <Typography className={classes.text}>{getNumberOfNodes('GRAPE')} Total Grape Nodes & (≈${getPriceForNodes('GRAPE')}) Grape in the reward pool</Typography>
-              <Typography className={classes.text}>{getNumberOfNodes('WINE')} Total Wine Nodes & (≈${getPriceForNodes('WINE')}) Wine in the reward pool</Typography>
+              <h2 style={{fontSize: '22px'}}>Details</h2>
+              <Typography className={classes.text}>{getNumberOfNodes('GRAPE')} Total Grape Nodes ({totalGrapes} Grapes in the reward pool)</Typography>
+              <Typography className={classes.text}>{getNumberOfNodes('WINE')} Total Wine Nodes ({totalWine} Wines in the reward pool) </Typography>
               <Typography className={classes.text}>Total Tickets from Nodes: {getTotalNumberOfNodes()}</Typography>
               <Typography className={classes.text}>Total Tickets from NFTs: {NFT_TICKET_COUNT}</Typography>
               <Typography className={classes.text}><b>TOTAL TICKETS: {getTotalNumberOfNodes() + NFT_TICKET_COUNT}</b></Typography>
+              <Typography className={classes.text}>{getTotalNumberOfNodes() + NFT_TICKET_COUNT} tickets are worth ≈${getPriceForNodes('GRAPE') + getPriceForNodes('WINE')}</Typography>
 
-              <Box sx={{ marginTop: '10px'}} className={classes.text}>{getTotalNumberOfNodes() + NFT_TICKET_COUNT} tickets are worth ≈${getPriceForNodes('GRAPE') + getPriceForNodes('WINE')}</Box>
-              <Typography className={classes.yourText}><b>Your {ticketNumber} tickets are worth approx. ≈${getShareValue()}</b></Typography>
+              <Box sx={{ marginTop: '10px'}} className={classes.yourText}><b>With current prices, your {ticketNumber} tickets are worth approx. ≈${getShareValue()}</b></Box>
+              <Typography className={classes.text}>≈{getShareGrapes()} Grape(s)</Typography>
+              <Typography className={classes.text}>≈{getShareWines()} Wine(s)</Typography>
 
               <Box sx={{ fontStyle: 'italic', marginTop: '10px', fontSize: '11px' }}>Please note that the numbers are only an estimation, they are based upon the current balance of the reward pool and the current prices. They also estimate that all NFTs are held by node holders. Do not consider the results as your final reward amount.</Box>
             </Box>
