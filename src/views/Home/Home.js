@@ -300,15 +300,43 @@ return (
               </span>
             </span>
             <br />
-            <div>
-              <Button
-                onClick={handleOpenModal}
-                className={'shinyButton ' + classes.button}
-                style={{ marginTop: '10px' }}
-              >
-                Estimate my Rewards
-              </Button>
-            </div>
+            <Grid style={{ marginTop: '16px' }} container spacing={3}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={6}
+                  xl={6}
+                  style={{ display: 'flex', justifyContent: 'center', verticalAlign: 'middle', overflow: 'hidden' }}
+                >
+                  <Button
+                    onClick={handleOpenModal}
+                    className={'shinyButton ' + classes.button}
+                    style={{ width: '220px' }}
+                  >
+                    Estimate my Rewards
+                  </Button>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={6}
+                  xl={6}
+                  style={{ display: 'flex', justifyContent: 'center', verticalAlign: 'middle', overflow: 'hidden' }}
+                >
+                  <Button
+                    target="_blank"
+                    href="https://nftrade.com/assets/avalanche/0x99fec0ca5cd461884e2e6e8484c219bbfb91e2df"
+                    className={'shinyButton ' + classes.button}
+                    style={{ width: '220px' }}
+                  >
+                    BUY A NFT
+                  </Button>
+                </Grid>
+              </Grid>
           </CardContent>
         </Card>
       </Grid>
