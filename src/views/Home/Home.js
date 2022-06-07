@@ -13,8 +13,6 @@ import useGrapeTotalNode from '../../hooks/useGrapeTotalNodes';
 import useWineTotalNode from '../../hooks/useWineTotalNodes';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useNodeRewardPoolStats from '../../hooks/useNodesRewardBalance';
-import { Grape as grapeTesting, Wine as bShareTesting } from '../../grape-finance/deployments/deployments.testing.json';
-import { Grape as grapeProd, Wine as bShareProd } from '../../grape-finance/deployments/deployments.mainnet.json';
 import { roundAndFormatNumber } from '../../0x';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
@@ -25,8 +23,6 @@ import wamp from '../../assets/img/WAMP.png';
 import GrapeImage from '../../assets/img/grape.png';
 import audit from '../../assets/img/audit1.jpg';
 import HomeImage from '../../assets/img/background.jpg';
-import useTotalStakedOnBoardroom from '../../hooks/useTotalStakedOnBoardroom';
-import { getDisplayBalance } from '../../utils/formatBalance';
 import {ReactComponent as IconTelegram} from '../../assets/img/telegram.svg';
 import {ReactComponent as IconDiscord} from '../../assets/img/discord.svg';
 import { useGetEventQuery } from '../../services/event';
@@ -63,7 +59,6 @@ const Home = () => {
   const tBondStats = useBondStats();
   const nodeRewardPoolStats = useNodeRewardPoolStats(nodesRewardAddress);
   const grapeFinance = useGrapeFinance();
-  const totalStaked = useTotalStakedOnBoardroom();
   const useGrapeTotal = useGrapeTotalNode();
   const useWineTotal = useWineTotalNode();
   const [rewardModelOpen, setModalOpen] = useState(false);
@@ -77,17 +72,6 @@ const Home = () => {
     }
   }, [eventResponse]);
  
-
- 
-  let grape;
-  let bShare;
-  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
-    grape = grapeTesting;
-    bShare = bShareTesting;
-  } else {
-    grape = grapeProd;
-    bShare = bShareProd;
-  }
 
   const buyGrapeAddress =
     'https://app.bogged.finance/avax/swap?tokenIn=0x130966628846BFd36ff31a822705796e8cb8C18D&tokenOut=0x5541D83EFaD1f281571B343977648B75d95cdAC2';
@@ -116,10 +100,6 @@ const Home = () => {
     () => (bShareStats ? Number(bShareStats.priceInDollars).toFixed(2) : null),
     [bShareStats],
   );
-  const bSharePriceInAVAX = useMemo(
-    () => (bShareStats ? Number(bShareStats.tokenInmim).toFixed(6) : null),
-    [bShareStats],
-  );
   const bShareCirculatingSupply = useMemo(
     () => (bShareStats ? String(bShareStats.circulatingSupply) : null),
     [bShareStats],
@@ -130,19 +110,12 @@ const Home = () => {
     () => (tBondStats ? Number(tBondStats.priceInDollars).toFixed(2) : null),
     [tBondStats],
   );
-  const tBondPriceInAVAX = useMemo(() => (tBondStats ? Number(tBondStats.tokenInmim).toFixed(4) : null), [tBondStats]);
+
   const tBondCirculatingSupply = useMemo(
     () => (tBondStats ? String(tBondStats.circulatingSupply) : null),
     [tBondStats],
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
-
-  const grapeTVL1 = useMemo(() => (newPair ? newPairLPStats.totalLiquidity / 2 : null), [newPair]);
-  const grapeTVL2 = useMemo(() => (grapemimLpStats ? grapemimLpStats.totalLiquidity / 2 : null), [grapemimLpStats]);
-
-  const shareLPTVL = useMemo(() => (wineLPStats ? wineLPStats.totalLiquidity / 2 : null), [wineLPStats]);
-
-  const totalStakedFormat = Number(getDisplayBalance(totalStaked)) * winePriceInDollars;
 
   const handleCloseModal = () => {
     setModalOpen(false);
@@ -151,34 +124,7 @@ const Home = () => {
   const handleOpenModal = () => {
     setModalOpen(true);
   };
-  /*
-  const grapeLpZap = useZap({ depositTokenName: 'GRAPE-MIM-LP' });
-  const wineLpZap = useZap({ depositTokenName: 'WINE-MIM-LP' });
 
-  const [onPresentGrapeZap, onDissmissGrapeZap] = useModal(
-    <ZapModal
-      decimals={18}
-      onConfirm={(zappingToken, tokenName, amount) => {
-        if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-        grapeLpZap.onZap(zappingToken, tokenName, amount);
-        onDissmissGrapeZap();
-      }}
-      tokenName={'GRAPE-MIM-LP'}
-    />,
-  );
-
-  const [onPresentWineZap, onDissmissWineZap] = useModal(
-    <ZapModal
-      decimals={18}
-      onConfirm={(zappingToken, tokenName, amount) => {
-        if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-        wineLpZap.onZap(zappingToken, tokenName, amount);
-        onDissmissWineZap();
-      }}
-      tokenName={'WINE-MIM-LP'}
-    />,
-  );
-*/
 return (
   <Page>
     <AirdropRewardModal
@@ -201,7 +147,7 @@ return (
         sm={4}
         style={{ display: 'flex', justifyContent: 'center', verticalAlign: 'middle', overflow: 'hidden' }}
       >
-        <img src={GrapeImage} style={{ maxHeight: '240px' }} />
+        <img src={GrapeImage} alt={'GRAPE Logo'} style={{ maxHeight: '240px' }} />
       </Grid>
       {/* Explanation text */}
       <Grid item xs={12} sm={8}>
@@ -218,7 +164,7 @@ return (
             </p>
             <p>
               Please join our{' '}
-              <a href="https://t.me/GrapeDefi" rel="noopener noreferrer" target="_blank" style={{ color: '#fff' }}>
+              <a href="https://t.me/GrapeDefi" rel="noopener noreferrer" target="_blank"  style={{ color: '#fff' }}>
                 <b>
                   {' '}
                   <IconTelegram width="25" style={{ fill: '#fff', height: '15px' }} />
@@ -247,32 +193,10 @@ return (
               </a>{' '}
               before joining!
             </p>
-            <Grid container>
-              <Grid item xs={6} sm={6} lg={6}>
-                <a href="https://twitter.com/0xGuard/status/1480457336082907137" target="_blank">
-                  <img alt="0xGuard KYC" style={{ width: '35%' }} src={kyc} />
-                </a>
-                <br />
-              </Grid>
-              <Grid item xs={6} sm={6} lg={6}>
-                <a href="https://grapefinance.app/audit.pdf" target="_blank">
-                  <img alt="0xGuard Audit" style={{ width: '35%', paddingTop: '10px' }} src={audit} />
-                </a>
-              </Grid>
-            </Grid>
+   
           </Box>
         </Paper>
       </Grid>
-
-      {/* <Grid container spacing={3}>
-        <Grid item xs={12} sm={12} justify="center" style={{ margin: '12px', display: 'flex' }}>
-
-         <Alert variant="filled" severity="info"> 
-            Reward Pools have launched! Please read our <a link="_blank" href="https://grapefinance.gitbook.io/grape-finance-docs/">docs</a> for more info and to confirm contract addresses.
-          </Alert>
-
-        </Grid>
-            </Grid>*/}
 
       {/* TVL */}
       
@@ -300,15 +224,44 @@ return (
               </span>
             </span>
             <br />
-            <div>
-              <Button
-                onClick={handleOpenModal}
-                className={'shinyButton ' + classes.button}
-                style={{ marginTop: '10px' }}
-              >
-                Estimate my Rewards
-              </Button>
-            </div>
+            <Grid style={{ marginTop: '0px' }} container spacing={3}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={6}
+                  xl={6}
+                  style={{ display: 'flex', justifyContent: 'center', verticalAlign: 'middle', overflow: 'hidden' }}
+                >
+                  <Button
+                    onClick={handleOpenModal}
+                    className={'shinyButton ' + classes.button}
+                    style={{ width: '220px', height: '60px'  }}
+                  >
+                    Estimate my Rewards
+                  </Button>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={6}
+                  xl={6}
+                  style={{ display: 'flex', justifyContent: 'center', verticalAlign: 'middle', overflow: 'hidden' }}
+                >
+                  <Button
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://nftrade.com/assets/avalanche/0x99fec0ca5cd461884e2e6e8484c219bbfb91e2df"
+                    className={'shinyButton ' + classes.button}
+                    style={{ width: '220px', height: '60px'}}
+                  >
+                    Buy an NFT
+                  </Button>
+                </Grid>
+              </Grid>
           </CardContent>
         </Card>
       </Grid>
@@ -316,14 +269,15 @@ return (
       {/* Wallet */}
       <Grid item xs={12} sm={8}>
         <Card style={{ height: '100%' }}>
-          <CardContent align="center" style={{ marginTop: '2%' }}>
-            <Box p={4} style={{ textAlign: 'center', paddingTop: '0px', marginBottom: '20px' }}>
+          <CardContent align="center" style={{ marginTop: '1%',paddingBottom: '0' }}>
+            <Box p={4} style={{ textAlign: 'center', paddingTop: '0px', marginBottom: '-20px'}}>
               <h2 style={{ fontSize: '32px' }}>Have WAMP to stake?</h2>
               <p style={{ marginTop: '0' }}>Boost your WAMP yields by staking for WINE then pledge for more AMP</p>
 
-              <img src={wamp} width={'55px'} height={'55px'}></img>
+              <img src={wamp} width={'50px'} alt={'WAMP Logo'} height={'50px'}></img>
               <Button
                 target="_blank"
+                rel="noopener noreferrer"
                 href={wampStaking}
                 className={'shinyButton ' + classes.button}
                 style={{ marginLeft: '10px', marginTop: '-45px' }}
@@ -333,45 +287,64 @@ return (
           </Box>
           
             {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
-            <Button href="/vineyard" className="shinyButton" style={{ margin: '10px' }}>
+            <Button href="/vineyard" className="shinyButton" style={{ margin: '0px' }}>
               Vineyard
             </Button>
-            <Button href="/winery" className="shinyButton" style={{ margin: '10px' }}>
+            <Button href="/winery" className="shinyButton" style={{ marginLeft: '15px' }}>
               Winery
             </Button>
             <Button
               target="_blank"
+              rel="noopener noreferrer"
               href={buyGrapeAddress}
-              style={{ margin: '10px' }}
+              style={{ marginLeft: '15px' }}
               className={'shinyButton ' + classes.button}
             >
               Buy GRAPE
             </Button>
             <Button
               target="_blank"
+              rel="noopener noreferrer"
               href={buyWineAddress}
               className={'shinyButton ' + classes.button}
-              style={{ marginLeft: '10px' }}
+              style={{ marginLeft: '15px' }}
             >
               Buy WINE
             </Button>
 
             <Button
               target="_blank"
+              rel="noopener noreferrer"
               href={grapeChart}
               className={'shinyButton ' + classes.button}
-              style={{ marginLeft: '10px' }}
+              style={{ marginLeft: '15px' }}
             >
               GRAPE Chart
             </Button>
             <Button
               target="_blank"
+              rel="noopener noreferrer"
               href={wineChart}
               className={'shinyButton ' + classes.button}
-              style={{ marginLeft: '10px' }}
+              style={{ margin: '15px' }}
             >
               WINE Chart
             </Button>
+            <Grid container style={{marginTop: '15px'}}>
+              <Grid item xs={6} sm={6} lg={6}>
+                <a href="https://twitter.com/0xGuard/status/1480457336082907137" style={{textDecoration: 'none'}} rel="noopener noreferrer" target="_blank">
+                  <img alt="0xGuard KYC" style={{ width: '35%' }} src={kyc} />
+                  <span style={{color: '#fff', display: 'block'}}>KYC</span>
+                </a>
+                <br />
+              </Grid>
+              <Grid item xs={6} sm={6} lg={6}>
+                <a href="https://grapefinance.app/audit.pdf" style={{textDecoration: 'none'}}  rel="noopener noreferrer" target="_blank">
+                  <img alt="0xGuard Audit" style={{ width: '35%', paddingTop: '10px' }} src={audit} />
+                  <span style={{color: '#fff', display: 'block'}}>Audit</span>
+                </a>              
+              </Grid>            
+            </Grid>
           </CardContent>
         </Card>
       </Grid>
@@ -389,7 +362,7 @@ return (
               onClick={() => {
                 grapeFinance.watchAssetInMetamask('GRAPE');
               }}
-              style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
+              style={{ position: 'absolute', top: '10px', right: '10px'}}
             >
               {' '}
               <b>+</b>&nbsp;&nbsp;
@@ -421,7 +394,7 @@ return (
               onClick={() => {
                 grapeFinance.watchAssetInMetamask('WINE');
               }}
-              style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
+              style={{ position: 'absolute', top: '10px', right: '10px'}}
             >
               {' '}
               <b>+</b>&nbsp;&nbsp;
@@ -459,7 +432,7 @@ return (
               onClick={() => {
                 grapeFinance.watchAssetInMetamask('GBOND');
               }}
-              style={{ position: 'absolute', top: '10px', right: '10px', border: '1px grey solid' }}
+              style={{ position: 'absolute', top: '10px', right: '10px'}}
             >
               {' '}
               <b>+</b>&nbsp;&nbsp;

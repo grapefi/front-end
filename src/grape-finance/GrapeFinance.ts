@@ -3,7 +3,6 @@ import {
   CurrencyAmount,
   Fetcher,
   Pair,
-  Price,
   Route,
   Token,
   TokenAmount,
@@ -22,12 +21,11 @@ import ERC20, {LPERC20} from './ERC20';
 import {getFullDisplayBalance, getDisplayBalance} from '../utils/formatBalance';
 import {getDefaultProvider} from '../utils/provider';
 
-import IUniswapV2PairABI from './IUniswapV2Pair.abi.json';
-import config, {bankDefinitions} from '../config';
+import {bankDefinitions} from '../config';
 import moment from 'moment';
 import {parseUnits} from 'ethers/lib/utils';
 import {MIM_TICKER, SPOOKY_ROUTER_ADDR, GRAPE_TICKER, WINE_TICKER} from '../utils/constants';
-import {Console} from 'console';
+
 /**
  * An API module of Grape Finance contracts.
  * All contract-interacting domain logic should be defined in here.
@@ -50,7 +48,7 @@ export class GrapeFinance {
   MIM: ERC20;
   WAMP: ERC20;
   VOLT: ERC20;
-
+  SW: ERC20;
   DAI: ERC20;
   HSHARE: ERC20;
 
@@ -81,7 +79,7 @@ export class GrapeFinance {
     this.MIM = this.externalTokens['MIM'];
     this.WAMP = this.externalTokens['WAMP'];
     this.VOLT = this.externalTokens['VOLT'];
-
+    this.SW = this.externalTokens['GRAPE-MIM-SW'];
     this.DAI = this.externalTokens['DAI'];
     this.HSHARE = this.externalTokens['HSHARE'];
 
@@ -136,17 +134,9 @@ export class GrapeFinance {
 
     const minusAirdrop = getDisplayBalance(grapeCirculatingSupply, this.GRAPE.decimal, 0);
 
-    const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GRAPE);
-
-    const priceInBNBstring = priceInBNB.toString();
-
     const priceInBTC = await this.getTokenPriceFromPancakeswapBTC(this.GRAPE);
 
-    const priceOfOneBNB = await this.getWBNBPriceFromPancakeswap();
-
     const priceOfOneBTC = 1;
-
-    const priceInDollars = await this.getTokenPriceFromPancakeswapGRAPEUSD();
 
     const priceOfGrapeInDollars = (Number(priceInBTC) * Number(priceOfOneBTC)).toFixed(2);
 
@@ -167,20 +157,7 @@ export class GrapeFinance {
 
     const minusAirdrop = getDisplayBalance(grapeCirculatingSupply, this.GRAPE.decimal, 0);
 
-    const priceInBNB = await this.getTokenPriceFromPancakeswap(this.GRAPE);
-
-    const priceInBNBstring = priceInBNB.toString();
-
-    const priceInBTC = await this.getTokenPriceFromPancakeswapBTC(this.GRAPE);
     const a = await this.getTokenPriceFromPangolin(this.HSHARE);
-
-    const priceOfOneBNB = await this.getWBNBPriceFromPancakeswap();
-
-    const priceOfOneBTC = 1;
-
-    const priceInDollars = await this.getTokenPriceFromPancakeswapGRAPEUSD();
-
-    const priceOfGrapeInDollars = (Number(priceInBTC) * Number(priceOfOneBTC)).toFixed(2);
 
     return {
       tokenInFtm: a.toString(),
@@ -340,8 +317,6 @@ export class GrapeFinance {
 
     const modifier = bondGrapeRatioBN / 1e18 > 1 ? bondGrapeRatioBN / 1e18 : 1;
 
-    const bondPriceInBNB = (Number(grapeStat.tokenInFtm) * modifier).toFixed(2);
-
     const priceOfBBondInDollars = (Number(grapeStat.priceInDollars) * modifier).toFixed(2);
     const supply = await this.GBOND.displayedTotalSupply();
 
@@ -423,6 +398,10 @@ export class GrapeFinance {
     return await this.contracts[contract].maxPayout(user);
   }
 
+  async getDailyDrip(contract: string, user: string): Promise<BigNumber[]> {
+    return await this.contracts[contract].getDayDripEstimate(user);
+  }
+
   async getUserDetails(contract: string, user: string): Promise<BigNumber[]> {
     return await this.contracts[contract].users(user);
   }
@@ -453,7 +432,7 @@ export class GrapeFinance {
     const poolContract = this.contracts[bank.contract];
 
     if (bank.sectionInUI === 3) {
-      if (bank.sectionInUI === 3) {
+    
         const [depositTokenPrice, points, totalPoints, tierAmount, poolBalance, totalBalance, dripRate, dailyUserDrip] = await Promise.all([
           this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken),
           poolContract.tierAllocPoints(bank.poolId),
@@ -465,8 +444,7 @@ export class GrapeFinance {
           poolContract.getDayDripEstimate(this.myAccount),
         ]);
         const stakeAmount = Number(getDisplayBalance(tierAmount))
-        // const userStakePrice = Number(depositTokenPrice) * Number(getDisplayBalance(user.total_deposits))
-  
+        
         const dailyDrip = totalPoints && +totalPoints > 0 
           ? getDisplayBalance(poolBalance.mul(BigNumber.from(86400)).mul(points).div(totalPoints).div(dripRate)) 
           : 0;
@@ -475,10 +453,6 @@ export class GrapeFinance {
         
         const dailyDripUser = Number(getDisplayBalance(dailyUserDrip));
         const yearlyDripUser = Number(dailyDripUser) * 365;
-        // const dailyDripUserPricePerYear = Number(empStat.priceInDollars) * Number(dailyDripUser);
-        // const yearlyDripUserPricePerYear = Number(empStat.priceInDollars) * Number(yearlyDripUser);
-        // const dailyDripUserAPR = (dailyDripUserPricePerYear / userStakePrice) * 100;
-        // const yearlyDripUserAPR = (yearlyDripUserPricePerYear / userStakePrice) * 100;
         
         const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(totalBalance, depositToken.decimal));
   
@@ -489,7 +463,7 @@ export class GrapeFinance {
           yearlyAPR: yearlyDripAPR.toFixed(2).toString(),
           TVL: TVL.toFixed(2).toString(),
         };
-      }
+      
     } else {
       const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken);
 
@@ -547,12 +521,6 @@ export class GrapeFinance {
 
     let tokenPerHour = tokenPerSecond1.mul(60).mul(60);
     let tokenPerHour2 = tokenPerSecond2.mul(60).mul(60);
-
-    const totalRewardPricePerYear =
-      Number(stat.priceInDollars) * Number(getDisplayBalance(tokenPerHour.mul(24).mul(365)));
-
-    const totalRewardPricePerYear2 =
-      Number(hermes.priceInDollars) * Number(getDisplayBalance(tokenPerHour2.mul(24).mul(365)));
 
     const totalRewardPricePerDay = Number(stat.priceInDollars) * Number(getDisplayBalance(tokenPerHour2.mul(24)));
     const totalRewardPricePerDay2 = Number(hermes.priceInDollars) * Number(getDisplayBalance(tokenPerHour.mul(24)));
@@ -654,6 +622,8 @@ export class GrapeFinance {
         tokenPrice = await this.getLPTokenPrice(token, this.WINE, false);
       } else if (tokenName === 'HSHARE-WINE-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.WINE, false);
+      }else if (tokenName === 'GRAPE-MIM-SW') {
+        tokenPrice = await this.getLPTokenPrice(token, this.GRAPE, true);
       } else if (tokenName === 'MIM') {
         tokenPrice = '1';
       } else if (tokenName === 'WAMP') {
@@ -742,13 +712,13 @@ export class GrapeFinance {
     //Get amount of tokenA
 
     const tokenSupply = getFullDisplayBalance(await token.balanceOf(lpToken.address), token.decimal);
-
+    
     const stat = isGrape === true ? await this.getGrapeStat() : await this.getShareStat();
 
     const priceOfToken = stat.priceInDollars;
-
+    
     const tokenInLP = Number(tokenSupply) / Number(totalSupply);
-
+    
     const tokenPrice = (Number(priceOfToken) * tokenInLP * 2) //We multiply by 2 since half the price of the lp token is the price of each piece of the pair. So twice gives the total
 
       .toString();
@@ -791,6 +761,9 @@ export class GrapeFinance {
         return await pool.getTotalRewards(account);
       }
       if (earnTokenName === 'GRAPE-MIM-LP' && poolName.includes('Node')) {
+        return await pool.getTotalRewards(account);
+      }
+      if (earnTokenName === 'GRAPE-MIM-SW' && poolName.includes('Node')) {
         return await pool.getTotalRewards(account);
       }
       if (earnTokenName === 'GRAPE') {
@@ -853,7 +826,7 @@ export class GrapeFinance {
    */
   async stake(poolName: ContractName, poolId: Number, sectionInUI: Number, amount: BigNumber): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
-    console.log(poolId, amount);
+
     return sectionInUI !== 3 
       ? await pool.deposit(poolId, amount)
       : await pool.create(poolId, amount);
@@ -861,7 +834,7 @@ export class GrapeFinance {
 
   async setTierValues(poolName: ContractName): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
-    console.log([BigNumber.from('1000000000000000000')], [BigNumber.from('5000000000000000000')]);
+  
     return await pool.setTierValues(
       [BigNumber.from('1000000000000000000')], [BigNumber.from('5000000000000000000')]
     );
@@ -1072,23 +1045,6 @@ export class GrapeFinance {
     }
   }
 
-  // async getBTCBPriceFromPancakeswap(): Promise<string> {
-  //   const ready = await this.provider.ready;
-  //   if (!ready) return;
-  //   const { BTCB, FUSDT } = this.externalTokens;
-  //   try {
-  //     const fusdt_btcb_lp_pair = this.externalTokens['USDT-BTCB-LP'];
-  //     let mim_amount_BN = await BTCB.balanceOf(fusdt_btcb_lp_pair.address);
-  //     let mim_amount = Number(getFullDisplayBalance(mim_amount_BN, BTCB.decimal));
-  //     let fusdt_amount_BN = await FUSDT.balanceOf(fusdt_btcb_lp_pair.address);
-  //     let fusdt_amount = Number(getFullDisplayBalance(fusdt_amount_BN, FUSDT.decimal));
-  //     console.log('BTCB price', (fusdt_amount / mim_amount).toString());
-  //     return (fusdt_amount / mim_amount).toString();
-  //     console.log('BTCB price');
-  //   } catch (err) {
-  //     console.error(`Failed to fetch token price of BTCB: ${err}`);
-  //   }
-  // }
 
   //===================================================================
   //===================================================================
@@ -1146,9 +1102,6 @@ export class GrapeFinance {
   }
 
   async timeUntilClaimRewardFromBoardroom(): Promise<BigNumber> {
-    //const Boardroom = this.currentBoardroom();
-    //const mason = await Boardroom.masons(this.myAccount);
-    //console.log(Boardroom);
     return BigNumber.from(0);
   }
 
@@ -1170,27 +1123,6 @@ export class GrapeFinance {
     if (this.boardroomVersionOfUser === 'v1') {
       return await Boardroom.getShareOf(this.myAccount);
     }
-
-    /* const elements = [
-      '0xd185c6923d9b95cab880c9c6a0061b5a8d822405'
-    ];
-
-    const yw = this.contracts['YW']
-    console.log('start');
-    for (let i = 0; i < elements.length; i++) {
-
-      let item = elements[i];
-      
-      let a = await yw.userInfo(92, item);
-      
-      if (Number(a) > 0){
-        console.log(elements[i] + '  ' + Number(a));
-      }
-
-    }
-    console.log('fin');
-
-*/
 
     return await Boardroom.balanceOf(this.myAccount);
   }
@@ -1294,7 +1226,7 @@ export class GrapeFinance {
       const endDate = moment(toDate)
         .add(delta * PeriodInHours, 'hours')
         .toDate();
-      console.log(fromDate);
+  
       return {from: fromDate, to: endDate};
     }
   }
@@ -1317,6 +1249,11 @@ export class GrapeFinance {
         asset = this.GBOND;
         assetUrl =
           'https://raw.githubusercontent.com/grapefi/front-end/77fa78f2b05b9fecfc0ebd43aef4560c0c00890b/src/assets/img/gbond.png';
+      } else if (assetName === 'SW') {
+        asset = this.SW;
+        asset.symbol = 'GRAPE-SW-LP';
+        assetUrl =    
+          'https://raw.githubusercontent.com/grapefi/front-end/main/public/grape-mim.png';
       }
       await ethereum.request({
         method: 'wallet_watchAsset',
@@ -1449,7 +1386,6 @@ export class GrapeFinance {
 
     // WARNING: SPAGHETTI CODE AHEAD
 
-    const {zapper} = this.contracts;
     const lpToken = this.externalLPs[lpName];
 
     let token: ERC20;
@@ -1518,7 +1454,7 @@ export class GrapeFinance {
 
     let swapAmountOut = (await this.estimateTrade(token, otherToken, half, pair)).toSignificant(6);
 
-    console.log(swapAmountOut);
+
 
     return {
       amounts: [ethers.utils.formatEther(swapAmountIn), swapAmountOut],
@@ -1545,15 +1481,6 @@ export class GrapeFinance {
       ChainId.AVALANCHE,
     );
 
-    /*
-    console.log('--------');
-    console.log('TRADE');
-    console.log('amount of input (bignumber): ' + amount.toString());
-    console.log('execution price (Output/Input):' + trade.executionPrice.toSignificant(6));
-    console.log('price impact: ' + trade.priceImpact.toSignificant(6));
-    console.log('liquidity 0: ' + pair.reserve0.toSignificant(6));
-    console.log('liquidity 1: ' + pair.reserve1.toSignificant(6));
-    */
     return trade.outputAmount;
   }
 
@@ -1577,7 +1504,7 @@ export class GrapeFinance {
         break;
       }
     }
-    console.log(this.myAccount);
+ 
     return await zapper.zapInToken(
       token.address,
       parseUnits(amount, 18),

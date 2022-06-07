@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {Box, Button, Card, CardActions, CardContent, Typography, Grid} from '@material-ui/core';
-import {useParams} from 'react-router-dom';
 import TokenSymbol from '../../components/TokenSymbol';
 import useBank from '../../hooks/useBank';
-import SwapVerticalCircleIcon from '@material-ui/icons/SwapVerticalCircle';
 import useStatsForPool from '../../hooks/useStatsForPool';
 const LPCard = ({}) => {
   const tombBank = useBank('LPNode');
@@ -31,12 +29,12 @@ const LPCard = ({}) => {
               <TokenSymbol size={32} symbol={'GNODE'} />
             </Box>
             <Typography variant="h5" component="h2">
-              Grape-MIM LP Node
+              Grape-MIM Swapsicle
             </Typography>
             <Typography color="#322f32">
               Lock your LP tokens to earn daily yields<br></br>
-              <b>Daily APR:</b> {statsOnPool?.dailyAPR}% + POPs token<br></br>
-              <b>Yearly APR:</b> {statsOnPool?.yearlyAPR}% + POPs token
+              <b>Daily APR:</b> {statsOnPool?.dailyAPR}% + POPs airdrops<br></br>
+              <b>Yearly APR:</b> {statsOnPool?.yearlyAPR}% + POPs airdrops
             </Typography>
           </Box>
         </CardContent>
