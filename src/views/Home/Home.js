@@ -27,7 +27,7 @@ import {ReactComponent as IconTelegram} from '../../assets/img/telegram.svg';
 import {ReactComponent as IconDiscord} from '../../assets/img/discord.svg';
 import { useGetEventQuery } from '../../services/event';
 import AirdropRewardModal from './AirdropRewardModal';
-// import ClaimRewardsModal from './ClaimRewardsModal';
+import ClaimRewardsModal from './ClaimRewardsModal';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -37,6 +37,7 @@ const BackgroundImage = createGlobalStyle`
     ;
   }
 `;
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -60,7 +61,7 @@ const Home = () => {
   const grapeFinance = useGrapeFinance();  
   const useGrapeTotal = useGrapeTotalNode();
   const useWineTotal = useWineTotalNode();
-  // const [claimRewardsModalOpen, setClaimRewardsModalOpen] = useState(false);
+  const [claimRewardsModalOpen, setClaimRewardsModalOpen] = useState(false);
   const [rewardModelOpen, setModalOpen] = useState(false);
 
   const {data : eventResponse} = useGetEventQuery();
@@ -125,17 +126,23 @@ const Home = () => {
     setModalOpen(true);
   };
 
-  // const handleOpenClaimModal = () => {
-  //   setClaimRewardsModalOpen(true);
-  // };
+  const handleOpenClaimModal = () => {
+    setClaimRewardsModalOpen(true);
+  };
 
-  // const handleCloseClaimRewardsModal = () => {
-  //   setClaimRewardsModalOpen(false);
-  // };
+  const handleCloseClaimRewardsModal = () => {
+    setClaimRewardsModalOpen(false);
+  };
 
 return (
   <Page>
   
+    { grapeFinance?.myAccount && 
+      <ClaimRewardsModal
+        open={claimRewardsModalOpen}
+        handleClose={handleCloseClaimRewardsModal}
+      />
+    }
 
     <AirdropRewardModal
       open={rewardModelOpen}
@@ -204,14 +211,14 @@ return (
               </a>{' '}
               before joining!
             </p>
-            {/* <Button
-              disabled={!account}
+            <Button
+              disabled={!grapeFinance?.myAccount}
               onClick={handleOpenClaimModal}
-              className={!account ? 'shinyButtonDisabled' : 'shinyButton'}
+              className={!grapeFinance?.myAccount ? 'shinyButtonDisabled' : 'shinyButton'}
               style={{ marginTop: '10px', width: '220px', height: '60px'  }}
             >
-              { account ? 'Claim your rewards' : 'Connect to Claim your rewards'}
-            </Button> */}
+              { grapeFinance?.myAccount ? 'Claim your rewards' : 'Connect to Claim your rewards'}
+            </Button>
           </Box>
         </Paper>
       </Grid>

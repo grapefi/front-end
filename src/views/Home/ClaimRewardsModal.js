@@ -151,7 +151,7 @@ const ClaimRewardsModal = ({open, handleClose}) => {
           <h3 style={{fontSize: '20px'}}>VINEYARD</h3>
           <Grid container>
             <Grid item xs={8} sm={9} md={9} lg={10} xl={10} className={classes.cellLeft}>
-              Claim {getDisplayBalance(grapeMimClaimableRewards)} Grape-Mim LP Rewards
+              Claim {getDisplayBalance(grapeMimClaimableRewards)} Wine(s) from Grape-MIM
             </Grid>
             <Grid item xs={4} sm={3} md={3} lg={2} xl={2} className={classes.cellRight}>
               <Checkbox
@@ -164,7 +164,7 @@ const ClaimRewardsModal = ({open, handleClose}) => {
             </Grid>
 
             <Grid item xs={8} sm={9} md={9} lg={10} xl={10} className={classes.cellLeft}>
-              Claim {getDisplayBalance(wineMimClaimableRewards)} Wine-Mim LP Rewards
+              Claim {getDisplayBalance(wineMimClaimableRewards)} Wine(s) from Wine-MIM
             </Grid>
             <Grid item xs={4} sm={3} md={3} lg={2} xl={2} className={classes.cellRight}>
               <Checkbox
@@ -177,7 +177,7 @@ const ClaimRewardsModal = ({open, handleClose}) => {
             </Grid>
 
             <Grid item xs={8} sm={9} md={9} lg={10} xl={10} className={classes.cellLeft}>
-              Claim {getDisplayBalance(grapeWineClaimableRewards)} Grape-Wine LP Rewards
+              Claim {getDisplayBalance(grapeWineClaimableRewards)} Wine(s) from Grape-Wine
             </Grid>
             <Grid item xs={4} sm={3} md={3} lg={2} xl={2} className={classes.cellRight}>
               <Checkbox
@@ -190,7 +190,7 @@ const ClaimRewardsModal = ({open, handleClose}) => {
             </Grid>
 
             <Grid item xs={8} sm={9} md={9} lg={10} xl={10} className={classes.cellLeft}>
-              Claim {getDisplayBalance(grapeClaimableRewards)} Grape Rewards
+              Claim {getDisplayBalance(grapeClaimableRewards)} Wine(s) from Grape Single
             </Grid>
             <Grid item xs={4} sm={3} md={3} lg={2} xl={2} className={classes.cellRight}>
               <Checkbox
@@ -203,7 +203,7 @@ const ClaimRewardsModal = ({open, handleClose}) => {
             </Grid>
 
             <Grid item xs={8} sm={9} md={9} lg={10} xl={10} className={classes.cellLeft}>
-              Claim {getDisplayBalance(wampClaimableRewards)} Wamp Rewards
+              Claim {getDisplayBalance(wampClaimableRewards)} Wine(s) from Wamp
             </Grid>
             <Grid item xs={4} sm={3} md={3} lg={2} xl={2} className={classes.cellRight}>
               <Checkbox
@@ -218,7 +218,7 @@ const ClaimRewardsModal = ({open, handleClose}) => {
           <h3 style={{fontSize: '20px'}}>WINERY</h3>
           <Grid container>
             <Grid item xs={8} sm={9} md={9} lg={10} xl={10} className={classes.cellLeft}>
-              Claim {getDisplayBalance(wineryClaimableRewards)} Grape Rewards
+              Claim {getDisplayBalance(wineryClaimableRewards)} Grape(s) from Winery
             </Grid>
             <Grid item xs={4} sm={3} md={3} lg={2} xl={2} className={classes.cellRight}>
               <Checkbox 
@@ -233,7 +233,7 @@ const ClaimRewardsModal = ({open, handleClose}) => {
           <h3 style={{fontSize: '20px'}}>NODES</h3>
           <Grid container>
             <Grid item xs={8} sm={9} md={9} lg={10} xl={10} className={classes.cellLeft}>
-              Claim {getDisplayBalance(grapeNodesClaimableRewards)} Grape Nodes Rewards
+              Claim {getDisplayBalance(grapeNodesClaimableRewards)} Grape(s) from Grape Nodes
             </Grid>
             <Grid item xs={4} sm={3} md={3} lg={2} xl={2} className={classes.cellRight}>
               <Checkbox
@@ -246,7 +246,7 @@ const ClaimRewardsModal = ({open, handleClose}) => {
             </Grid>
 
             <Grid item xs={8} sm={9} md={9} lg={10} xl={10} className={classes.cellLeft}>
-              Claim {getDisplayBalance(wineNodesClaimableRewards)} Wine Nodes Rewards
+              Claim {getDisplayBalance(wineNodesClaimableRewards)} Wine(s) from Wine Nodes
             </Grid>
             <Grid item xs={4} sm={3} md={3} lg={2} xl={2} className={classes.cellRight}>
               <Checkbox
@@ -259,7 +259,7 @@ const ClaimRewardsModal = ({open, handleClose}) => {
             </Grid>
 
             <Grid item xs={8} sm={9} md={9} lg={10} xl={10} className={classes.cellLeft}>
-              Claim {getDisplayBalance(grapeMimSWNodesClaimableRewards)} Grape-Mim SW Nodes Rewards
+              Claim {getDisplayBalance(grapeMimSWNodesClaimableRewards)} Grape-Mim SW(s) from Grape-MIM SW Nodes
             </Grid>
             <Grid item xs={4} sm={3} md={3} lg={2} xl={2} className={classes.cellRight}>
               <Checkbox
