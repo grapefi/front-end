@@ -1129,7 +1129,6 @@ export class GrapeFinance {
 
   async getEarningsOnBoardroom(): Promise<BigNumber> {
     const Boardroom = this.currentBoardroom();
-
     if (this.boardroomVersionOfUser === 'v1') {
       return await Boardroom.getCashEarningsOf(this.myAccount);
     }

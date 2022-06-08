@@ -27,6 +27,7 @@ import {ReactComponent as IconTelegram} from '../../assets/img/telegram.svg';
 import {ReactComponent as IconDiscord} from '../../assets/img/discord.svg';
 import { useGetEventQuery } from '../../services/event';
 import AirdropRewardModal from './AirdropRewardModal';
+// import ClaimRewardsModal from './ClaimRewardsModal';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -36,7 +37,6 @@ const BackgroundImage = createGlobalStyle`
     ;
   }
 `;
-
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const nodesRewardAddress = '0xa3C4C965BA6aA9382a8Edd965D13CB495F8da6F5';
-
   const classes = useStyles();
   const TVL = useTotalValueLocked();
   const grapemimLpStats = useLpStatsBTC('GRAPE-MIM-LP');
@@ -58,9 +57,10 @@ const Home = () => {
   const bShareStats = usebShareStats();
   const tBondStats = useBondStats();
   const nodeRewardPoolStats = useNodeRewardPoolStats(nodesRewardAddress);
-  const grapeFinance = useGrapeFinance();
+  const grapeFinance = useGrapeFinance();  
   const useGrapeTotal = useGrapeTotalNode();
   const useWineTotal = useWineTotalNode();
+  // const [claimRewardsModalOpen, setClaimRewardsModalOpen] = useState(false);
   const [rewardModelOpen, setModalOpen] = useState(false);
 
   const {data : eventResponse} = useGetEventQuery();
@@ -125,8 +125,18 @@ const Home = () => {
     setModalOpen(true);
   };
 
+  // const handleOpenClaimModal = () => {
+  //   setClaimRewardsModalOpen(true);
+  // };
+
+  // const handleCloseClaimRewardsModal = () => {
+  //   setClaimRewardsModalOpen(false);
+  // };
+
 return (
   <Page>
+  
+
     <AirdropRewardModal
       open={rewardModelOpen}
       handleClose={handleCloseModal}
@@ -153,6 +163,7 @@ return (
       <Grid item xs={12} sm={8}>
         <Paper>
           <Box p={4} style={{ textAlign: 'center' }}>
+
             <h2>Earn Daily Yields at Grape Finance</h2>
 
             <p style={{ fontSize: '17px' }}>
@@ -193,7 +204,14 @@ return (
               </a>{' '}
               before joining!
             </p>
-   
+            {/* <Button
+              disabled={!account}
+              onClick={handleOpenClaimModal}
+              className={!account ? 'shinyButtonDisabled' : 'shinyButton'}
+              style={{ marginTop: '10px', width: '220px', height: '60px'  }}
+            >
+              { account ? 'Claim your rewards' : 'Connect to Claim your rewards'}
+            </Button> */}
           </Box>
         </Paper>
       </Grid>
