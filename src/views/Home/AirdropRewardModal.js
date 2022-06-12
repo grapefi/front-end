@@ -1,8 +1,8 @@
 import { Modal, Box, Typography, makeStyles, CircularProgress } from '@material-ui/core';
 import React, { useState, useMemo, useEffect } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import useWalletNodesAndNFTs from '../../hooks/useWalletNodesAndNFTs';
 import useGrapeFinance from '../../hooks/useGrapeFinance';
+import useWalletNodesAndNFTs from '../../hooks/useWalletNodesAndNFTs';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -86,29 +86,29 @@ const DECANTER_MULTIPLIER = 9;
 const GOBLET_MULTIPLIER = 30;
 
 const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, winePrice, grapeMimSW, grapeMimSWPrice, totalGrapes, totalWine, totalGrapeMimSW }) => {
-
-  const walletTickets = useWalletNodesAndNFTs();
   const grapeFinance = useGrapeFinance();  
-
   const [ticketNumber, setTicketNumber] = useState(1);
   const [manualEntry, setManualEntry] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useMemo (() => { 
-    setLoading(grapeFinance?.myAccount && !walletTickets);
+  const useWalletsNodesAndNFTs = useWalletNodesAndNFTs();
+  const walletNodesAndNFTs = useMemo(() => {
 
-    if (walletTickets && manualEntry === false) {
-      console.log('useMemo data loaded')
+    setLoading(grapeFinance?.myAccount && !useWalletsNodesAndNFTs);
+
+    if (useWalletsNodesAndNFTs && manualEntry === false) {
       setLoading(false);
-      setTicketNumber((walletTickets.grapes * GRAPE_NODE_MULTIPLIER) + 
-                      (walletTickets.wines * WINE_NODE_MULTIPLIER) + 
-                      (walletTickets.grapeMimSWs * GRAPEMIMSW_NODE_MULTIPLIER) +
-                      (walletTickets.goonBags * GOON_MULTIPLIER) +
-                      (walletTickets.glasses * GLASS_MULTIPLIER) +
-                      (walletTickets.decanters * DECANTER_MULTIPLIER) +
-                      (walletTickets.goblets * GOBLET_MULTIPLIER));
+      setTicketNumber((useWalletsNodesAndNFTs.grapes * GRAPE_NODE_MULTIPLIER) + 
+                      (useWalletsNodesAndNFTs.wines * WINE_NODE_MULTIPLIER) + 
+                      (useWalletsNodesAndNFTs.grapeMimSWs * GRAPEMIMSW_NODE_MULTIPLIER) +
+                      (useWalletsNodesAndNFTs.goonBags * GOON_MULTIPLIER) +
+                      (useWalletsNodesAndNFTs.glasses * GLASS_MULTIPLIER) +
+                      (useWalletsNodesAndNFTs.decanters * DECANTER_MULTIPLIER) +
+                      (useWalletsNodesAndNFTs.goblets * GOBLET_MULTIPLIER));
     }
-  }, [walletTickets, manualEntry, grapeFinance.myAccount]);
+    return useWalletsNodesAndNFTs;
+    
+  }, [useWalletsNodesAndNFTs, manualEntry, grapeFinance.myAccount]);
 
   const classes = useStyles();
 
@@ -221,35 +221,35 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
             </Box>
             <Box sx={{ fontStyle: 'italic', marginTop: '10px', fontSize: '11px', color: '#000' }}>
                 1 Grape node gives {GRAPE_NODE_MULTIPLIER} ticket. 
-                { walletTickets && 
-                  <span>You have {walletTickets.grapes} Grape Nodes.</span>
+                { walletNodesAndNFTs && 
+                  <span>You have {walletNodesAndNFTs.grapes} Grape Nodes.</span>
                 }<br/>
 
                 1 Wine node gives {WINE_NODE_MULTIPLIER} tickets. 
-                { walletTickets && 
-                  <span>You have {walletTickets.wines} Wine Nodes.</span>
+                { walletNodesAndNFTs && 
+                  <span>You have {walletNodesAndNFTs.wines} Wine Nodes.</span>
                 }<br/>
 
                 1 Grape-Mim SW node gives {GRAPEMIMSW_NODE_MULTIPLIER} ticket. 
-                { walletTickets && 
-                  <span>You have {walletTickets.grapeMimSWs} Grape-Mim SW Nodes.</span>
+                { walletNodesAndNFTs && 
+                  <span>You have {walletNodesAndNFTs.grapeMimSWs} Grape-Mim SW Nodes.</span>
                 }<br/>
 
                 1 Goon Bag gives {GOON_MULTIPLIER} ticket. 
-                { walletTickets && 
-                  <span>You have {walletTickets.goonBags} Goon Bag(s).</span>
+                { walletNodesAndNFTs && 
+                  <span>You have {walletNodesAndNFTs.goonBags} Goon Bag(s).</span>
                 }<br/>
 
-                1 Glass gives {GLASS_MULTIPLIER} tickets { walletTickets && 
-                  <span>You have {walletTickets.glasses} Glass(es).</span>
+                1 Glass gives {GLASS_MULTIPLIER} tickets { walletNodesAndNFTs && 
+                  <span>You have {walletNodesAndNFTs.glasses} Glass(es).</span>
                 }<br/>
 
-                1 Decanter gives {DECANTER_MULTIPLIER} tickets { walletTickets && 
-                  <span>You have {walletTickets.decanters} Decanter(s).</span>
+                1 Decanter gives {DECANTER_MULTIPLIER} tickets { walletNodesAndNFTs && 
+                  <span>You have {walletNodesAndNFTs.decanters} Decanter(s).</span>
                 }<br/>
 
-                1 Goblet gives {GOBLET_MULTIPLIER} tickets { walletTickets && 
-                  <span>You have {walletTickets.goblets} Goblet(s).</span>
+                1 Goblet gives {GOBLET_MULTIPLIER} tickets { walletNodesAndNFTs && 
+                  <span>You have {walletNodesAndNFTs.goblets} Goblet(s).</span>
                 }<br/>
               </Box>
           </Box>

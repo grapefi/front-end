@@ -36,6 +36,7 @@ export class GrapeFinance {
   signer?: ethers.Signer;
   config: Configuration;
   contracts: {[name: string]: Contract};
+  nftContracts: {[name: string]: Contract};
   externalTokens: {[name: string]: ERC20};
   externalLPs: {[name: string]: LPERC20};
   boardroomVersionOfUser?: string;
@@ -58,8 +59,14 @@ export class GrapeFinance {
 
     // loads contracts from deployments
     this.contracts = {};
+    this.nftContracts = {};
     for (const [name, deployment] of Object.entries(deployments)) {
-      this.contracts[name] = new Contract(deployment.address, deployment.abi, provider);
+      if (deployment.type === 'NFT') {
+        this.nftContracts[name] = new Contract(deployment.address, deployment.abi, provider);
+      }
+      else {
+        this.contracts[name] = new Contract(deployment.address, deployment.abi, provider);
+      }
     }
     this.externalTokens = {};
     this.externalLPs = {};
@@ -177,7 +184,8 @@ export class GrapeFinance {
     return await Grape.transfer(recepient, decimalToBalance(amount));
   }
 
-  async getNodesRewardWalletBalance(nodesRewardWallet: string): Promise<NodesRewardWalletBalance> {
+  async getNodesRewardWalletBalance(): Promise<NodesRewardWalletBalance> {
+    const nodesRewardWallet = '0xa3C4C965BA6aA9382a8Edd965D13CB495F8da6F5';
     const grapes = await this.GRAPE.balanceOf(nodesRewardWallet);
     const wines = await this.WINE.balanceOf(nodesRewardWallet);
     const grapeMimSWs = await this.SW.balanceOf(nodesRewardWallet);
@@ -358,7 +366,6 @@ export class GrapeFinance {
     const grapeNodesCount = await this.getNodes('GrapeNode', this.myAccount);
     const wineNodesCount = await this.getNodes('WineNode', this.myAccount);
     const grapeMimSWNodesCount = await this.getNodes('LPNode', this.myAccount);
-    
         
     let walletNodesAndNFTs = {
         grapes: grapeNodesCount[0].toNumber(), 
@@ -392,7 +399,6 @@ export class GrapeFinance {
         }
       });  
     }
-
     return walletNodesAndNFTs;
   }
 
@@ -465,7 +471,7 @@ export class GrapeFinance {
   }
 
   async getWalletNFTs() : Promise<BigNumber[]> {
-    const {TheWineryNFT} = this.contracts;
+    const {TheWineryNFT} = this.nftContracts;
     return await TheWineryNFT.walletOfOwner(this.myAccount);
   }
   
@@ -729,8 +735,11 @@ export class GrapeFinance {
     let totalValue = 0;
     for (const bankInfo of Object.values(bankDefinitions)) {
       const pool = this.contracts[bankInfo.contract];
+      // Since we have the NFT Contract, pool can be null
+      if (!pool) {
+        continue;
+      }
       const token = this.externalTokens[bankInfo.depositTokenName];
-
       const tokenPrice = await this.getDepositTokenPriceInDollars(bankInfo.depositTokenName, token);
 
       const tokenAmountInPool = await token.balanceOf(pool.address);

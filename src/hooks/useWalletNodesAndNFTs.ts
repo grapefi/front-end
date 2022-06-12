@@ -9,7 +9,7 @@ const useWalletNodesAndNFTs = () => {
   const grapeFinance = useGrapeFinance();
 
   useEffect(() => {
-    async function fetchWalletNodesAndNFTs() {
+      async function fetchWalletNodesAndNFTs() {
       try {
         if (grapeFinance?.isUnlocked) {
           setWalletNodesAndNFTs(await grapeFinance.getWalletNodesAndNFTs());
