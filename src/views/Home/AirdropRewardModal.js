@@ -75,7 +75,14 @@ const style = {
 };
 
 const NFT_TICKET_COUNT = 9600;
- 
+const GRAPE_NODE_MULTIPLIER = 1;
+const WINE_NODE_MULTIPLIER = 3;
+const GRAPEMIMSW_NODE_MULTIPLIER = 1;
+const GOON_MULTIPLIER = 1;
+const GLASS_MULTIPLIER = 3;
+const DECANTER_MULTIPLIER = 9;
+const GOBLET_MULTIPLIER = 30;
+
 const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, winePrice, grapeMimSW, grapeMimSWPrice, totalGrapes, totalWine, totalGrapeMimSW }) => {
   const [ticketNumber, setTicketNumber] = useState(1);
   const classes = useStyles();
@@ -108,24 +115,26 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
     return getPriceForNodes('GRAPE') + getPriceForNodes('WINE') + getPriceForNodes('GRAPE-MIM SW');
   }
 
-  const getShareValue = () => {
-    return Number(((ticketNumber * (getTotalPriceForNodes())) / (getTotalNumberOfNodes() + 9600)).toFixed(0));
+  const getShareDollarValue = () => {
+    return Number(((ticketNumber * (getTotalPriceForNodes())) / (getTotalTicketsFromNodes() + 9600)).toFixed(0));
   }
 
   const getShareGrapes = () => {
-    return Number((ticketNumber * totalGrapes) / (getTotalNumberOfNodes() + NFT_TICKET_COUNT)).toFixed(2);
+    return Number((ticketNumber * totalGrapes) / (getTotalTicketsFromNodes() + NFT_TICKET_COUNT)).toFixed(2);
   }
 
   const getShareWines = () => {
-    return Number((ticketNumber * totalWine) / (getTotalNumberOfNodes() + NFT_TICKET_COUNT)).toFixed(2);
+    return Number((ticketNumber * totalWine) / (getTotalTicketsFromNodes() + NFT_TICKET_COUNT)).toFixed(2);
   }
 
-  const getShareGrapeMimSW = () => {
-    return Number((ticketNumber * totalGrapeMimSW) / (getTotalNumberOfNodes() + NFT_TICKET_COUNT)).toFixed(2);
-  }
+  // const getShareGrapeMimSW = () => {
+  //   return Number((ticketNumber * totalGrapeMimSW) / (getTotalTicketsFromNodes() + NFT_TICKET_COUNT)).toFixed(2);
+  // }
 
-  const getTotalNumberOfNodes = () => {
-    return getNumberOfNodes('GRAPE') + getNumberOfNodes('WINE') + getNumberOfNodes('GRAPE-MIM SW');
+  const getTotalTicketsFromNodes = () => {
+    return (getNumberOfNodes('GRAPE') * GRAPE_NODE_MULTIPLIER) + 
+           (getNumberOfNodes('WINE') * WINE_NODE_MULTIPLIER) + 
+           (getNumberOfNodes('GRAPE-MIM SW') * GRAPEMIMSW_NODE_MULTIPLIER);
   }
 
   return (
@@ -176,11 +185,13 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
               /> <br/>
             </Box>
             <Box sx={{ fontStyle: 'italic', marginTop: '10px', fontSize: '11px', color: '#000' }}>
-                1 node (Grape, Wine or Grape-Mim SW) gives 1 ticket<br/>
-                1 Goon Bag gives 1 ticket<br/>
-                1 Glass gives 3 tickets<br/>
-                1 Decanter gives 9 tickets<br/>
-                1 Goblet gives 30 tickets<br/>
+                1 Grape node gives {GRAPE_NODE_MULTIPLIER} ticket<br/>
+                1 Wine node gives {WINE_NODE_MULTIPLIER} tickets<br/>
+                1 Grape-Mim SW node gives {GRAPEMIMSW_NODE_MULTIPLIER} ticket<br/>
+                1 Goon Bag gives {GOON_MULTIPLIER} ticket<br/>
+                1 Glass gives {GLASS_MULTIPLIER} tickets<br/>
+                1 Decanter gives {DECANTER_MULTIPLIER} tickets<br/>
+                1 Goblet gives {GOBLET_MULTIPLIER} tickets<br/>
               </Box>
           </Box>
           <Box
@@ -196,11 +207,11 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
               <Typography className={classes.text}>{getNumberOfNodes('WINE')} Wine Nodes ({totalWine} Wine in pool) </Typography>
               <Typography className={classes.text}>{getNumberOfNodes('GRAPE-MIM SW')} Grape-Mim SW Nodes</Typography>
               
-              <Box sx={{ marginTop: '10px'}} className={classes.text}>Tickets from Nodes: {getTotalNumberOfNodes()}</Box>
+              <Box sx={{ marginTop: '10px'}} className={classes.text}>Tickets from Nodes: {getTotalTicketsFromNodes()}</Box>
               <Typography className={classes.text}>Tickets from NFTs: {NFT_TICKET_COUNT}</Typography>
-              <Typography className={classes.biggerText}><b>TOTAL TICKETS: {getTotalNumberOfNodes() + NFT_TICKET_COUNT}</b></Typography>
+              <Typography className={classes.biggerText}><b>TOTAL TICKETS: {getTotalTicketsFromNodes() + NFT_TICKET_COUNT}</b></Typography>
 
-              <Box sx={{ marginTop: '10px'}} className={classes.purpleText}><b>At current prices, your {ticketNumber} tickets are worth ≈${getShareValue()}</b></Box>
+              <Box sx={{ marginTop: '10px'}} className={classes.purpleText}><b>At current prices, your {ticketNumber} tickets are worth ≈${getShareDollarValue()}</b></Box>
               <Typography className={classes.text}>≈{getShareGrapes()} Grape(s)</Typography>
               <Typography className={classes.text}>≈{getShareWines()} Wine(s)</Typography>
               {/*<Typography className={classes.text}>≈{getShareGrapeMimSW()} Grape-Mim SW(s)</Typography>*/}
