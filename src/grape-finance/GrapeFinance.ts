@@ -13,7 +13,7 @@ import {
 import {Fetcher as FetcherPangolin, Token as TokenPangolin, Route as PangolinRoute} from '@pangolindex/sdk';
 
 import {Configuration} from './config';
-import {ContractName, TokenStat, AllocationTime, LPStat, Bank, NodesRewardWalletBalance, PoolStats, WineSwapperStat} from './types';
+import {ContractName, TokenStat, AllocationTime, LPStat, Bank, NodesRewardWalletBalance, PoolStats, WineSwapperStat, WalletNodesAndNFTs} from './types';
 import {BigNumber, BigNumberish, Contract, ethers, EventFilter} from 'ethers';
 import {decimalToBalance} from './ether-utils';
 import {TransactionResponse} from '@ethersproject/providers';
@@ -353,6 +353,49 @@ export class GrapeFinance {
     };
   }
 
+  async getWalletNodesAndNFTs(): Promise<WalletNodesAndNFTs> {
+  
+    const grapeNodesCount = await this.getNodes('GrapeNode', this.myAccount);
+    const wineNodesCount = await this.getNodes('WineNode', this.myAccount);
+    const grapeMimSWNodesCount = await this.getNodes('LPNode', this.myAccount);
+    
+        
+    let walletNodesAndNFTs = {
+        grapes: grapeNodesCount[0].toNumber(), 
+        wines: wineNodesCount[0].toNumber(),
+        grapeMimSWs: grapeMimSWNodesCount[0].toNumber(),
+        goonBags: 0,
+        glasses: 0,
+        decanters: 0,
+        goblets: 0,
+    };
+
+    const walletNFTs = await this.getWalletNFTs();
+    if (walletNFTs.length !== 0) {
+      const data = require('../nfts.json');
+      walletNFTs.forEach(walletNftId => {
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].Id == walletNftId) {
+            if (data[i].Type === 'GoonBag') {
+              walletNodesAndNFTs.goonBags++;
+            }
+            else if (data[i].Type === 'Glass') {
+              walletNodesAndNFTs.glasses++;
+            }
+            else if (data[i].Type === 'Decanter') {
+              walletNodesAndNFTs.decanters++;
+            }
+            else if (data[i].Type === 'Goblet') {
+              walletNodesAndNFTs.goblets++;
+            }
+          }
+        }
+      });  
+    }
+
+    return walletNodesAndNFTs;
+  }
+
   async getGrapeStatInEstimatedTWAP(): Promise<TokenStat> {
     const {Oracle, GrapeRewardPool} = this.contracts;
     let expectedPrice = await Oracle.twap(this.GRAPE.address, ethers.utils.parseEther('1'));
@@ -419,6 +462,11 @@ export class GrapeFinance {
   async getGrapeMimSWNodes(): Promise<BigNumber[]> {
     const {LPNode} = this.contracts;
     return await LPNode.getTotalNodes();
+  }
+
+  async getWalletNFTs() : Promise<BigNumber[]> {
+    const {TheWineryNFT} = this.contracts;
+    return await TheWineryNFT.walletOfOwner(this.myAccount);
   }
   
   /**

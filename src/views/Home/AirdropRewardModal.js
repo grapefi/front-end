@@ -1,6 +1,8 @@
-import { Modal, Box, Typography, makeStyles } from '@material-ui/core';
-import React, { useState } from 'react';
+import { Modal, Box, Typography, makeStyles, CircularProgress } from '@material-ui/core';
+import React, { useState, useMemo, useEffect } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
+import useWalletNodesAndNFTs from '../../hooks/useWalletNodesAndNFTs';
+import useGrapeFinance from '../../hooks/useGrapeFinance';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -84,7 +86,30 @@ const DECANTER_MULTIPLIER = 9;
 const GOBLET_MULTIPLIER = 30;
 
 const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, winePrice, grapeMimSW, grapeMimSWPrice, totalGrapes, totalWine, totalGrapeMimSW }) => {
+
+  const walletTickets = useWalletNodesAndNFTs();
+  const grapeFinance = useGrapeFinance();  
+
   const [ticketNumber, setTicketNumber] = useState(1);
+  const [manualEntry, setManualEntry] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useMemo (() => { 
+    setLoading(grapeFinance?.myAccount && !walletTickets);
+
+    if (walletTickets && manualEntry === false) {
+      console.log('useMemo data loaded')
+      setLoading(false);
+      setTicketNumber((walletTickets.grapes * GRAPE_NODE_MULTIPLIER) + 
+                      (walletTickets.wines * WINE_NODE_MULTIPLIER) + 
+                      (walletTickets.grapeMimSWs * GRAPEMIMSW_NODE_MULTIPLIER) +
+                      (walletTickets.goonBags * GOON_MULTIPLIER) +
+                      (walletTickets.glasses * GLASS_MULTIPLIER) +
+                      (walletTickets.decanters * DECANTER_MULTIPLIER) +
+                      (walletTickets.goblets * GOBLET_MULTIPLIER));
+    }
+  }, [walletTickets, manualEntry, grapeFinance.myAccount]);
+
   const classes = useStyles();
 
   const getNumberOfNodes = (coin) => {
@@ -146,8 +171,9 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
               cursor: 'pointer',
             }}
             onClick={() => {
+              setManualEntry(false);
+              setLoading(false);
               handleClose();
-              setTicketNumber(1);
             }}
           >
             <CloseIcon />
@@ -159,7 +185,11 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
             flexDirection: 'column',
           }}
         >
-          <h2 style={{fontSize: '22px'}}>Enter your number of tickets</h2>
+          <h2 style={{fontSize: '22px'}}>Number of tickets 
+          { loading && 
+              <CircularProgress style={{marginLeft: '10px'}} size={22} color='inherit'  />
+          }
+          </h2>
           <Box
             sx={{
               borderRadius: '10px',
@@ -181,17 +211,46 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
                 type="number"
                 value={ticketNumber}
                 className={classes.input}
-                onChange={(e) => setTicketNumber(e.target.value)}
+                onChange={(e) => {
+                    setManualEntry(true);
+                    setLoading(false);
+                    setTicketNumber(e.target.value)
+                  }
+                }
               /> <br/>
             </Box>
             <Box sx={{ fontStyle: 'italic', marginTop: '10px', fontSize: '11px', color: '#000' }}>
-                1 Grape node gives {GRAPE_NODE_MULTIPLIER} ticket<br/>
-                1 Wine node gives {WINE_NODE_MULTIPLIER} tickets<br/>
-                1 Grape-Mim SW node gives {GRAPEMIMSW_NODE_MULTIPLIER} ticket<br/>
-                1 Goon Bag gives {GOON_MULTIPLIER} ticket<br/>
-                1 Glass gives {GLASS_MULTIPLIER} tickets<br/>
-                1 Decanter gives {DECANTER_MULTIPLIER} tickets<br/>
-                1 Goblet gives {GOBLET_MULTIPLIER} tickets<br/>
+                1 Grape node gives {GRAPE_NODE_MULTIPLIER} ticket. 
+                { walletTickets && 
+                  <span>You have {walletTickets.grapes} Grape Nodes.</span>
+                }<br/>
+
+                1 Wine node gives {WINE_NODE_MULTIPLIER} tickets. 
+                { walletTickets && 
+                  <span>You have {walletTickets.wines} Wine Nodes.</span>
+                }<br/>
+
+                1 Grape-Mim SW node gives {GRAPEMIMSW_NODE_MULTIPLIER} ticket. 
+                { walletTickets && 
+                  <span>You have {walletTickets.grapeMimSWs} Grape-Mim SW Nodes.</span>
+                }<br/>
+
+                1 Goon Bag gives {GOON_MULTIPLIER} ticket. 
+                { walletTickets && 
+                  <span>You have {walletTickets.goonBags} Goon Bag(s).</span>
+                }<br/>
+
+                1 Glass gives {GLASS_MULTIPLIER} tickets { walletTickets && 
+                  <span>You have {walletTickets.glasses} Glass(es).</span>
+                }<br/>
+
+                1 Decanter gives {DECANTER_MULTIPLIER} tickets { walletTickets && 
+                  <span>You have {walletTickets.decanters} Decanter(s).</span>
+                }<br/>
+
+                1 Goblet gives {GOBLET_MULTIPLIER} tickets { walletTickets && 
+                  <span>You have {walletTickets.goblets} Goblet(s).</span>
+                }<br/>
               </Box>
           </Box>
           <Box
@@ -211,7 +270,8 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
               <Typography className={classes.text}>Tickets from NFTs: {NFT_TICKET_COUNT}</Typography>
               <Typography className={classes.biggerText}><b>TOTAL TICKETS: {getTotalTicketsFromNodes() + NFT_TICKET_COUNT}</b></Typography>
 
-              <Box sx={{ marginTop: '10px'}} className={classes.purpleText}><b>At current prices, your {ticketNumber} tickets are worth ≈${getShareDollarValue()}</b></Box>
+              <h2 sx={{ marginTop: '20px'}} style={{fontSize: '22px'}}>Results</h2>
+              <Box className={classes.purpleText}><b>At current prices, your {ticketNumber} tickets are worth ≈${getShareDollarValue()}</b></Box>
               <Typography className={classes.text}>≈{getShareGrapes()} Grape(s)</Typography>
               <Typography className={classes.text}>≈{getShareWines()} Wine(s)</Typography>
               {/*<Typography className={classes.text}>≈{getShareGrapeMimSW()} Grape-Mim SW(s)</Typography>*/}
