@@ -240,15 +240,18 @@ const AirdropRewardModal = ({ open, handleClose, grapes, grapePrice, wines, wine
                   <span>You have {walletNodesAndNFTs.goonBags} Goon Bag(s).</span>
                 }<br/>
 
-                1 Glass gives {GLASS_MULTIPLIER} tickets { walletNodesAndNFTs && 
+                1 Glass gives {GLASS_MULTIPLIER} tickets. 
+                { walletNodesAndNFTs && 
                   <span>You have {walletNodesAndNFTs.glasses} Glass(es).</span>
                 }<br/>
 
-                1 Decanter gives {DECANTER_MULTIPLIER} tickets { walletNodesAndNFTs && 
+                1 Decanter gives {DECANTER_MULTIPLIER} tickets.
+                { walletNodesAndNFTs && 
                   <span>You have {walletNodesAndNFTs.decanters} Decanter(s).</span>
                 }<br/>
 
-                1 Goblet gives {GOBLET_MULTIPLIER} tickets { walletNodesAndNFTs && 
+                1 Goblet gives {GOBLET_MULTIPLIER} tickets.
+                { walletNodesAndNFTs && 
                   <span>You have {walletNodesAndNFTs.goblets} Goblet(s).</span>
                 }<br/>
               </Box>
