@@ -14,7 +14,7 @@ import useWineTotalNode from '../../hooks/useWineTotalNodes';
 import useGrapeMimSWTotalNode from '../../hooks/useGrapeMimSWTotalNode';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useNodeRewardPoolStats from '../../hooks/useNodesRewardBalance';
-import useFirebaseAuth from '../../hooks/useFirebaseAuth';
+import useFetchBadges from '../../hooks/useFetchBadges';
 import { roundAndFormatNumber } from '../../0x';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
@@ -30,7 +30,7 @@ import {ReactComponent as IconDiscord} from '../../assets/img/discord.svg';
 import { useGetEventQuery } from '../../services/event';
 import AirdropRewardModal from './AirdropRewardModal';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const BackgroundImage = createGlobalStyle`
@@ -69,7 +69,7 @@ const Home = () => {
   const useWineTotal = useWineTotalNode();
   const useGrapeMimSWTotal = useGrapeMimSWTotalNode();
   const [rewardModelOpen, setModalOpen] = useState(false);
-  const firebaseAuth  = useFirebaseAuth();
+  const badges = useFetchBadges();
 
   const {data : eventResponse} = useGetEventQuery();
   const [leaderboard, setLeaderboard] = React.useState([]);
@@ -139,12 +139,10 @@ const Home = () => {
     setModalOpen(true);
   };
 
-  const notify = () => toast("Wow so easy!");
 
 return (
   <Page>
-    <button onClick={notify}>Notify!</button>
-    <ToastContainer />
+    <ToastContainer style={{ marginRight: '50px', marginTop: '50px'}}/>
     <AirdropRewardModal
       open={rewardModelOpen}
       handleClose={handleCloseModal}

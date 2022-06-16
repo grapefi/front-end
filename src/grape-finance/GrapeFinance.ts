@@ -32,6 +32,9 @@ import {MIM_TICKER, SPOOKY_ROUTER_ADDR, GRAPE_TICKER, WINE_TICKER} from '../util
  */
 export class GrapeFinance {
   myAccount: string;
+  unlockableBadges: Map<String, {}>;
+  unlockedBadges: Map<String, {}>;
+  totalPointsBadges: number = 0;
   provider: ethers.providers.Web3Provider;
   signer?: ethers.Signer;
   config: Configuration;
