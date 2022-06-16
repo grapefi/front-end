@@ -36,6 +36,14 @@ export type NodesRewardWalletBalance = {
   grapeMimSWs: string;
 }
 
+export type UnlockableBadge = {
+  
+}
+
+export type UnlockedBadge = {
+  
+}
+
 export type TokenStat = {
   tokenInFtm: string;
   priceInDollars: string;

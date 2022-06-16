@@ -23,7 +23,6 @@ const useFetchBadges = () => {
     async function fetchBadges() {
       try {
         console.log('useFetchBadges');
-        grapeFinance.totalPointsBadges = 0;
         grapeFinance.unlockableBadges = require('../badges.json'); // Storing Unlockable Badges locally to reduce Firecloud queries
         if (account) {
           const db = getFirestore(initializeApp(firebaseConfig));
@@ -32,10 +31,11 @@ const useFetchBadges = () => {
           for (let i = 0; i < allUserBadges.docs.length; i++) {
             const badge = allUserBadges.docs[i];
             const badgeData = badge.data();
+            const badgeId: String = badge.id;
             console.log('Badge Id = ' + badge.id);
             console.log('Badge Data = ' + JSON.stringify(badgeData, null, 2));
             // grapeFinance.unlockedBadges.set(badge.id, badgeData);
-            // grapeFinance.totalPointsBadges += grapeFinance.unlockableBadges[badge.id].Points;
+            grapeFinance.totalPointsBadges += grapeFinance.unlockableBadges.get(badgeId).Points;
             toast("🍇 New Badge! 🍷 You've unlocked: '" + badge.id + "'!", {
               position: "top-right",
               autoClose: 5000,
@@ -45,7 +45,8 @@ const useFetchBadges = () => {
               draggable: true,
               progress: undefined,
             });
-          }          
+          }  
+          console.log('User Total Points = ' + grapeFinance.totalPointsBadges);        
           setFirebase(db);
         }
       } catch (err) {
