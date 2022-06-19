@@ -1,3 +1,4 @@
+import { Timestamp } from 'firebase/firestore/lite';
 import ERC20 from './ERC20';
 
 export type ContractName = string;
@@ -34,14 +35,6 @@ export type NodesRewardWalletBalance = {
   grapes: string;
   wines: string;
   grapeMimSWs: string;
-}
-
-export type UnlockableBadge = {
-  
-}
-
-export type UnlockedBadge = {
-  
 }
 
 export type TokenStat = {

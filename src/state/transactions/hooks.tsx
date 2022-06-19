@@ -27,6 +27,7 @@ export function useTransactionAdder(): (
       if (!hash) {
         throw Error('No transaction hash found.');
       }
+      console.log('Response HASH = ' + JSON.stringify(hash, null, 2));
       dispatch(addTransaction({hash, from: account, chainId, approval, summary}));
     },
     [dispatch, chainId, account],

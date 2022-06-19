@@ -14,7 +14,6 @@ import useWineTotalNode from '../../hooks/useWineTotalNodes';
 import useGrapeMimSWTotalNode from '../../hooks/useGrapeMimSWTotalNode';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useNodeRewardPoolStats from '../../hooks/useNodesRewardBalance';
-import useFetchBadges from '../../hooks/useFetchBadges';
 import { roundAndFormatNumber } from '../../0x';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
@@ -69,7 +68,6 @@ const Home = () => {
   const useWineTotal = useWineTotalNode();
   const useGrapeMimSWTotal = useGrapeMimSWTotalNode();
   const [rewardModelOpen, setModalOpen] = useState(false);
-  const badges = useFetchBadges();
 
   const {data : eventResponse} = useGetEventQuery();
   const [leaderboard, setLeaderboard] = React.useState([]);
@@ -142,7 +140,7 @@ const Home = () => {
 
 return (
   <Page>
-    <ToastContainer style={{ marginRight: '50px', marginTop: '50px'}}/>
+    <ToastContainer style={{ width: '500px', marginRight: '50px', marginTop: '50px'}}/>
     <AirdropRewardModal
       open={rewardModelOpen}
       handleClose={handleCloseModal}
