@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState, useEffect} from 'react';
 import {useWallet} from 'use-wallet';
 import moment from 'moment';
 import styled from 'styled-components';
@@ -29,6 +29,8 @@ import ProgressCountdown from './components/ProgressCountdown';
 import {createGlobalStyle} from 'styled-components';
 import HomeImage from '../../assets/img/background.jpg';
 import usebShareStats from '../../hooks/useWineStats';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -81,10 +83,18 @@ const Boardroom = () => {
     const stake = Number(getDisplayBalance(totalStaked)).toFixed(0);
     const tvl = stake*stakedTokenPriceInDollars;
 
+    const [badgeCheckHasRan, setBadgeCheckHasRan] = useState(false);
+    useEffect(() => {
+      if (grapeFinance.badgeHelper && !stakedBalance.eq(0) && !badgeCheckHasRan) {
+        setBadgeCheckHasRan(true)
+        grapeFinance.badgeProgressForAction('Winery', 'wine', "Count", Number(getDisplayBalance(stakedBalance)))
+      }
+    }, [grapeFinance.badgeHelper, stakedBalance, account]);
 
   return (
     <Page>
       
+      <ToastContainer style={{ width: '500px', marginRight: '50px', marginTop: '50px'}}/>
       <BackgroundImage />
       
 

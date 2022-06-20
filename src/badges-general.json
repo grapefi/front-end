@@ -6,9 +6,9 @@
     "unlockMessage": "🍇 Welcome to GrapeFinance 🍇 You obtained your first Badge by connecting your Wallet.",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
     "points": 10, 
-    "actions": ["Connect"], 
-    "counts": [1], 
-    "timeBetweenCountsInMinutes": [0]
+    "action": "Connect", 
+    "requiredCount": 1, 
+    "timeBetweenCountsInMinutes": 0
   }, 
   {
     "category": "General", 
@@ -17,9 +17,9 @@
     "unlockMessage": "This is your 5th connection to GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
     "points": 5, 
-    "actions": ["Connect"], 
-    "counts": [5], 
-    "timeBetweenCountsInMinutes": [1440]
+    "action": "Connect", 
+    "requiredCount": 5, 
+    "timeBetweenCountsInMinutes": 1440
   }, 
   {
     "category": "General", 
@@ -28,9 +28,9 @@
     "unlockMessage": "This is your 10th connection to GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
     "points": 10, 
-    "actions": ["Connect"], 
-    "counts": [10], 
-    "timeBetweenCountsInMinutes": [1440]
+    "action": "Connect", 
+    "requiredCount": 10, 
+    "timeBetweenCountsInMinutes": 1440
   },
   {
     "category": "General", 
@@ -39,9 +39,9 @@
     "unlockMessage": "30th connection, Happy 1 month Anniversary with GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
     "points": 30, 
-    "actions": ["Connect"], 
-    "counts": [30], 
-    "timeBetweenCountsInMinutes": [1440]
+    "action": "Connect", 
+    "requiredCount": 30, 
+    "timeBetweenCountsInMinutes": 1440
   },
   {
     "category": "General", 
@@ -50,9 +50,9 @@
     "unlockMessage": "90th connection, Happy 3 month Anniversary with GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
     "points": 90, 
-    "actions": ["Connect"], 
-    "counts": [90], 
-    "timeBetweenCountsInMinutes": [1440]
+    "action": "Connect", 
+    "requiredCount": 90, 
+    "timeBetweenCountsInMinutes": 1440
   },
   {
     "category": "General", 
@@ -61,9 +61,9 @@
     "unlockMessage": "180th connection, Happy 6 month Anniversary with GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
     "points": 180, 
-    "actions": ["Connect"], 
-    "counts": [180], 
-    "timeBetweenCountsInMinutes": [1440]
+    "action": "Connect", 
+    "requiredCount": 180, 
+    "timeBetweenCountsInMinutes": 1440
   },
   {
     "category": "General", 
@@ -72,30 +72,8 @@
     "unlockMessage": "Happy 1 year Anniversary with GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
     "points": 360, 
-    "actions": ["Connect"], 
-    "counts": [360], 
-    "timeBetweenCountsInMinutes": [1440]
-  }, 
-  {
-    "category": "Nodes", 
-    "contract": "GrapeNode",
-    "name": "Grape Node: Your First Node", 
-    "unlockMessage": "On Fire! You've created your first Grape Node and unlocked a new Badge!",
-    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
-    "points": 50, 
-    "actions": ["Count"], 
-    "counts": [1], 
-    "timeBetweenCountsInMinutes": [0]
-  }, 
-  {
-    "category": "Nodes", 
-    "contract": "GrapeNode",
-    "name": "Grape Node: Your 5th Node", 
-    "unlockMessage": "Wow! You've created your 5th Grape Node and unlocked a new Badge!",
-    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
-    "points": 250, 
-    "actions": ["Count"], 
-    "counts": [5], 
-    "timeBetweenCountsInMinutes": [0]
+    "action": "Connect", 
+    "requiredCount": 360, 
+    "timeBetweenCountsInMinutes": 1440
   }
 ]

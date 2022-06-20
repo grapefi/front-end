@@ -52,6 +52,16 @@ const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
             <Label text="GBOND Available" />
           </StyledBalance>
         </StyledBalanceWrapper>
+
+        {grapeFinance.badgeHelper && 
+         <StyledBalanceWrapper style={{paddingBottom: '15px'}}>
+         <TokenSymbol symbol="BADGES" />
+         <StyledBalance>
+           <StyledValue>{grapeFinance.badgeHelper.totalPointsBadges}</StyledValue>
+           <Label text="Badge Points" />
+         </StyledBalance>
+       </StyledBalanceWrapper>
+        }
       </Balances>
     </Modal>
   );

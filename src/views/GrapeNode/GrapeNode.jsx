@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {useParams} from 'react-router-dom';
 import { useWallet } from 'use-wallet';
 import PageHeader from '../../components/PageHeader';
@@ -46,11 +46,13 @@ const GrapeNode = () => {
   const userDetails = useUserDetails(bank?.contract, bank?.sectionInUI, account);
   const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
 
+  const [badgeCheckHasRan, setBadgeCheckHasRan] = useState(false);
   useEffect(() => {
-    if (grapeFinance.badgeHelper && account && bank) {
-      grapeFinance.badgeHelper.badgeProgressForAction(bank?.contract, "Count", nodes[0])
+    if (nodes[0] && !nodes[0].eq(0) && !badgeCheckHasRan) {
+      setBadgeCheckHasRan(true)
+      grapeFinance.badgeProgressForAction('Nodes', bank?.contract, "Count", nodes[0])
     }
-  }, [account, grapeFinance, bank, nodes]);
+  }, [nodes]);
   
   const tokenPriceInDollars = useMemo(
     () => (stakedTokenPriceInDollars ? stakedTokenPriceInDollars : null),

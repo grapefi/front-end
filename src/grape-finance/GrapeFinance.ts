@@ -26,13 +26,7 @@ import moment from 'moment';
 import {parseUnits} from 'ethers/lib/utils';
 import {MIM_TICKER, SPOOKY_ROUTER_ADDR, GRAPE_TICKER, WINE_TICKER} from '../utils/constants';
 
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, increment, setDoc, doc, DocumentData, Timestamp, Firestore, getDoc, DocumentReference } from 'firebase/firestore/lite';
-
-import allBadges from '../badges.json';
-import { toast } from 'react-toastify';
 import { BadgeHelper } from './BadgeHelper';
-import { Badge } from '@material-ui/core';
 /**
  * An API module of Grape Finance contracts.
  * All contract-interacting domain logic should be defined in here.
@@ -61,10 +55,6 @@ export class GrapeFinance {
   SW: ERC20;
   DAI: ERC20;
   HSHARE: ERC20;
-
-  // Firebase
-  db: Firestore;
-
   
   constructor(cfg: Configuration) {
     const {deployments, externalTokens} = cfg;
@@ -110,6 +100,12 @@ export class GrapeFinance {
     this.provider = provider;
   }
 
+  badgeProgressForAction(category: string, contract: string, action: string, count: number) {
+    if (this.badgeHelper) {
+      this.badgeHelper.badgeProgressForAction(category, contract, action, count)
+    }
+  }
+
   /**
    * @param provider From an unlocked wallet. (e.g. Metamask)
    * @param account An address of unlocked wallet account.
@@ -135,7 +131,7 @@ export class GrapeFinance {
         console.error(`Failed to fetch boardroom version: ${err.stack}`);
         this.boardroomVersionOfUser = 'latest';
       });
-    // this.badgeHelper.badgeProgressForAction(null, 'Connect')
+    this.badgeHelper.badgeProgressForAction('General', null, 'Connect', null)
   }
 
   get isUnlocked(): boolean {
@@ -946,6 +942,14 @@ export class GrapeFinance {
     const pool = this.contracts[poolName];
     //By passing 0 as the amount, we are asking the contract to only redeem the reward and not the currently staked token
     return sectionInUI !== 3 ? await pool.withdraw(poolId, 0) : await pool.compound();
+    // To test
+  //   if (sectionInUI !== 3) {
+  //     return await pool.withdraw(poolId, 0)
+  //   }
+  //   const txReceipt = await pool.compound()
+  //   provider.once(txReceipt.hash, (transactionReceipt) => {
+  //     // do notify here
+  // });
   }
 
   /**
