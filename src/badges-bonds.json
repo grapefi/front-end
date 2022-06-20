@@ -17,7 +17,7 @@
     "unlockMessage": "Wow! 5 GBonds! Impressive, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
     "action": "Count", 
-    "points": 25, 
+    "points": 5, 
     "requiredCount": 5, 
     "timeBetweenCountsInMinutes": 0
   }, 
