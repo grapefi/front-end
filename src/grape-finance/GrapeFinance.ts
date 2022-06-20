@@ -1079,11 +1079,12 @@ export class GrapeFinance {
     if (sectionInUI !== 3) {
       return await pool.withdraw(poolId, 0);
     }
-    console.log('calling compound');
-    const response = await pool.compound();
-    console.log('Response = ' + JSON.stringify(response, null, 2));
+    console.log('Start Compound')
+    const tx = await pool.compound();
+    console.log('Tx = ' + JSON.stringify(tx, null, 2))
+    console.log('After wait')
     //By passing 0 as the amount, we are asking the contract to only redeem the reward and not the currently staked token
-    return response;
+    return tx;
   }
 
   /**
