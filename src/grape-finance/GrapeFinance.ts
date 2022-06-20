@@ -826,6 +826,8 @@ export class GrapeFinance {
         tokenPrice = await this.getLPTokenPrice(token, this.WINE, false);
       }else if (tokenName === 'GRAPE-MIM-SW') {
         tokenPrice = await this.getLPTokenPrice(token, this.GRAPE, true);
+      }else if (tokenName === 'GRAPE-WLRS-LP') {
+        tokenPrice = await this.getLPTokenPrice(token, this.GRAPE, true);
       } else if (tokenName === 'MIM') {
         tokenPrice = '1';
       } else if (tokenName === 'WAMP') {
@@ -969,6 +971,9 @@ export class GrapeFinance {
         return await pool.getTotalRewards(account);
       }
       if (earnTokenName === 'GRAPE-MIM-SW' && poolName.includes('Node')) {
+        return await pool.getTotalRewards(account);
+      }
+      if (earnTokenName === 'GRAPE-WLRS-LP' && poolName.includes('Node')) {
         return await pool.getTotalRewards(account);
       }
       if (earnTokenName === 'GRAPE') {
