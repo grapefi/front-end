@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState, useEffect} from 'react';
 import {useWallet} from 'use-wallet';
 import moment from 'moment';
 import styled from 'styled-components';
@@ -31,6 +31,8 @@ import HomeImage from '../../assets/img/background.jpg';
 import usebShareStats from '../../hooks/useWineStats';
 import useBondStats from '../../hooks/useBondStats';
 import {roundAndFormatNumber} from '../../0x';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -83,9 +85,19 @@ const Boardroom = () => {
 
   const grapeReserves = useMemo(() => (Number(bondStat?.treasuryGrapes) / 1e18).toFixed(0), [bondStat]);
   const bondSupply = useMemo(() => bondStat?.circulatingSupply, [bondStat]);
+    
+  const [badgeCheckHasRan, setBadgeCheckHasRan] = useState(false);
+  useEffect(() => {
+    if (grapeFinance.badgeHelper && !stakedBalance.eq(0) && !badgeCheckHasRan) {
+      setBadgeCheckHasRan(true)
+      grapeFinance.badgeProgressForAction('Winery', 'wine', "Count", Number(getDisplayBalance(stakedBalance)))
+    }
+  }, [grapeFinance.badgeHelper, stakedBalance, account]);
 
   return (
     <Page>
+      
+      <ToastContainer style={{ width: '500px', marginRight: '50px', marginTop: '50px'}}/>
       <BackgroundImage />
 
       {!!account ? (

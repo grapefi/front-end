@@ -26,12 +26,15 @@ import moment from 'moment';
 import {parseUnits} from 'ethers/lib/utils';
 import {MIM_TICKER, SPOOKY_ROUTER_ADDR, GRAPE_TICKER, WINE_TICKER} from '../utils/constants';
 
+import { BadgeHelper } from './BadgeHelper';
 /**
  * An API module of Grape Finance contracts.
  * All contract-interacting domain logic should be defined in here.
  */
+
 export class GrapeFinance {
   myAccount: string;
+  badgeHelper: BadgeHelper
   provider: ethers.providers.Web3Provider;
   signer?: ethers.Signer;
   config: Configuration;
@@ -52,7 +55,7 @@ export class GrapeFinance {
   SW: ERC20;
   DAI: ERC20;
   HSHARE: ERC20;
-
+  
   constructor(cfg: Configuration) {
     const {deployments, externalTokens} = cfg;
     const provider = getDefaultProvider();
@@ -95,6 +98,12 @@ export class GrapeFinance {
     this.provider = provider;
   }
 
+  badgeProgressForAction(category: string, contract: string, action: string, count: number) {
+    if (this.badgeHelper) {
+      this.badgeHelper.badgeProgressForAction(category, contract, action, count)
+    }
+  }
+
   /**
    * @param provider From an unlocked wallet. (e.g. Metamask)
    * @param account An address of unlocked wallet account.
@@ -103,6 +112,7 @@ export class GrapeFinance {
     const newProvider = new ethers.providers.Web3Provider(provider, this.config.chainId);
     this.signer = newProvider.getSigner(0);
     this.myAccount = account;
+    this.badgeHelper = new BadgeHelper(this.myAccount);
     for (const [name, contract] of Object.entries(this.contracts)) {
       this.contracts[name] = contract.connect(this.signer);
     }
@@ -110,6 +120,7 @@ export class GrapeFinance {
     for (const token of tokens) {
       token.connect(this.signer);
     }
+    
     //this.GRAPEMIM_LP = this.GRAPEMIM_LP.connect(this.signer);
     console.log(`🔓 Wallet is unlocked. Welcome, ${account}!`);
     this.fetchBoardroomVersionOfUser()
@@ -118,6 +129,7 @@ export class GrapeFinance {
         console.error(`Failed to fetch boardroom version: ${err.stack}`);
         this.boardroomVersionOfUser = 'latest';
       });
+    this.badgeHelper.badgeProgressForAction('General', null, 'Connect', null)
   }
 
   get isUnlocked(): boolean {
@@ -819,9 +831,6 @@ export class GrapeFinance {
       if (earnTokenName === 'GRAPE-MIM-SW' && poolName.includes('Node')) {
         return await pool.getTotalRewards(account);
       }
-      if (earnTokenName === 'GRAPE-WLRS-LP' && poolName.includes('Node')) {
-        return await pool.getTotalRewards(account);
-      }
       if (earnTokenName === 'GRAPE') {
         return await pool.pendingGRAPE(poolId, account);
       } else if (earnTokenName === 'WINE') {
@@ -926,6 +935,14 @@ export class GrapeFinance {
     const pool = this.contracts[poolName];
     //By passing 0 as the amount, we are asking the contract to only redeem the reward and not the currently staked token
     return sectionInUI !== 3 ? await pool.withdraw(poolId, 0) : await pool.compound();
+    // To test
+    //   if (sectionInUI !== 3) {
+    //     return await pool.withdraw(poolId, 0)
+    //   }
+    //   const txReceipt = await pool.compound()
+    //   provider.once(txReceipt.hash, (transactionReceipt) => {
+    //     // do notify here
+    // });
   }
 
   /**

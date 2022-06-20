@@ -2,6 +2,7 @@ import React from 'react';
 
 //Graveyard ecosystem logos
 import grapeLogo from '../../assets/img/grape.png';
+import badges from '../../assets/img/badges.png';
 import wine from '../../assets/img/gshare.png';
 import gbondLogo from '../../assets/img/gbond.png';
 import mimLogo from '../../assets/img/mim.png';
@@ -17,6 +18,7 @@ import grapewlrs from '../../assets/img/grape-wlrs.png';
 const logosBySymbol: {[title: string]: string} = {
   //Real tokens
   //=====================
+  BADGES: badges,
   GRAPE: grapeLogo,
   WAVAX: wavax,
   WINE: wine,
@@ -44,7 +46,10 @@ const TokenSymbol: React.FC<LogoProps> = ({symbol}) => {
   if (!logosBySymbol[symbol]) {
     throw new Error(`Invalid Token Logo symbol: ${symbol}`);
   }
-  if(symbol === 'GRAPE-MIM-LP' || symbol === 'WINE-MIM-LP' || symbol === 'GRAPE-WINE-LP' || symbol === 'HSHARE-WINE-LP' || symbol === 'GRAPE-MIM-SW' || symbol === 'GRAPE-WLRS-LP'){
+  if (symbol === 'BADGES') {
+    return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={68} height={68} />;
+  }
+  else if(symbol === 'GRAPE-MIM-LP' || symbol === 'WINE-MIM-LP' || symbol === 'GRAPE-WINE-LP' || symbol === 'HSHARE-WINE-LP' || symbol === 'GRAPE-MIM-SW' || symbol === 'GRAPE-WLRS-LP'){
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={95} height={60} />;
   }else if(symbol === 'MIM' || symbol === 'WAVAX' || symbol === 'WAMP'){
     return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={65} height={65} />;
