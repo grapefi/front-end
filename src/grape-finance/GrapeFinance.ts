@@ -31,26 +31,16 @@ import { getFirestore, collection, getDocs, increment, setDoc, doc, DocumentData
 
 import allBadges from '../badges.json';
 import { toast } from 'react-toastify';
-
+import { BadgeHelper } from './BadgeHelper';
+import { Badge } from '@material-ui/core';
 /**
  * An API module of Grape Finance contracts.
  * All contract-interacting domain logic should be defined in here.
  */
 
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAerqWlhAF9fAUS8XMLMqo5Do27DXUqhV0",
-  authDomain: "grapefi-dev.firebaseapp.com",
-  projectId: "grapefi-dev",
-  storageBucket: "grapefi-dev.appspot.com",
-  messagingSenderId: "971684120447",
-  appId: "1:971684120447:web:83f813dd508ab3ec9cfc4a"
-};
-
 export class GrapeFinance {
   myAccount: string;
-  unlockedBadges: Map<String, DocumentData>;
-  totalPointsBadges: number = 0;
+  badgeHelper: BadgeHelper
   provider: ethers.providers.Web3Provider;
   signer?: ethers.Signer;
   config: Configuration;
@@ -128,6 +118,7 @@ export class GrapeFinance {
     const newProvider = new ethers.providers.Web3Provider(provider, this.config.chainId);
     this.signer = newProvider.getSigner(0);
     this.myAccount = account;
+    this.badgeHelper = new BadgeHelper(this.myAccount);
     for (const [name, contract] of Object.entries(this.contracts)) {
       this.contracts[name] = contract.connect(this.signer);
     }
@@ -135,12 +126,7 @@ export class GrapeFinance {
     for (const token of tokens) {
       token.connect(this.signer);
     }
-
-    this.initFirecloud().then(() => {
-      // Once initialized, perform Connect action
-      this.addProgressForAction('Connect')
-    })
-
+    
     //this.GRAPEMIM_LP = this.GRAPEMIM_LP.connect(this.signer);
     console.log(`🔓 Wallet is unlocked. Welcome, ${account}!`);
     this.fetchBoardroomVersionOfUser()
@@ -149,129 +135,12 @@ export class GrapeFinance {
         console.error(`Failed to fetch boardroom version: ${err.stack}`);
         this.boardroomVersionOfUser = 'latest';
       });
+    // this.badgeHelper.badgeProgressForAction(null, 'Connect')
   }
 
   get isUnlocked(): boolean {
     return !!this.myAccount;
   }
-
-  // Init firecloud and wallet's total points by reading unlocked badges
-  async initFirecloud() {
-    this.db = getFirestore(initializeApp(firebaseConfig));
-    const allUserBadges = await getDocs(collection(doc(collection(this.db, 'UserBadges'), this.myAccount), 'UnlockedBadges'));
-    // Firecloud retrieval could fail, prevent from loading if occurs
-    if (allUserBadges && !allUserBadges.empty) {
-      this.unlockedBadges = new Map<String, DocumentData>();
-
-      allUserBadges.forEach((doc) => {
-        const badgeData = doc.data();
-        this.unlockedBadges.set(doc.id, badgeData);
-  
-        // Calculating wallet's total points
-        const badge = allBadges.find(badge => badge.name === doc.id);
-        this.totalPointsBadges += badge ? badge.points : 0;
-      });
-    }
-  }
-
-  // Verifies if the action is a valid requirement for any unlockable badges
-  async addProgressForAction(action: string) {
-    console.log('%c[addProgressOnBadge] Action: ' + action, 'color: blue')
-
-    // Verify if action is a badge's requirement
-    const badges = allBadges.filter(badge => badge.actions?.includes(action))
-    if (!badges.length) {
-      console.log('%c[addProgressOnBadge] No local unlockable badge found for this action. Continue to next', 'color: red')
-      return
-    }
-
-    console.log('%c[addProgressOnBadge] Found ' + allBadges.length + ' badge(s) with this action', 'color: blue')
-    for (let i = 0; i < badges.length; i++) {
-      const badge = badges[i]
-      console.log('%c[addProgressOnBadge] (index ' + i + ') -- Badge "' + badge.name + '"', 'color: blue')
-      // If user already has this badge, no need to perform logic, move on 
-      if (await this.walletHasBadge(badge)) {
-        console.log('%c[addProgressOnBadge] User already unlocked this badge. Continue to next', 'color: red')
-        continue
-      }
-
-      // Searches for wallet's badge progress
-      const badgeProgressRef = doc(this.db, "UserProgress", this.myAccount, badge.name, action)
-      const badgeProgress = await getDoc(badgeProgressRef)
-      const isBadgeInProgress = badgeProgress && badgeProgress.exists()
-
-      // If badge is in progress, use timeBetweenCountsInMinutes to verify time between now and latest progress update
-      if (isBadgeInProgress && 
-          badgeProgress.data().date && 
-          !this.checkTimeBetweenProgress(badge, action, badgeProgress.data().date.seconds)) {
-        console.log('%c[addProgressOnBadge] Too soon to log a new Progress for this action. Continue to next', 'color: red')
-        continue
-      }
-
-      // Create or update the existing progress
-      await setDoc(badgeProgressRef, { count: increment(1), date: Timestamp.fromDate(new Date()) }, { merge: isBadgeInProgress })
-      console.log('%c[addProgressOnBadge] Added progress: ' + `UserProgress/${this.myAccount}/${badge.name}/${action} and merge with existing = ${isBadgeInProgress}`, 'color: blue')
-
-      this.checkRequirementsForBadge(action, badge, badgeProgressRef)
-    }
-  }
-
-  // Verifies if requirement requires time between the same action, then verifies delay between actions
-  checkTimeBetweenProgress(badge: any, action: string, lastProgressTimestamp: number) {
-    const requirementIndexForAction = badge.actions.indexOf(action);
-      if (badge.counts[requirementIndexForAction] > 1) {
-        const lastProgressDate = new Date(lastProgressTimestamp * 1000);
-        console.log('%c[addProgressOnBadge] Last Progress Date: ' + lastProgressDate, 'color: blue')
-
-        let diffMinutes = (Date.now() - lastProgressDate.getTime()) / 1000;
-        diffMinutes = Math.abs(Math.round(diffMinutes /= 60));
-        console.log('%c[addProgressOnBadge] Minutes between the 2 dates: ' + diffMinutes, 'color: blue')
-        console.log('%c[addProgressOnBadge] Badge Minutes required between actions: ' + badge.timeBetweenCountsInMinutes[requirementIndexForAction], 'color: blue')
-        if (diffMinutes < badge.timeBetweenCountsInMinutes[requirementIndexForAction]) {
-          return false;
-        }
-      }
-      return true;
-  }
-
-  // Verifies if the wallet already unlocked a given badge
-  async walletHasBadge(badge: any) {
-    const unlockedBadgeRef = doc(this.db, "UserBadges", this.myAccount, 'UnlockedBadges', badge.name);
-    const unlockedBadge = await getDoc(unlockedBadgeRef);
-    return unlockedBadge && unlockedBadge.exists()
-  }
-
-  // Reads the local badge's requirement and verifies if the newly added action allows the user to unlock the badge
-  async checkRequirementsForBadge(action: string, badge: any, badgeProgressRef: DocumentReference<DocumentData>) {
-    console.log('%c[checkRequirementsForBadge] ' + badge.name + ' - Action ' + action, 'color: blue');
-    const currentActionIndex = badge.actions.indexOf(action)
-    const requiredCountForCurrentAction = badge.counts[currentActionIndex];
-
-    // Need to reload to have the latest progress udpates
-    const badgeProgress = await getDoc(badgeProgressRef)
-    console.log('%c[checkRequirementsForBadge] ' + badge.name + ' - Current count = ' + badgeProgress.data().count, 'color: blue')
-    console.log('%c[checkRequirementsForBadge] Badge required counts: ' + requiredCountForCurrentAction, 'color: blue')
-    if (badgeProgress.data().count >= requiredCountForCurrentAction) {
-      // Unlocking Badge
-      const newBadgeRef = doc(this.db, "UserBadges", this.myAccount, 'UnlockedBadges', badge.name)
-      await setDoc(newBadgeRef, {
-        date: Timestamp.fromDate(new Date())
-      })
-      console.log('%c[checkRequirementsForBadge] ' + badge.name + ' - Unlocked badge! Created the new UnlockedBadge record.', 'color: green')
-
-      // Displaying Toast Notification
-      toast(`${badge.unlockMessage}. You earned ${badge.points} points.`, {
-        position: "top-right",
-        autoClose: 7000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  }
-
 
   //===================================================================
   //===================== GET ASSET STATS =============================
@@ -826,8 +695,6 @@ export class GrapeFinance {
         tokenPrice = await this.getLPTokenPrice(token, this.WINE, false);
       }else if (tokenName === 'GRAPE-MIM-SW') {
         tokenPrice = await this.getLPTokenPrice(token, this.GRAPE, true);
-      }else if (tokenName === 'GRAPE-WLRS-LP') {
-        tokenPrice = await this.getLPTokenPrice(token, this.GRAPE, true);
       } else if (tokenName === 'MIM') {
         tokenPrice = '1';
       } else if (tokenName === 'WAMP') {
@@ -973,9 +840,6 @@ export class GrapeFinance {
       if (earnTokenName === 'GRAPE-MIM-SW' && poolName.includes('Node')) {
         return await pool.getTotalRewards(account);
       }
-      if (earnTokenName === 'GRAPE-WLRS-LP' && poolName.includes('Node')) {
-        return await pool.getTotalRewards(account);
-      }
       if (earnTokenName === 'GRAPE') {
         return await pool.pendingGRAPE(poolId, account);
       } else if (earnTokenName === 'WINE') {
@@ -1080,16 +944,8 @@ export class GrapeFinance {
 
   async compound(poolName: ContractName, poolId: Number, sectionInUI: Number): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
-    console.log('Compound: ' + poolName);
-    if (sectionInUI !== 3) {
-      return await pool.withdraw(poolId, 0);
-    }
-    console.log('Start Compound')
-    const tx = await pool.compound();
-    console.log('Tx = ' + JSON.stringify(tx, null, 2))
-    console.log('After wait')
     //By passing 0 as the amount, we are asking the contract to only redeem the reward and not the currently staked token
-    return tx;
+    return sectionInUI !== 3 ? await pool.withdraw(poolId, 0) : await pool.compound();
   }
 
   /**

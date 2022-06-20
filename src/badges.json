@@ -1,6 +1,7 @@
 [
   {
-    "category": "General", 
+    "category": "General",
+    "contract": null, 
     "name": "Wallet Connected", 
     "unlockMessage": "🍇 Welcome to GrapeFinance 🍇 You obtained your first Badge by connecting your Wallet.",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
@@ -11,6 +12,7 @@
   }, 
   {
     "category": "General", 
+    "contract": null, 
     "name": "5 Connections", 
     "unlockMessage": "This is your 5th connection to GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
@@ -21,6 +23,7 @@
   }, 
   {
     "category": "General", 
+    "contract": null, 
     "name": "10 Connections", 
     "unlockMessage": "This is your 10th connection to GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
@@ -31,6 +34,7 @@
   },
   {
     "category": "General", 
+    "contract": null, 
     "name": "30 Connections", 
     "unlockMessage": "30th connection, Happy 1 month Anniversary with GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
@@ -41,6 +45,7 @@
   },
   {
     "category": "General", 
+    "contract": null, 
     "name": "90 Connections", 
     "unlockMessage": "90th connection, Happy 3 month Anniversary with GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
@@ -51,6 +56,7 @@
   },
   {
     "category": "General", 
+    "contract": null, 
     "name": "180 Connections", 
     "unlockMessage": "180th connection, Happy 6 month Anniversary with GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
@@ -61,6 +67,7 @@
   },
   {
     "category": "General", 
+    "contract": null, 
     "name": "1 Year, already!", 
     "unlockMessage": "Happy 1 year Anniversary with GrapeFinance🍇. Congrats, you unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
@@ -72,12 +79,23 @@
   {
     "category": "Nodes", 
     "contract": "GrapeNode",
-    "name": "Grape Node: Compound 1 Node", 
-    "unlockMessage": "Compound King! By compouding your first Grape Node(s), you unlocked a new Badge!",
+    "name": "Grape Node: Your First Node", 
+    "unlockMessage": "On Fire! You've created your first Grape Node and unlocked a new Badge!",
     "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
     "points": 50, 
-    "actions": ["Compound"], 
+    "actions": ["Count"], 
     "counts": [1], 
+    "timeBetweenCountsInMinutes": [0]
+  }, 
+  {
+    "category": "Nodes", 
+    "contract": "GrapeNode",
+    "name": "Grape Node: Your 5th Node", 
+    "unlockMessage": "Wow! You've created your 5th Grape Node and unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "points": 250, 
+    "actions": ["Count"], 
+    "counts": [5], 
     "timeBetweenCountsInMinutes": [0]
   }
 ]

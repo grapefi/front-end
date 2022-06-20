@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {useParams} from 'react-router-dom';
 import { useWallet } from 'use-wallet';
 import PageHeader from '../../components/PageHeader';
@@ -19,6 +19,7 @@ import useNodePrice from '../../hooks/useNodePrice';
 import {getDisplayBalance} from '../../utils/formatBalance';
 import {Alert} from '@material-ui/lab';
 import useDailyDrip from '../../hooks/useDailyDrip';
+import useGrapeFinance from '../../hooks/useGrapeFinance';
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 const GrapeNode = () => {
   const { bankId } = useParams();
+  const grapeFinance = useGrapeFinance();
 
   const bank = useBank(bankId);
   const { account } = useWallet();
@@ -44,6 +46,12 @@ const GrapeNode = () => {
   const userDetails = useUserDetails(bank?.contract, bank?.sectionInUI, account);
   const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
 
+  useEffect(() => {
+    if (grapeFinance.badgeHelper && account && bank) {
+      grapeFinance.badgeHelper.badgeProgressForAction(bank?.contract, "Count", nodes[0])
+    }
+  }, [account, grapeFinance, bank, nodes]);
+  
   const tokenPriceInDollars = useMemo(
     () => (stakedTokenPriceInDollars ? stakedTokenPriceInDollars : null),
     [stakedTokenPriceInDollars],
