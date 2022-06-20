@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useMemo, useState, useEffect} from 'react';
 import Page from '../../components/Page';
 import {createGlobalStyle} from 'styled-components';
 import {Route, Switch, useRouteMatch} from 'react-router-dom';
@@ -16,10 +16,11 @@ import ExchangeStat from './components/ExchangeStat';
 import useTokenBalance from '../../hooks/useTokenBalance';
 import useBondsPurchasable from '../../hooks/useBondsPurchasable';
 import {getDisplayBalance} from '../../utils/formatBalance';
-import {BOND_REDEEM_PRICE, BOND_REDEEM_PRICE_BN} from '../../grape-finance/constants';
-import {Alert} from '@material-ui/lab';
-import {roundAndFormatNumber} from '../../0x';
-
+import { BOND_REDEEM_PRICE, BOND_REDEEM_PRICE_BN } from '../../grape-finance/constants';
+import { Alert } from '@material-ui/lab';
+import { roundAndFormatNumber } from '../../0x';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import HomeImage from '../../assets/img/background.jpg';
 import {Grid, Box} from '@material-ui/core';
 const BackgroundImage = createGlobalStyle`
@@ -64,11 +65,20 @@ const Bond: React.FC = () => {
   const isBondPurchasable = useMemo(() => Number(bondStat?.tokenInFtm) < 1.01, [bondStat]);
   const grapeReserves = useMemo(() => (Number(bondStat?.treasuryGrapes) / 1e18).toFixed(0), [bondStat]);
   const bondSupply = useMemo(() => bondStat?.circulatingSupply, [bondStat]);
-  const bondScale = (Number(cashPrice) / 1e18).toFixed(2);
+  const bondScale = (Number(cashPrice) / 1e18).toFixed(2); 
 
+  const [badgeCheckHasRan, setBadgeCheckHasRan] = useState(false);
+  useEffect(() => {
+    if (grapeFinance.badgeHelper && !bondBalance.eq(0) && !badgeCheckHasRan) {
+      setBadgeCheckHasRan(true)
+      grapeFinance.badgeProgressForAction('Bonds', 'bond', "Count", Number(getDisplayBalance(bondBalance)))
+    }
+  }, [grapeFinance.badgeHelper, bondBalance, grapeFinance.myAccount]);
+  
   return (
     <Switch>
       <Page>
+        <ToastContainer style={{ width: '500px', marginRight: '50px', marginTop: '50px'}}/>
         <BackgroundImage />
         {!!account ? (
           <>

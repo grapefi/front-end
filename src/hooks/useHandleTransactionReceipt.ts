@@ -10,7 +10,10 @@ function useHandleTransactionReceipt(): (promise: Promise<TransactionResponse>, 
   return useCallback(
     (promise: Promise<TransactionResponse>, summary: string) => {
       promise
-        .then((tx) => addTransaction(tx, {summary}))
+        .then((tx) => {
+          console.log('[useHandleTransactionReceipt] useCallback tx = ' + JSON.stringify(tx, null, 2));
+          addTransaction(tx, {summary})
+        })
         .catch((err) => {
           if (err.message.includes('User denied')) {
             // User denied transaction signature on MetaMask.

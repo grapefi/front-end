@@ -8,6 +8,8 @@ import WineMimCard from './WineMimCard';
 import LPCard from './LPCard';
 import LPWlrsCard from './LPWlrsCard';
 import { createGlobalStyle } from 'styled-components';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -21,6 +23,7 @@ const GrapeNodes = () => {
   const {path} = useRouteMatch();
   return (
     <Page>
+      <ToastContainer style={{ width: '500px', marginRight: '50px', marginTop: '50px'}}/>
       <BackgroundImage />
       <Switch>
         <Route exact path={path}>
