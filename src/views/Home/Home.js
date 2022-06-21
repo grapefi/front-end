@@ -29,6 +29,9 @@ import {ReactComponent as IconDiscord} from '../../assets/img/discord.svg';
 import { useGetEventQuery } from '../../services/event';
 import AirdropRewardModal from './AirdropRewardModal';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const BackgroundImage = createGlobalStyle`
   body {
    //background: url(${HomeImage}) repeat !important;
@@ -68,6 +71,7 @@ const Home = () => {
 
   const {data : eventResponse} = useGetEventQuery();
   const [leaderboard, setLeaderboard] = React.useState([]);
+
   React.useEffect(() => {
     
     if (eventResponse && eventResponse.result) {
@@ -133,8 +137,10 @@ const Home = () => {
     setModalOpen(true);
   };
 
+
 return (
   <Page>
+    <ToastContainer style={{ width: '500px', marginRight: '50px', marginTop: '50px'}}/>
     <AirdropRewardModal
       open={rewardModelOpen}
       handleClose={handleCloseModal}

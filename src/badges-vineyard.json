@@ -1,0 +1,320 @@
+[ 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeMimLPWineRewardPool",
+    "name": "1 Grape-MIM LP Staked!", 
+    "unlockMessage": "On Fire! You've staked your first Grape-MIM LP!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 10, 
+    "requiredCount": 1, 
+    "timeBetweenCountsInMinutes": 0
+  },
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeMimLPWineRewardPool",
+    "name": "10 Grape-MIM LP Staked", 
+    "unlockMessage": "Wow! 10 Grape-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 10, 
+    "requiredCount": 10, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeMimLPWineRewardPool",
+    "name": "50 Grape-MIM LP Staked", 
+    "unlockMessage": "Wow! 50 Grape-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 100, 
+    "requiredCount": 50, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeMimLPWineRewardPool",
+    "name": "100 Grape-MIM LP Staked", 
+    "unlockMessage": "Wow! 100 Grape-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 200, 
+    "requiredCount": 100, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeMimLPWineRewardPool",
+    "name": "500 Grape-MIM LP Staked", 
+    "unlockMessage": "Wow! 500 Grape-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 1000, 
+    "requiredCount": 500, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeMimLPWineRewardPool",
+    "name": "1000 Grape-MIM LP Staked", 
+    "unlockMessage": "Wow! 1000 Grape-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 2000, 
+    "requiredCount": 1000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeMimLPWineRewardPool",
+    "name": "5000 Grape-MIM LP Staked", 
+    "unlockMessage": "Wow! 5000 Grape-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 10000, 
+    "requiredCount": 5000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+
+
+
+  {
+    "category": "Vineyard", 
+    "contract": "WineMimLPWineRewardPool",
+    "name": "1 Wine-MIM LP Staked!", 
+    "unlockMessage": "On Fire! You've staked your first Wine-MIM LP!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 20, 
+    "requiredCount": 1, 
+    "timeBetweenCountsInMinutes": 0
+  },
+  {
+    "category": "Vineyard", 
+    "contract": "WineMimLPWineRewardPool",
+    "name": "5 Wine-MIM LP Staked", 
+    "unlockMessage": "Wow! 5 Wine-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 200, 
+    "requiredCount": 10, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "WineMimLPWineRewardPool",
+    "name": "10 Wine-MIM LP Staked", 
+    "unlockMessage": "Wow! 10 Wine-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 400, 
+    "requiredCount": 50, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "WineMimLPWineRewardPool",
+    "name": "25 Wine-MIM LP Staked", 
+    "unlockMessage": "Wow! 25 Wine-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 1000, 
+    "requiredCount": 100, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "WineMimLPWineRewardPool",
+    "name": "50 Wine-MIM LP Staked", 
+    "unlockMessage": "Wow! 50 Wine-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 2000, 
+    "requiredCount": 500, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "WineMimLPWineRewardPool",
+    "name": "100 Wine-MIM LP Staked", 
+    "unlockMessage": "Wow! 100 Wine-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 4000, 
+    "requiredCount": 1000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "WineMimLPWineRewardPool",
+    "name": "500 Wine-MIM LP Staked", 
+    "unlockMessage": "Wow! 500 Wine-MIM LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 20000, 
+    "requiredCount": 5000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+
+
+
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeWineLPWineRewardPool",
+    "name": "1 Grape-Wine LP Staked!", 
+    "unlockMessage": "On Fire! You've staked your first Grape-Wine LP!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 20, 
+    "requiredCount": 1, 
+    "timeBetweenCountsInMinutes": 0
+  },
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeWineLPWineRewardPool",
+    "name": "5 Grape-Wine LP Staked", 
+    "unlockMessage": "Wow! 5 Grape-Wine LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 200, 
+    "requiredCount": 10, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeWineLPWineRewardPool",
+    "name": "10 Grape-Wine LP Staked", 
+    "unlockMessage": "Wow! 10 Grape-Wine LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 400, 
+    "requiredCount": 50, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeWineLPWineRewardPool",
+    "name": "25 Grape-Wine LP Staked", 
+    "unlockMessage": "Wow! 25 Grape-Wine LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 1000, 
+    "requiredCount": 100, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeWineLPWineRewardPool",
+    "name": "50 Grape-Wine LP Staked", 
+    "unlockMessage": "Wow! 50 Grape-Wine LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 2000, 
+    "requiredCount": 500, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeWineLPWineRewardPool",
+    "name": "100 Grape-Wine LP Staked", 
+    "unlockMessage": "Wow! 100 Grape-Wine LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 4000, 
+    "requiredCount": 1000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeWineLPWineRewardPool",
+    "name": "500 Grape-Wine LP Staked", 
+    "unlockMessage": "Wow! 500 Grape-Wine LP Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 20000, 
+    "requiredCount": 5000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+
+
+
+
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeStaking",
+    "name": "1 Grape Staked!", 
+    "unlockMessage": "On Fire! You've staked your first Grape!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 10, 
+    "requiredCount": 1, 
+    "timeBetweenCountsInMinutes": 0
+  },
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeStaking",
+    "name": "50 Grapes Staked", 
+    "unlockMessage": "Wow! 50 Grapes Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 50, 
+    "requiredCount": 10, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeStaking",
+    "name": "250 Grapes Staked", 
+    "unlockMessage": "Wow! 250 Grapes Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 250, 
+    "requiredCount": 50, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeStaking",
+    "name": "500 Grapes Staked", 
+    "unlockMessage": "Wow! 500 Grapes Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 500, 
+    "requiredCount": 100, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeStaking",
+    "name": "1000 Grapes Staked", 
+    "unlockMessage": "Wow! 1000 Grapes Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 1000, 
+    "requiredCount": 500, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeStaking",
+    "name": "2000 Grapes Staked", 
+    "unlockMessage": "Wow! 2000 Grapes Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 2000, 
+    "requiredCount": 1000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Vineyard", 
+    "contract": "GrapeStaking",
+    "name": "5000 Grapes Staked", 
+    "unlockMessage": "Wow! 5000 Grapes Staked! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 5000, 
+    "requiredCount": 5000, 
+    "timeBetweenCountsInMinutes": 0
+  }
+]

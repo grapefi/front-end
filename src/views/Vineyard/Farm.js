@@ -15,6 +15,9 @@ import {createGlobalStyle} from 'styled-components';
 import useBanks from '../../hooks/useBanks';
 
 import HomeImage from '../../assets/img/background.jpg';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const BackgroundImage = createGlobalStyle`
   body {
     //background: url(${HomeImage}) repeat !important;
@@ -33,6 +36,8 @@ const Farm = () => {
   return (
     <Switch>
       <Page>
+      <ToastContainer style={{ width: '500px', marginRight: '50px', marginTop: '50px'}}/>
+
         <Route exact path={path}>
           <BackgroundImage />
           {!!account ? (

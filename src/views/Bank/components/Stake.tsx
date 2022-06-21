@@ -1,4 +1,4 @@
-import React, {useMemo, useContext} from 'react';
+import React, {useMemo, useContext, useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 // import Button from '../../../components/Button';
@@ -21,6 +21,7 @@ import useStakedBalance from '../../../hooks/useStakedBalance';
 import useStakedTokenPriceInDollars from '../../../hooks/useStakedTokenPriceInDollars';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import useWithdraw from '../../../hooks/useWithdraw';
+import useGrapeFinance from '../../../hooks/useGrapeFinance';
 
 import {getDisplayBalance} from '../../../utils/formatBalance';
 
@@ -49,6 +50,16 @@ const Stake: React.FC<StakeProps> = ({bank}) => {
   const earnedInDollars = (
     Number(tokenPriceInDollars) * Number(getDisplayBalance(stakedBalance, bank.depositToken.decimal))
   ).toFixed(2);
+
+  const grapeFinance = useGrapeFinance();
+  const [badgeCheckHasRan, setBadgeCheckHasRan] = useState(false);
+  useEffect(() => {
+    if (grapeFinance.badgeHelper && !stakedBalance.eq(0) && !badgeCheckHasRan) {
+      setBadgeCheckHasRan(true)
+      grapeFinance.badgeProgressForAction('Vineyard', bank.contract, "Count", Number(getDisplayBalance(stakedBalance)))
+    }
+  }, [grapeFinance.badgeHelper, stakedBalance, grapeFinance.myAccount]);
+
   const {onStake} = useStake(bank);
   const {onZap} = useZap(bank);
   const {onWithdraw} = useWithdraw(bank);

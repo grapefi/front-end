@@ -1,0 +1,147 @@
+[ 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "1 GBond", 
+    "unlockMessage": "On Fire! You've created your first GBond and unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 50, 
+    "requiredCount": 1, 
+    "timeBetweenCountsInMinutes": 0
+  },
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "5 GBonds", 
+    "unlockMessage": "Wow! 5 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 5, 
+    "requiredCount": 5, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "20 GBonds", 
+    "unlockMessage": "Wow! 20 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 20, 
+    "requiredCount": 20, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "50 GBonds", 
+    "unlockMessage": "Wow! 50 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 50, 
+    "requiredCount": 50, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "100 GBonds", 
+    "unlockMessage": "Wow! 100 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 100, 
+    "requiredCount": 100, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "500 GBonds", 
+    "unlockMessage": "Wow! 500 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 500, 
+    "requiredCount": 500, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "1000 GBonds", 
+    "unlockMessage": "Wow! 1000 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 1000, 
+    "requiredCount": 1000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "2500 GBonds", 
+    "unlockMessage": "Wow! 2500 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 2500, 
+    "requiredCount": 2500, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "5000 GBonds", 
+    "unlockMessage": "Wow! 5000 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 5000, 
+    "requiredCount": 5000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "10000 GBonds", 
+    "unlockMessage": "Wow! 10000 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 10000, 
+    "requiredCount": 10000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "20000 GBonds", 
+    "unlockMessage": "Wow! 20000 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 20000, 
+    "requiredCount": 20000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "50000 GBonds", 
+    "unlockMessage": "Wow! 50000 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 50000, 
+    "requiredCount": 50000, 
+    "timeBetweenCountsInMinutes": 0
+  }, 
+  {
+    "category": "Bonds", 
+    "contract": "bond",
+    "name": "100000 GBonds", 
+    "unlockMessage": "Wow! 100000 GBonds! Impressive, you unlocked a new Badge!",
+    "imgUrl": "https://developers.google.com/profile/badges/playlists/android/android-development-with-kotlin-1/badge.svg",
+    "action": "Count", 
+    "points": 100000, 
+    "requiredCount": 100000, 
+    "timeBetweenCountsInMinutes": 0
+  }
+  
+
+]
