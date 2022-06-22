@@ -183,18 +183,22 @@ code {
   overflow: hidden;
 }
 
-.grape {
-  background-image: url('/grape.png');
+/* .grape {
+  background-image: url('grape.png');
   top: -20px;
+  display: block;
+  background-color: orange;
+  height: 400px;
+  width: 400px;
 }
 
 .wine {
-  background-image: url('/gshare.png');
-}
+  background-image: url('gshare.png');
+} */
 
-.btc {
-  background-image: url('/grape3.png');
-}
+/* .btc {
+  background-image: url('../public/grape3.png');
+} */
 
 .MuiPaper-root {
   color: rgb(235, 235, 235) !important;
