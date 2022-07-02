@@ -24,8 +24,10 @@ const BackgroundImage = createGlobalStyle`
 `;
 
 const Raffle: React.FC = () => {
-  const startDate = new Date('2022-07-01 23:00:00Z');
-  const endDate = new Date('2022-07-05 00:00:00Z');
+  const startDate = new Date('2022-07-01T23:00:00Z');
+  const endDate = new Date('2022-07-05T00:00:00Z');
+  const test1 = new Date(2022, 7, 1, 23, 0, 0);
+
   const raffleAddress = '0xA3F2C4D813d75E26335ddE70DcFd703996Ae25D8';
 
   const {account} = useWallet();
@@ -59,8 +61,9 @@ const Raffle: React.FC = () => {
         {!!account ? (
           <>
             <Grid item xs={12} md={12} lg={12}>
-              <h1>StartDate: {startDate.toLocaleString()}</h1>
-              <h1> EndDate: {endDate.toLocaleString()}</h1>
+              <h1>StartDate: {startDate.toString()}</h1>
+              <h1> EndDate: {endDate.toString()}</h1>
+              <h1> test1: {test1.toString()}</h1>
               <h1> startTime: {startTime}</h1>
               <h1> endTime: {endTime}</h1>
               <h1>Enabled: {Date.now() < endTime && Date.now() > startTime ? 'true': 'false'}</h1>
