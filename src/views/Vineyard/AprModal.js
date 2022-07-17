@@ -1,6 +1,7 @@
-import { Modal, Box, Typography, makeStyles} from '@material-ui/core';
+import { Modal, Box, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, {useState} from 'react';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 
 const useStyles = makeStyles((theme) => ({
   textField: {

@@ -6,7 +6,7 @@ import { Switch} from 'react-router-dom';
 import Chart from '../../components/Chart';
 
 import HomeImage from '../../assets/img/background.jpg';
-import { Grid , Container } from '@material-ui/core';
+import { Grid , Container } from '@mui/material';
 
 
 const BackgroundImage = createGlobalStyle`

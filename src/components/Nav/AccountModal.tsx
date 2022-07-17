@@ -8,7 +8,7 @@ import Modal, {ModalProps} from '../Modal';
 import ModalTitle from '../ModalTitle';
 import useGrapeFinance from '../../hooks/useGrapeFinance';
 import TokenSymbol from '../TokenSymbol';
-import {useMediaQuery} from '@material-ui/core';
+import {useMediaQuery} from '@mui/material';
 
 const AccountModal: React.FC<ModalProps> = ({onDismiss}) => {
   const grapeFinance = useGrapeFinance();

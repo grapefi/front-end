@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({children, disabled, href, onClick, size,
       buttonColor = color.primary.main;
   }
 
-  let boxShadow: string;
+  let boxShadow: string = '';
   let buttonSize: number;
   let buttonPadding: number;
   let fontSize: number;

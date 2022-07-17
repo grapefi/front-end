@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {Link} from 'react-router-dom';
-import {Button, Card, CardContent, Grid, Paper, Typography} from '@material-ui/core';
+import {Button, Card, CardContent, Grid, Paper, Typography} from '@mui/material';
 import TokenSymbol from '../TokenSymbol';
 import {getDisplayBalance} from '../../utils/formatBalance';
 import useStatsForPool from '../../hooks/useStatsForPool';

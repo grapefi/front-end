@@ -2,12 +2,12 @@ import React, {useMemo, useContext} from 'react';
 import styled from 'styled-components';
 
 // import Button from '../../../components/Button';
-import {Button, Card, CardContent, Typography} from '@material-ui/core';
+import {Button, Card, CardContent, Typography} from '@mui/material';
 // import Card from '../../../components/Card';
 // import CardContent from '../../../components/CardContent';
 import CardIcon from '../../../components/CardIcon';
 import {AddIcon, RemoveIcon} from '../../../components/icons';
-import FlashOnIcon from '@material-ui/icons/FlashOn';
+import FlashOnIcon from '@mui/icons-material/FlashOn';
 import IconButton from '../../../components/IconButton';
 import Label from '../../../components/Label';
 import Value from '../../../components/Value';
@@ -159,7 +159,7 @@ const Stake: React.FC<StakeProps> = ({bank}) => {
               </Button>
             ) : (
               <>
-                <IconButton onClick={onPresentWithdraw}>
+                <IconButton onClick={onPresentWithdraw} size="large">
                   <RemoveIcon />
                 </IconButton>
                 <StyledActionSpacer />
@@ -167,7 +167,7 @@ const Stake: React.FC<StakeProps> = ({bank}) => {
                   <IconButton
                     disabled={bank.closedForStaking}
                     onClick={() => (bank.closedForStaking ? null : onPresentZap())}
-                  >
+                    size="large">
                     <FlashOnIcon style={{color: themeColor.grey[400]}} />
                   </IconButton>
                 )}
@@ -175,7 +175,7 @@ const Stake: React.FC<StakeProps> = ({bank}) => {
                   <IconButton
                     disabled={bank.closedForStaking}
                     onClick={() => (bank.closedForStaking ? null : onPresentZapSW())}
-                  >
+                    size="large">
                     <FlashOnIcon style={{color: themeColor.grey[400]}} />
                   </IconButton>
                 )}
@@ -184,7 +184,7 @@ const Stake: React.FC<StakeProps> = ({bank}) => {
                 <IconButton
                   disabled={bank.closedForStaking}
                   onClick={() => (bank.closedForStaking ? null : onPresentDeposit())}
-                >
+                  size="large">
                   <AddIcon />
                 </IconButton>
               </>

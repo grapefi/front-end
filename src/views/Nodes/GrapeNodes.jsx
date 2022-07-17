@@ -1,4 +1,4 @@
-import {Grid, Typography} from '@material-ui/core';
+import {Grid, Typography} from '@mui/material';
 import React from 'react';
 import {Route, Switch, useRouteMatch} from 'react-router-dom';
 import Page from '../../components/Page';

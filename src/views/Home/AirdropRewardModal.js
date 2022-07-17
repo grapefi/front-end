@@ -1,6 +1,7 @@
-import { Modal, Box, Typography, makeStyles, CircularProgress } from '@material-ui/core';
+import { Modal, Box, Typography, CircularProgress } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useState, useMemo, useEffect } from 'react';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 import useGrapeFinance from '../../hooks/useGrapeFinance';
 import useWalletNodesAndNFTs from '../../hooks/useWalletNodesAndNFTs';
 import {NFT_TICKET_COUNT, GRAPE_NODE_MULTIPLIER, WINE_NODE_MULTIPLIER, GRAPEMIMSW_NODE_MULTIPLIER, GOON_MULTIPLIER, GLASS_MULTIPLIER, DECANTER_MULTIPLIER, GOBLET_MULTIPLIER} from '../../utils/constants';

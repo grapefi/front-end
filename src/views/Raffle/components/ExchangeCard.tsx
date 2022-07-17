@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {Button, Card} from '@material-ui/core';
+import {Button, Card} from '@mui/material';
 
 import CardContent from '../../../components/CardContent';
 

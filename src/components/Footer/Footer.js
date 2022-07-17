@@ -1,6 +1,6 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import {Container, Grid, Typography, Link} from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import {Container, Grid, Typography, Link} from '@mui/material';
 
 import {ReactComponent as IconTelegram} from '../../assets/img/telegram.svg';
 import {ReactComponent as IconTwitter} from '../../assets/img/twitter.svg';

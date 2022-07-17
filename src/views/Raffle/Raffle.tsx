@@ -11,7 +11,7 @@ import useRaffleStats from '../../hooks/useRaffleBalance';
 import useGrapeFinance from '../../hooks/useGrapeFinance';
 import {useTransactionAdder} from '../../state/transactions/hooks';
 import HomeImage from '../../assets/img/background.jpg';
-import {Card, Grid, CircularProgress} from '@material-ui/core';
+import {Card, Grid, CircularProgress} from '@mui/material';
 
 import LaunchCountdown from '../../components/LaunchCountdown';
 
@@ -91,7 +91,7 @@ const Raffle: React.FC = () => {
               )}
             </Grid>
 
-            <Grid container justify="center" spacing={3} style={{marginTop: '10px'}}>
+            <Grid container justifyContent="center" spacing={3} style={{marginTop: '10px'}}>
               <Grid item xs={12} sm={12} lg={6}>
                 <Card>
                   <h2 style={{textAlign: 'center', marginTop: '10px'}}>Raffle Stats</h2>

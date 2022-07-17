@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, CardContent, Grid, Paper, Typography} from '@material-ui/core';
+import {Button, Card, CardContent, Grid, Paper, Typography} from '@mui/material';
 import TokenSymbol from '../TokenSymbol';
 import {roundAndFormatNumber} from '../../0x';
 

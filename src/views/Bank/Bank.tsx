@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import {useParams} from 'react-router-dom';
 import {useWallet} from 'use-wallet';
-import {makeStyles} from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
-import {Box, Button, Card, CardContent, Typography, Grid} from '@material-ui/core';
+import {Box, Button, Card, CardContent, Typography, Grid} from '@mui/material';
 
 import PageHeader from '../../components/PageHeader';
 import Spacer from '../../components/Spacer';
@@ -19,7 +19,7 @@ import useStatsForPool from '../../hooks/useStatsForPool';
 import useRedeem from '../../hooks/useRedeem';
 import {Bank as BankEntity} from '../../grape-finance';
 
-import {Alert} from '@material-ui/lab';
+import { Alert } from '@mui/material';
 import useModal from '../../hooks/useModal';
 import StratModal from './components/StratModal';
 import zone1 from '../../assets/img/1.jpg';
@@ -113,7 +113,7 @@ const Bank: React.FC = () => {
 
       {name !== '' ? (
         <Box mt={5}>
-          <Grid container justify="center" spacing={3} style={{marginBottom: '30px'}}>
+          <Grid container justifyContent="center" spacing={3} style={{marginBottom: '30px'}}>
             <Alert variant="filled">
               {' '}
               <a href={vaultUrl} target={'_blank'} rel="noopener noreferrer">
@@ -126,7 +126,7 @@ const Bank: React.FC = () => {
 
       {stratText !== '' ? (
         <Box mt={5}>
-          <Grid container justify="center" spacing={3} style={{marginBottom: '30px'}}>
+          <Grid container justifyContent="center" spacing={3} style={{marginBottom: '30px'}}>
             <Alert variant="filled">
               <a onClick={onPresentDeposit}>
                 <span style={{color: '#fff'}}>{stratText}</span>
@@ -137,7 +137,7 @@ const Bank: React.FC = () => {
       ) : null}
 
       <Box>
-        <Grid container justify="center" spacing={3} style={{marginBottom: '50px'}}>
+        <Grid container justifyContent="center" spacing={3} style={{marginBottom: '50px'}}>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
             <Card className={classes.gridItem}>
               <CardContent style={{textAlign: 'center'}}>

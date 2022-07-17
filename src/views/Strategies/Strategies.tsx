@@ -9,7 +9,7 @@ import zone2 from '../../assets/img/2.jpg';
 import zone3 from '../../assets/img/3.jpg';
 import auto from '../../assets/img/Autocompounder.png';
 import wampStrat from '../../assets/img/wamp-strat.jpg';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 
 
 

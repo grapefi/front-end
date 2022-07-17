@@ -16,11 +16,11 @@ import useTokenBalance from '../../hooks/useTokenBalance';
 import useBondsPurchasable from '../../hooks/useBondsPurchasable';
 import {getDisplayBalance} from '../../utils/formatBalance';
 import {BOND_REDEEM_PRICE, BOND_REDEEM_PRICE_BN} from '../../grape-finance/constants';
-import {Alert} from '@material-ui/lab';
+import { Alert } from '@mui/material';
 import {roundAndFormatNumber} from '../../0x';
 
 import HomeImage from '../../assets/img/background.jpg';
-import {Grid, Box, Typography} from '@material-ui/core';
+import {Grid, Box, Typography} from '@mui/material';
 const BackgroundImage = createGlobalStyle`
   body {
     //background: url(${HomeImage}) repeat !important;
@@ -77,7 +77,7 @@ const Bond: React.FC = () => {
               Exchange Grapes for Bonds and burns Grape supply<br />Exchange Bonds for Grapes and earn premiums upon redemption
             </Typography>
             <Box mt={2}>
-              <Grid item xs={12} sm={12} justify="center" style={{margin: '18px', display: 'flex'}}>
+              <Grid item xs={12} sm={12} justifyContent="center" style={{margin: '18px', display: 'flex'}}>
                 <Alert variant="filled" severity="error">
                   <b>Bonds are emitted & premiums redeemable based on last epoch TWAP prices not the current TWAP!</b>
                 </Alert>
@@ -115,7 +115,7 @@ const Bond: React.FC = () => {
                 />
 
                 <Box mt={3}>
-                  <Grid item xs={12} sm={12} justify="center" style={{display: 'flex'}}>
+                  <Grid item xs={12} sm={12} justifyContent="center" style={{display: 'flex'}}>
                     <Alert variant="filled" severity="error">
                       <b>Grape Reserves:</b>{' '}
                       {bondStat?.treasuryGrapes ? roundAndFormatNumber(Number(grapeReserves), 0) : '-'}

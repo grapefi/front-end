@@ -1,12 +1,12 @@
 import React, {useMemo, useState, useEffect} from 'react';
 import {useWallet} from 'use-wallet';
 import {Route, Switch, useRouteMatch} from 'react-router-dom';
-import {makeStyles} from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import Web3 from 'web3';
 
-import {Box, Card, CardContent, Button, Typography, Grid} from '@material-ui/core';
+import {Box, Card, CardContent, Button, Typography, Grid} from '@mui/material';
 
-import {Alert} from '@material-ui/lab';
+import { Alert } from '@mui/material';
 
 import UnlockWallet from '../../components/UnlockWallet';
 import Page from '../../components/Page';
@@ -100,7 +100,7 @@ const Cemetery = () => {
                 Buy Wine at a discount, vested over 3 days
               </Typography>
               <Box mt={2}>
-                <Grid container justify="center" spacing={3}>
+                <Grid container justifyContent="center" spacing={3}>
                   <Grid item xs={12} md={3} lg={3} className={classes.gridItem}>
                     <Card className={classes.gridItem}>
                       <CardContent align="center">
@@ -131,7 +131,7 @@ const Cemetery = () => {
                 </Grid>
               </div>
               <Box mt={2}>
-                <Grid container justify="center" spacing={3}>
+                <Grid container justifyContent="center" spacing={3}>
                   <Grid item xs={12} md={6} lg={6} className={classes.gridItem}>
                     <Card style={{height: 'auto'}}>
                       <CardContent align="center">

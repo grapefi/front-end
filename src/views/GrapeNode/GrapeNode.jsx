@@ -2,8 +2,8 @@ import React, {useMemo} from 'react';
 import {useParams} from 'react-router-dom';
 import {useWallet} from 'use-wallet';
 import PageHeader from '../../components/PageHeader';
-import {Box, Card, CardContent, Typography, Grid, Button} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import {Box, Card, CardContent, Typography, Grid, Button} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import styled from 'styled-components';
 import Spacer from '../../components/Spacer';
 import Harvest from './components/Harvest';
@@ -17,7 +17,7 @@ import useStatsForPool from '../../hooks/useStatsForPool';
 import useStakedTokenPriceInDollars from '../../hooks/useStakedTokenPriceInDollars';
 import useNodePrice from '../../hooks/useNodePrice';
 import {getDisplayBalance} from '../../utils/formatBalance';
-import {Alert} from '@material-ui/lab';
+import { Alert } from '@mui/material';
 import useDailyDrip from '../../hooks/useDailyDrip';
 
 const useStyles = makeStyles((theme) => ({
@@ -73,7 +73,7 @@ const GrapeNode = () => {
           your daily returns increase it also keeps the APR stable and can help boost it. A good ratio for node health
           is to compound 3 nodes for every 1 nodes worth of claims.
         </Alert>
-        <Grid container justify="center" spacing={2} style={{marginBottom: '50px', marginTop: '20px'}}>
+        <Grid container justifyContent="center" spacing={2} style={{marginBottom: '50px', marginTop: '20px'}}>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
             <Card className={classes.gridItem}>
               <CardContent style={{textAlign: 'center'}}>
