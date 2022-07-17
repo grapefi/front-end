@@ -59,7 +59,7 @@
   },
   "scripts": {
     "start": "TSC_COMPILE_ON_ERROR=true react-scripts start",
-    "build": "TSC_COMPILE_ON_ERROR=true set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "build": "set \"GENERATE_SOURCEMAP=false\" && TSC_COMPILE_ON_ERROR=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
