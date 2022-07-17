@@ -10,7 +10,7 @@ interface LabelProps {
 const Label: React.FC<LabelProps> = ({text, variant = 'secondary', color: customColor}) => {
   const {color} = useContext(ThemeContext);
 
-  let labelColor: string;
+  let labelColor: string = '';
   if (customColor) {
     labelColor = customColor;
   } else {

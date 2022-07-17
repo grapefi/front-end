@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from 'react';
 import {Button, Card, CardContent, Grid, Paper, Typography} from '@mui/material';
 import TokenSymbol from '../../components/TokenSymbol';
@@ -29,7 +31,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
   return (
     <Card>
       <CardContent>
-      <Grid container style={{position: 'relative'}} spacing={1}>
+        <Grid container style={{position: 'relative'}} spacing={1}>
           <Grid item xs={3} sm={2} md={3} lg={3}>
             <TokenSymbol symbol={name.toUpperCase()} height={70} width={70} />
           </Grid>
@@ -54,7 +56,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
           </Grid>
           <Button
             onClick={() => {
-              grapeFinance.watchAssetInMetamask(name.toUpperCase());
+              grapeFinance?.watchAssetInMetamask(name.toUpperCase());
             }}
             style={{position: 'absolute', top: '-3px', right: '0'}}
           >
