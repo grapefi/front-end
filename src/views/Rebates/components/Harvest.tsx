@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { Box, Button, Card, CardContent, Typography } from '@material-ui/core';
+import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 
 import TokenSymbol from '../../../components/TokenSymbol';
 import Label from '../../../components/Label';

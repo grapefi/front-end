@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import styled from 'styled-components';
 
-import {Box, Button, Card, CardContent, Typography} from '@material-ui/core';
+import {Box, Button, Card, CardContent, Typography} from '@mui/material';
 
 // import Button from '../../../components/Button';
 // import Card from '../../../components/Card';
@@ -78,7 +78,6 @@ const Stake: React.FC = () => {
 
 
   return (
-    
     <Box>
       <Card>
         <CardContent>
@@ -105,11 +104,14 @@ const Stake: React.FC = () => {
                 </Button>
               ) : (
                 <>
-                  <IconButton disabled={!canWithdrawFromBoardroom} onClick={onPresentWithdraw}>
+                  <IconButton
+                    disabled={!canWithdrawFromBoardroom}
+                    onClick={onPresentWithdraw}
+                    size="large">
                     <RemoveIcon color={!canWithdrawFromBoardroom ? '' : 'yellow'} />
                   </IconButton>
                   <StyledActionSpacer />
-                  <IconButton onClick={onPresentDeposit}>
+                  <IconButton onClick={onPresentDeposit} size="large">
                     <AddIcon color={!canWithdrawFromBoardroom ? '' : 'yellow'} />
                   </IconButton>
                 </>

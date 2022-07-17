@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {ListItem, ListItemText} from '@material-ui/core';
+import {ListItem, ListItemText} from '@mui/material';
 
 const ListItemLink = ({primary, to}) => {
   const CustomLink = React.useMemo(

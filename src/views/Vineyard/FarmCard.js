@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {Box, Button, Card, CardActions, CardContent, Typography, Grid} from '@material-ui/core';
+import {Box, Button, Card, CardActions, CardContent, Typography, Grid} from '@mui/material';
 import TokenSymbol from '../../components/TokenSymbol';
 import useStatsForPool from '../../hooks/useStatsForPool';
 import AprModal from './AprModal';
-import SwapVerticalCircleIcon from '@material-ui/icons/SwapVerticalCircle';
+import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
 
 const FarmCard = ({bank}) => {
 

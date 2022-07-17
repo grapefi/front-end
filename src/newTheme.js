@@ -1,9 +1,9 @@
 //Your theme for the new stuff using material UI has been copied here so it doesn't conflict
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme, adaptV4Theme } from '@mui/material/styles';
 
-const newTheme = createTheme({
+const newTheme = createTheme(adaptV4Theme({
   palette: {
-    type: 'light',
+    mode: 'light',
     text: {
       primary: '#fafafa',
       secondary: '#e647e6',
@@ -35,6 +35,6 @@ const newTheme = createTheme({
     color: '#2c2560',
     fontFamily: ['"monospace"', 'sans-serif'].join(','),
   },
-});
+}));
 
 export default newTheme;

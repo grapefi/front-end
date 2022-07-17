@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, CardContent, Grid, Paper, Typography} from '@material-ui/core';
+import {Button, Card, CardContent, Grid, Paper, Typography} from '@mui/material';
 import TokenSymbol from '../../components/TokenSymbol';
 import useGrapeFinance from '../../hooks/useGrapeFinance';
 import MetamaskFox from '../../assets/img/metamask-fox.svg';

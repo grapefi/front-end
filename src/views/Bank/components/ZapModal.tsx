@@ -1,6 +1,7 @@
 import React, {useState, useMemo} from 'react';
 
-import {Button, Select, MenuItem, InputLabel, withStyles} from '@material-ui/core';
+import { Button, Select, MenuItem, InputLabel } from '@mui/material';
+import withStyles from '@mui/styles/withStyles';
 // import Button from '../../../components/Button'
 import Modal, {ModalProps} from '../../../components/Modal';
 import ModalActions from '../../../components/ModalActions';
@@ -15,7 +16,7 @@ import useTokenBalance from '../../../hooks/useTokenBalance';
 import useGrapeFinance from '../../../hooks/useGrapeFinance';
 import useApproveZapper, {ApprovalState} from '../../../hooks/useApproveZapper';
 import {GRAPE_TICKER, WINE_TICKER, MIM_TICKER} from '../../../utils/constants';
-import {Alert} from '@material-ui/lab';
+import { Alert } from '@mui/material';
 
 interface ZapProps extends ModalProps {
   onConfirm: (zapAsset: string, lpName: string, amount: string) => void;

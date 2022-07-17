@@ -3,7 +3,7 @@ import Page from '../../components/Page';
 import {createGlobalStyle} from 'styled-components';
 import { Switch} from 'react-router-dom';
 import HomeImage from '../../assets/img/background.jpg';
-import { Grid , Container, Card } from '@material-ui/core';
+import { Grid , Container, Card } from '@mui/material';
 
 import asgard from '../../assets/img/asgard.jpg';
 import hermes from '../../assets/img/hermes.png';
@@ -36,7 +36,7 @@ const Launchpad: React.FC = () => {
               
                                         
               </Grid>
-        <Grid container justify="center" spacing={3} style={{marginTop: '10px'}}>
+        <Grid container justifyContent="center" spacing={3} style={{marginTop: '10px'}}>
           <Grid item xs={12} sm={12} lg={6} >  
             <Card style={{padding:'30px'}}>
                   <a href='https://asgarddao.fi/' rel="noopener noreferrer" target='_blank'><h2 style={{textAlign:'center', fontSize: '35px' }}>Asgard</h2></a>

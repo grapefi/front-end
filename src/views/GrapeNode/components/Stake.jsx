@@ -1,12 +1,12 @@
 import React, {useMemo, useContext} from 'react';
 import styled from 'styled-components';
 import {ThemeContext} from 'styled-components';
-import {Button, Card, CardContent, Typography} from '@material-ui/core';
+import {Button, Card, CardContent, Typography} from '@mui/material';
 import DepositModal from './DepositModal';
 
 import CardIcon from '../../../components/CardIcon';
 import {AddIcon} from '../../../components/icons';
-import FlashOnIcon from '@material-ui/icons/FlashOn';
+import FlashOnIcon from '@mui/icons-material/FlashOn';
 import IconButton from '../../../components/IconButton';
 import Label from '../../../components/Label';
 import Value from '../../../components/Value';
@@ -126,7 +126,7 @@ const Stake = ({bank}) => {
                   className="shinyButton"
                   disabled={bank.closedForStaking}
                   onClick={() => (bank.closedForStaking ? null : onPresentDeposit())}
-                >
+                  size="large">
                   <AddIcon />
                 </IconButton>
                 {isZapLP ? <StyledActionSpacer /> : null}
@@ -135,7 +135,7 @@ const Stake = ({bank}) => {
                   <IconButton
                     disabled={bank.closedForStaking}
                     onClick={() => (bank.closedForStaking ? null : onPresentZap())}
-                  >
+                    size="large">
                     
                     <FlashOnIcon style={{color: themeColor.grey[400]}} />
                   </IconButton>

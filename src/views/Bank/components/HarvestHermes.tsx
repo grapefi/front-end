@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {Button, Card, CardContent, Typography, Grid} from '@material-ui/core';
+import {Button, Card, CardContent, Typography, Grid} from '@mui/material';
 
 import Value from '../../../components/Value';
 import useEarnings from '../../../hooks/useEarnings';

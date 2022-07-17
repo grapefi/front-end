@@ -1,4 +1,4 @@
-import {Container, useMediaQuery} from '@material-ui/core';
+import {Container, useMediaQuery} from '@mui/material';
 import useEagerConnect from '../../hooks/useEagerConnect';
 import Menu, {MenuProps} from '@mui/material/Menu';
 
@@ -158,7 +158,7 @@ const StyledMenu = styled((props: MenuProps) => (
   />
 ))(({theme}) => ({
   '& .MuiPaper-root': {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
     borderRadius: 6,
@@ -264,7 +264,7 @@ const Page: React.FC = ({children}) => {
                 marginRight: !open ? '24px !important' : '0 !important',
                 ...(open && {display: 'none'}),
               }}
-            >
+              size="large">
               <MenuIcon
                 sx={{
                   color: 'white',
@@ -407,7 +407,7 @@ const Page: React.FC = ({children}) => {
                 fill: 'white',
                 ...(!open && {display: 'none'}),
               }}
-            >
+              size="large">
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </DrawerHeader>

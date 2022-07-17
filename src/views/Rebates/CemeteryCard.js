@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Card, CardActions, CardContent, Typography, Grid } from '@material-ui/core';
+import { Box, Button, Card, CardActions, CardContent, Typography, Grid } from '@mui/material';
 import useRebateTreasury from "../../hooks/useRebateTreasury"
 import useApprove, { ApprovalState } from '../../hooks/useApprove';
 import useModal from '../../hooks/useModal';

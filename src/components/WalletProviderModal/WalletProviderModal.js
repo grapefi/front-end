@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import WalletCard from './WalletCard';
 
-import {Modal, List} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import {Modal, List} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 import metamaskLogo from '../../assets/img/metamask-fox.svg';
 import walletConnectLogo from '../../assets/img/wallet-connect.svg';

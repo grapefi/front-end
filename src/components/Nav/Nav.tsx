@@ -15,14 +15,15 @@ import {
   ListItem,
   ListItemText,
   Divider,
-} from '@material-ui/core';
+} from '@mui/material';
 
 import ListItemLink from '../ListItemLink';
 
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { useTheme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import AccountButton from './AccountButton';
 import grapeLogo from '../../assets/img/logo1.png';
 
@@ -324,7 +325,7 @@ const Nav = () => {
               onClick={handleDrawerOpen}
               edge="start"
               className={clsx(open && classes.hide)}
-            >
+              size="large">
               <MenuIcon />
             </IconButton>
 
@@ -347,7 +348,7 @@ const Nav = () => {
               }}
             >
               <div>
-                <IconButton onClick={handleDrawerClose}>
+                <IconButton onClick={handleDrawerClose} size="large">
                   {theme.direction === 'rtl' ? (
                     <ChevronRightIcon htmlColor="white" />
                   ) : (

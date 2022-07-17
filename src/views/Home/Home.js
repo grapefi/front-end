@@ -15,7 +15,7 @@ import useGrapeMimSWTotalNode from '../../hooks/useGrapeMimSWTotalNode';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useNodeRewardPoolStats from '../../hooks/useNodesRewardBalance';
 import {roundAndFormatNumber} from '../../0x';
-import {Button, Card, CardContent, Grid, Paper, CircularProgress, Typography} from '@material-ui/core';
+import {Button, Card, CardContent, Grid, Paper, CircularProgress, Typography} from '@mui/material';
 import kyc from '../../assets/img/kyc.jpg';
 import heroImg from '../../assets/img/hero.png';
 import audit from '../../assets/img/audit1.jpg';

@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import Spacer from '../../components/Spacer';
 import Harvest from './components/Harvest';
 import Stake from './components/Stake';
-import {makeStyles} from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
-import {Box, Card, CardContent, Button, Typography, Grid} from '@material-ui/core';
+import {Box, Card, CardContent, Button, Typography, Grid} from '@mui/material';
 
-import {Alert} from '@material-ui/lab';
+import { Alert } from '@mui/material';
 
 import UnlockWallet from '../../components/UnlockWallet';
 import Page from '../../components/Page';
@@ -106,7 +106,7 @@ const Boardroom = () => {
           </Alert>
           {bondStat && bondSupply - grapeReserves > 0 && (
             <Box mt={2}>
-              <Grid item justify="center">
+              <Grid item justifyContent="center">
                 <Alert variant="outlined" severity="warning">
                   <div>
                     Winery APR is temporarly reduced during debt phase. Debt is paid by the Winery when an epoch ends
@@ -128,7 +128,7 @@ const Boardroom = () => {
           )}
 
           <Box mt={2}>
-            <Grid container justify="center" spacing={3}>
+            <Grid container justifyContent="center" spacing={3}>
               <Grid item xs={6} md={2} lg={2} className={classes.gridItem}>
                 <Card className={classes.gridItem}>
                   <CardContent style={{textAlign: 'center'}}>
@@ -209,7 +209,7 @@ const Boardroom = () => {
           </Box>
 
           <Box mt={5}>
-            <Grid container justify="center" spacing={3} mt={10}>
+            <Grid container justifyContent="center" spacing={3} mt={10}>
               <Button
                 disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
                 onClick={onRedeem}

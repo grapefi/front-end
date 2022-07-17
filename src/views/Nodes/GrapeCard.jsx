@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Button, Card, Paper, CardContent, Typography, Grid} from '@material-ui/core';
+import {Button, Card, Paper, CardContent, Typography, Grid} from '@mui/material';
 import TokenSymbol from '../../components/TokenSymbol';
 import useBank from '../../hooks/useBank';
 import useStatsForPool from '../../hooks/useStatsForPool';

@@ -3,9 +3,9 @@ import {useWallet} from 'use-wallet';
 import {Route, Switch, useRouteMatch} from 'react-router-dom';
 import Bank from '../Bank';
 
-import {Box, Container, Typography, Grid} from '@material-ui/core';
+import {Box, Container, Typography, Grid} from '@mui/material';
 
-import {Alert} from '@material-ui/lab';
+import { Alert } from '@mui/material';
 
 import UnlockWallet from '../../components/UnlockWallet';
 import Page from '../../components/Page';
