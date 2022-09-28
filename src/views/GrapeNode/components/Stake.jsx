@@ -32,6 +32,7 @@ const Stake = ({bank}) => {
   const tokenBalance = useTokenBalance(bank.depositToken);
   const nodePrice = useNodePrice(bank.contract, bank.poolId, bank.sectionInUI);
   const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
+  const grapeBalance = useTokenBalance(grapeFinance.GRAPE);
 
   const tokenPriceInDollars = useMemo(
     () => (stakedTokenPriceInDollars ? stakedTokenPriceInDollars : null),
@@ -108,7 +109,7 @@ const Stake = ({bank}) => {
                   approveStatus === ApprovalState.PENDING ||
                   approveStatus === ApprovalState.UNKNOWN
                 }
-                onClick={approve}
+                onClick = {approve}
                 className={
                   bank.closedForStaking ||
                   approveStatus === ApprovalState.PENDING ||
@@ -125,7 +126,7 @@ const Stake = ({bank}) => {
                 <IconButton
                   className="shinyButton"
                   disabled={bank.closedForStaking}
-                  onClick={() => (bank.closedForStaking ? null : onPresentDeposit())}
+                  onClick={() => (bank.closedForStaking ? null : (grapeBalance >= nodePrice ? onPresentDeposit() : null))}   
                 >
                   <AddIcon />
                 </IconButton>
