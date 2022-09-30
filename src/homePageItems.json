@@ -21,7 +21,7 @@
   },
   {
     "label": "Seigniorage Protocol",
-    "subLabel": "Passive Income",
+    "subLabel": "Liquidity Farming",
     "color": "#e647e6",
     "description": "Stake Grape, Wine, or provide liquidity to earn daily rewards. No lock period. ",
     "isNew": false,
@@ -98,28 +98,6 @@
         "label": "Fantom House",
         "isNew": false,
         "linkTo": "https://avax.fantom.house/grapeflip",
-        "isInternalLink": false
-      }
-    ]
-  },
-  {
-    "label": "Burn Games",
-    "subLabel": "Burn Grape for Fun",
-    "color": "#e647e6",
-    "description": "Buy tickets with Grape to play a variety of classic & new arcade games. Top players earn prizes!",
-    "isNew": false,
-    "image": "burninggrape.png",
-    "items": [
-      {
-        "label": "Space Shooter",
-        "isNew": false,
-        "linkTo": "https://www.lianyou.io/burnforfun",
-        "isInternalLink": false
-      },
-      {
-        "label": "KOC",
-        "isNew": false,
-        "linkTo": "https://koc.money/",
         "isInternalLink": false
       }
     ]

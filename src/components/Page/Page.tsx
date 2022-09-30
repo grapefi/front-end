@@ -21,7 +21,7 @@ import grapeLogo from '../../assets/img/logo1.png';
 import coinsImg from '../../assets/img/casinocoins.png';
 import fantomHouseImg from '../../assets/img/houseflip.png';
 import grapeImg from '../../assets/img/grape.png';
-import xGrapeImg from '../../assets/img/xGrape.png';
+import xGrapeImg from '../../assets/img/xgrape-small.png';
 import sodaImg from '../../assets/img/soda.png';
 import nodesImg from '../../assets/img/gnode.png';
 import bondImg from '../../assets/img/gbond.png';
@@ -33,7 +33,7 @@ import beefyImg from '../../assets/img/beefy.png';
 import yieldwolfImg from '../../assets/img/yieldwolf.png';
 import debankImg from '../../assets/img/debank.png';
 import rebatesImg from '../../assets/img/rebates.png';
-import winemaker from '../../assets/img/Winemaker.png';
+import winemaker from '../../assets/img/vintage-token.png';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 
@@ -72,6 +72,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {ReactComponent as IconDiscord} from '../../assets/img/discord-plain.svg';
+import ledgerIcon from '../../assets/img/ledger.png';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 const drawerWidth = 280;
 
@@ -349,7 +350,7 @@ const Page: React.FC = ({children}) => {
                   className="text-decoration-none"
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://app.bogged.finance/avax/swap?tokenIn=0x130966628846BFd36ff31a822705796e8cb8C18D&tokenOut=0xC55036B5348CfB45a932481744645985010d3A44"
+                  href="https://xgrape.grapefinance.app/"
                 >
                   <img src={xGrapeImg} alt="xGrape" width={21} height={21} />
                   <span className="token-price">{xGrapePrice ? '$' + xGrapePrice : '--'}</span>
@@ -570,7 +571,7 @@ const Page: React.FC = ({children}) => {
                           justifyContent: 'center',
                         }}
                       >
-                        <img src={xGrapeImg} alt="xGrape" width={30}  />{' '}
+                        <img src={xGrapeImg} alt="xGrape" width={30} />{' '}
                       </ListItemIcon>
                       <ListItemText primary="Mint xGrape" />
                     </ListItemButton>
@@ -874,29 +875,7 @@ const Page: React.FC = ({children}) => {
                       </ListItemButton>
                     </a>
                   </Tooltip>
-                  <Tooltip arrow followCursor title={open ? '' : 'Ice Cream'} placement="top-start">
-                    <a
-                      className="menu-item"
-                      href="https://froyo.farm/#/avax"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{padding: 0, display: 'block'}}
-                    >
-                      <ListItemButton sx={{pl: 4}}>
-                        <ListItemIcon
-                          sx={{
-                            color: 'white',
-                            minWidth: 0,
-                            mr: open ? 3 : 'auto',
-                            justifyContent: 'center',
-                          }}
-                        >
-                          <img src={creamImg} alt="Froyo IceCream" height={30} />{' '}
-                        </ListItemIcon>
-                        <ListItemText primary="Ice Cream" />
-                      </ListItemButton>
-                    </a>
-                  </Tooltip>
+
                   <Tooltip arrow followCursor title={open ? '' : 'Beefy'} placement="top-start">
                     <a
                       className="menu-item"
@@ -1462,7 +1441,7 @@ const Page: React.FC = ({children}) => {
                       </ListItemButton>
                     </ListItem>
                   </Tooltip>
-                  <Tooltip arrow followCursor title={open ? '' : 'Dashboard'} placement="top-start">
+                  {/*<Tooltip arrow followCursor title={open ? '' : 'Dashboard'} placement="top-start">
                     <a
                       className="menu-item"
                       href="https://stats.grapefinance.app/"
@@ -1484,7 +1463,7 @@ const Page: React.FC = ({children}) => {
                         <ListItemText primary="Dashboard" />
                       </ListItemButton>
                     </a>
-                  </Tooltip>
+                    </Tooltip>
                   <Tooltip arrow followCursor title={open ? '' : 'Node Rewards'} placement="top-start">
                     <ListItem
                       className="menu-item"
@@ -1508,7 +1487,7 @@ const Page: React.FC = ({children}) => {
                         <ListItemText primary="Stats" />
                       </ListItemButton>
                     </ListItem>
-                  </Tooltip>
+                  </Tooltip>*/}
                   <Tooltip arrow followCursor title={open ? '' : 'Roadmap'} placement="top-start">
                     <ListItem
                       className="menu-item"
@@ -1583,6 +1562,34 @@ const Page: React.FC = ({children}) => {
                 </List>
               </Collapse>
             )}
+            <Tooltip arrow followCursor title={open ? '' : 'Buy Ledger'} placement="top-start">
+              <a
+                className="menu-item"
+                href="https://shop.ledger.com/?r=ba80c2f11e62"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{padding: 0, display: 'block'}}
+              >
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      color: 'white',
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <img src={ledgerIcon} alt="Buy Ledger" width={24} height={24} />
+                  </ListItemIcon>
+                  <ListItemText primary="Buy Ledger" sx={{opacity: open ? 1 : 0}} />
+                </ListItemButton>
+              </a>
+            </Tooltip>
           </List>
         </Drawer>
         <Box component="main" sx={{flexGrow: 1, p: 3}}>

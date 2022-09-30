@@ -1,4 +1,4 @@
-import React, {useMemo, useContext} from 'react';
+import React, {useMemo, useContext, useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {ThemeContext} from 'styled-components';
 import {Button, Card, CardContent, Typography} from '@material-ui/core';
@@ -34,6 +34,14 @@ const Stake = ({bank}) => {
   const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
   const grapeBalance = useTokenBalance(grapeFinance.GRAPE);
 
+  const [disabledAdd, setDisabledAdd] = useState(true);
+
+  useEffect(() => {
+    if (tokenBalance !== null && nodePrice && bank) {
+      setDisabledAdd(Number(tokenBalance / 1e18) < Number(nodePrice / 1e18) || bank.closedForStaking);
+    }
+  }, [tokenBalance, nodePrice, bank]);
+
   const tokenPriceInDollars = useMemo(
     () => (stakedTokenPriceInDollars ? stakedTokenPriceInDollars : null),
     [stakedTokenPriceInDollars],
@@ -45,6 +53,7 @@ const Stake = ({bank}) => {
   const {onZapSW} = useZap(bank);
   const [onPresentDeposit, onDismissDeposit] = useModal(
     <DepositModal
+      nodePrice={nodePrice}
       bank={bank}
       max={tokenBalance}
       decimals={bank.depositToken.decimal}
@@ -96,7 +105,6 @@ const Stake = ({bank}) => {
             </Typography>
 
             <Label text={`≈ $${earnedInDollars}`} />
-
             <Typography
               style={{textTransform: 'uppercase', color: '#fff'}}
             >{`${bank.earnTokenName} NODE COST`}</Typography>
@@ -124,20 +132,24 @@ const Stake = ({bank}) => {
             ) : (
               <>
                 <IconButton
+<<<<<<< HEAD
                   className="shinyButton"
                   disabled={bank.closedForStaking}
                   onClick={() => (bank.closedForStaking ? null : (grapeBalance >= nodePrice ? onPresentDeposit() : null))}   
+=======
+                  className={disabledAdd ? 'shinyButtonDisabled' : 'shinyButton'}
+                  disabled={disabledAdd}
+                  onClick={() => onPresentDeposit()}
+>>>>>>> 0a8156ae6de0c158dab76d3b98b1d3693b005f29
                 >
                   <AddIcon />
                 </IconButton>
                 {isZapLP ? <StyledActionSpacer /> : null}
                 {isZapLP && (
-                    
                   <IconButton
                     disabled={bank.closedForStaking}
                     onClick={() => (bank.closedForStaking ? null : onPresentZap())}
                   >
-                    
                     <FlashOnIcon style={{color: themeColor.grey[400]}} />
                   </IconButton>
                 )}
