@@ -183,7 +183,7 @@ const Home = () => {
                     <CircularProgress size={28} color="inherit" />
                   )}
                   </Grid>*/}
-                <Grid item xs={12} md={4} lg={3} style={{color: 'white', textAlign: 'center'}}>
+                <Grid item xs={6} md={4} lg={3} style={{color: 'white', textAlign: 'center'}}>
                   <Typography color="textPrimary" variant="h6">
                     Launched
                   </Typography>
