@@ -104,6 +104,10 @@ h6 {
   color: #fff;
 }
 
+.MuiList-padding:hover {
+  background: rgba(221,160,221,0.3);
+}
+
 .MuiToolbar-regular {
   color: #000;
 }

@@ -292,7 +292,7 @@ const Page: React.FC = ({children}) => {
 
   const changeBackground = (c: any) => {
     c.target.style.transform = 'scale(1.01,1.1)';
-    c.target.style.backgroundColor = 'rgba(255,255,0,0.3)';
+    c.target.style.backgroundColor = 'rgba(221,160,221,0.3)';
   };
 
   const resetBackground = (r: any) => {
