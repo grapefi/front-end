@@ -108,6 +108,10 @@ h6 {
   color: #000;
 }
 
+.MuiList-padding:hover {
+  background: rgba(221,160,221,0.3);
+}
+
 .MuiButton-containedPrimary,
 .MuiButton-containedPrimary:hover,
 .MuiListItem-button:hover,
