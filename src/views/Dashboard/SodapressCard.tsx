@@ -29,6 +29,7 @@ import useSodapressUserInfo from '../../hooks/useSodapressUserInfo';
 import {subscribe, unsubscribe} from '../../state/txEvent';
 import {SyncLoader} from 'react-spinners';
 import useBurnGrapePress from '../../hooks/useBurnGrapePress';
+import {BigNumber} from 'ethers';
 
 const GRAPE_PER_BATCH = 10;
 
@@ -55,14 +56,14 @@ const SodapressCard: React.FC<SodapressCardProps> = ({bank, activesOnly}) => {
   const usersNearAssassination = useGetPressUsersNearAssassination(bank.name);
 
   const depositTokenBalance = useTokenBalance(bank.depositToken);
-  const mimTokenBalance = useTokenBalance(grapeFinance.MIM);
-  const grapeTokenBalance = useTokenBalance(grapeFinance.GRAPE);
+  const mimTokenBalance = BigNumber.from('0');
+  // const grapeTokenBalance = useTokenBalance(grapeFinance.GRAPE);
 
   const pressBalance = usePoolBalance(grapeFinance.externalTokens[bank.depositTokenName], bank.address);
 
   const depositTokenApprove = useApprove(bank.depositToken, bank.address);
-  const mimTokenApprove = useApprove(grapeFinance.MIM, bank.address);
-  const grapeTokenApprove = useApprove(grapeFinance.GRAPE, grapeFinance.contracts[bank.name + 'Lotto'].address);
+  // const mimTokenApprove = useApprove(grapeFinance.MIM, bank.address);
+  // const grapeTokenApprove = useApprove(grapeFinance.GRAPE, grapeFinance.contracts[bank.name + 'Lotto'].address);
 
   useEffect(() => {
     subscribe('failedTx', () => {
@@ -151,10 +152,10 @@ const SodapressCard: React.FC<SodapressCardProps> = ({bank, activesOnly}) => {
     setInputValue(getFullDisplayBalance(payWith === 'MIM' ? mimTokenBalance : depositTokenBalance, 18));
   };
 
-  const maxBatchClicked = () => {
-    const batches = Math.floor(Number(grapeTokenBalance) / 1e18 / 10);
-    setBatchAmount(batches.toFixed(0));
-  };
+  // const maxBatchClicked = () => {
+  //   const batches = Math.floor(Number(grapeTokenBalance) / 1e18 / 10);
+  //   setBatchAmount(batches.toFixed(0));
+  // };
 
   const updateInput = (event: any) => {
     setInputValue(event.target.value);
@@ -172,7 +173,7 @@ const SodapressCard: React.FC<SodapressCardProps> = ({bank, activesOnly}) => {
 
   const approve = () => {
     if (payWith === 'MIM') {
-      mimTokenApprove.approve();
+      // mimTokenApprove.approve();
       return;
     }
     depositTokenApprove.approve();
@@ -180,8 +181,8 @@ const SodapressCard: React.FC<SodapressCardProps> = ({bank, activesOnly}) => {
 
   const showApprove = () => {
     return (
-      (payWith === 'MIM' && mimTokenApprove.approveStatus !== ApprovalState.APPROVED) ||
-      (payWith === bank.depositTokenName && depositTokenApprove.approveStatus !== ApprovalState.APPROVED)
+      // (payWith === 'MIM' && mimTokenApprove.approveStatus !== ApprovalState.APPROVED) ||
+      payWith === bank.depositTokenName && depositTokenApprove.approveStatus !== ApprovalState.APPROVED
     );
   };
 
@@ -737,7 +738,7 @@ const SodapressCard: React.FC<SodapressCardProps> = ({bank, activesOnly}) => {
                               <Grid container justifyContent="space-between">
                                 <Grid item>Daily Top Deposit</Grid>
                                 <Grid item>
-                                  {pressLottoInfo ? pressLottoInfo.largestDaily.toFixed(2) : '0.00'}{' '}LP
+                                  {pressLottoInfo ? pressLottoInfo.largestDaily.toFixed(2) : '0.00'} LP
                                   <span className="wallet-token-value">
                                     {' '}
                                     $
@@ -754,7 +755,7 @@ const SodapressCard: React.FC<SodapressCardProps> = ({bank, activesOnly}) => {
                               <Grid container justifyContent="space-between">
                                 <Grid item>Daily Deposit Pot</Grid>
                                 <Grid item>
-                                  {pressLottoInfo ? pressLottoInfo.dailyDepositPot.toFixed(2) : '0.00'}{' '}LP
+                                  {pressLottoInfo ? pressLottoInfo.dailyDepositPot.toFixed(2) : '0.00'} LP
                                   <span className="wallet-token-value">
                                     {' '}
                                     $
@@ -771,7 +772,7 @@ const SodapressCard: React.FC<SodapressCardProps> = ({bank, activesOnly}) => {
                               <Grid container justifyContent="space-between">
                                 <Grid item>Largest Deposit Pot</Grid>
                                 <Grid item>
-                                  {pressLottoInfo ? pressLottoInfo.largestDailyPot.toFixed(2) : '0.00'}{' '}LP
+                                  {pressLottoInfo ? pressLottoInfo.largestDailyPot.toFixed(2) : '0.00'} LP
                                   <span className="wallet-token-value">
                                     {' '}
                                     $
@@ -823,7 +824,7 @@ const SodapressCard: React.FC<SodapressCardProps> = ({bank, activesOnly}) => {
                           </Grid>
                         </Box>
                       </div>
-                      <Box mt={2}>
+                      {/* <Box mt={2}>
                         <Grid container justifyContent="center">
                           <Grid item xs={12}>
                             {grapeTokenApprove.approveStatus !== ApprovalState.APPROVED ? (
@@ -897,7 +898,7 @@ const SodapressCard: React.FC<SodapressCardProps> = ({bank, activesOnly}) => {
                             )}
                           </Grid>
                         </Grid>
-                      </Box>
+                      </Box> */}
                     </Box>
                   </Grid>
                   <Grid item xs={12} sm={12} md={6}>

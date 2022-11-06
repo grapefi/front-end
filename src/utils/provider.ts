@@ -6,7 +6,7 @@ let provider: ethers.providers.Web3Provider = null;
 
 export function getDefaultProvider(): ethers.providers.Web3Provider {
   if (!provider) {
-    provider = new ethers.providers.Web3Provider(web3ProviderFrom(config.defaultProvider), config.chainId);
+    provider = new ethers.providers.Web3Provider(web3ProviderFrom(config.defaultProvider), 43113);
   }
 
   return provider;

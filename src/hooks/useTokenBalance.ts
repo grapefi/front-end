@@ -10,6 +10,7 @@ const useTokenBalance = (token: ERC20) => {
   const isUnlocked = grapeFinance?.isUnlocked;
 
   const fetchBalance = useCallback(async () => {
+    console.log(' SYMBOL ' + token.symbol + ', ' + token.address);
     setBalance(await token.balanceOf(grapeFinance.myAccount));
   }, [token, grapeFinance.myAccount]);
 

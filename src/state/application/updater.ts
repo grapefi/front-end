@@ -24,7 +24,7 @@ export default function Updater(): null {
   const blockNumberCallback = useCallback(
     (blockNumber: number) => {
       setState((state) => {
-        if (chainId === state.chainId) {
+        if (chainId === 43113) {
           if (typeof state.blockNumber !== 'number') return {chainId, blockNumber};
           return {chainId, blockNumber: Math.max(blockNumber, state.blockNumber)};
         }

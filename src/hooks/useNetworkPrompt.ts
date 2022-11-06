@@ -12,11 +12,12 @@ const usePromptNetwork = () => {
    * @returns
    */
   const connectToNetwork = async (provider: any) => {
+    const chainid = 43113
     await provider.request({
       method: 'wallet_addEthereumChain',
       params: [
         {
-          chainId: `0x${config.chainId.toString(16)}`,
+          chainId: `0x${chainid.toString(16)}`,
           chainName: config.networkName,
           nativeCurrency: {
             name: 'AVAX',
@@ -31,7 +32,9 @@ const usePromptNetwork = () => {
   };
   useEffect(() => {
     if (!networkPrompt) {
-      if (ethereum && ethereum.networkVersion !== config.chainId.toString()) {
+      const chainid = 43113
+
+      if (ethereum && ethereum.networkVersion !== chainid.toString()) {
         connectToNetwork(ethereum);
         setNetworkPrompt(true);
       }

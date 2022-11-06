@@ -76,173 +76,173 @@ import DashboardNFTBox from './DashboardNFTBox';
 import useLpStats from '../../hooks/useLpStats';
 
 const Dashboard = () => {
-  const matches = useMediaQuery('(min-width:900px)');
+  // const matches = useMediaQuery('(min-width:900px)');
 
   const [activeTab, setActiveTab] = useState('Farms');
 
   const {account} = useWallet();
-  const grapeFinance = useGrapeFinance();
+  // const grapeFinance = useGrapeFinance();
   const [banks] = useBanks();
-  const location = useLocation();
-  const walletStats = useWalletStats(banks);
-  const grapeStats = useGrapeStats();
-  const grapeMimSWStats = useLpStats('GRAPE-MIM-SW');
-  const wineStats = useWineStats();
-  const vineyardPools = banks.filter(
-    (bank) => (!bank.finished && bank.sectionInUI === 2) || bank.sectionInUI === 6 || bank.sectionInUI === 7,
-  );
-  const nodePools = [useBank('GrapeNodeV2'), useBank('LPNode'), useBank('LPWlrsNode')];
+  // const location = useLocation();
+  // const walletStats = useWalletStats(banks);
+  // const grapeStats = useGrapeStats();
+  // const grapeMimSWStats = useLpStats('GRAPE-MIM-SW');
+  // const wineStats = useWineStats();
+  // const vineyardPools = banks.filter(
+  //   (bank) => (!bank.finished && bank.sectionInUI === 2) || bank.sectionInUI === 6 || bank.sectionInUI === 7,
+  // );
+  // const nodePools = [useBank('GrapeNodeV2'), useBank('LPNode'), useBank('LPWlrsNode')];
   const pressPools = banks.filter((bank) => !bank.finished && bank.sectionInUI === 8);
 
   // const vineyardPoolsWithFilters = useBanksWithFilters(vineyardPools);
 
-  const grapeBalance = useTokenBalance(grapeFinance.GRAPE);
-  const displayGrapeBalance = useMemo(() => getDisplayBalance(grapeBalance, 18, 2), [grapeBalance]);
-  const wineBalance = useTokenBalance(grapeFinance.WINE);
-  const displayWineBalance = useMemo(() => getDisplayBalance(wineBalance, 18, 2), [wineBalance]);
-  const gbondBalance = useTokenBalance(grapeFinance.GBOND);
-  const displayGbondBalance = useMemo(() => getDisplayBalance(gbondBalance, 18, 2), [gbondBalance]);
-  const xGrapeBalance = useTokenBalance(grapeFinance.XGRAPE);
-  const vintageBalance = useTokenBalance(grapeFinance.VINTAGE);
-  const svintageBalance = useTokenBalance(grapeFinance.SVINTAGE);
-  const displayXGrapeBalance = useMemo(() => getDisplayBalance(xGrapeBalance, 18, 2), [xGrapeBalance]);
-  const displayVintageBalance = useMemo(() => getDisplayBalance(vintageBalance, 18, 2), [vintageBalance]);
-  const displaySVintageBalance = useMemo(() => getDisplayBalance(svintageBalance, 18, 2), [svintageBalance]);
+  // const grapeBalance = useTokenBalance(grapeFinance.GRAPE);
+  // const displayGrapeBalance = useMemo(() => getDisplayBalance(grapeBalance, 18, 2), [grapeBalance]);
+  // const wineBalance = useTokenBalance(grapeFinance.WINE);
+  // const displayWineBalance = useMemo(() => getDisplayBalance(wineBalance, 18, 2), [wineBalance]);
+  // const gbondBalance = useTokenBalance(grapeFinance.GBOND);
+  // const displayGbondBalance = useMemo(() => getDisplayBalance(gbondBalance, 18, 2), [gbondBalance]);
+  // const xGrapeBalance = useTokenBalance(grapeFinance.XGRAPE);
+  // const vintageBalance = useTokenBalance(grapeFinance.VINTAGE);
+  // const svintageBalance = useTokenBalance(grapeFinance.SVINTAGE);
+  // const displayXGrapeBalance = useMemo(() => getDisplayBalance(xGrapeBalance, 18, 2), [xGrapeBalance]);
+  // const displayVintageBalance = useMemo(() => getDisplayBalance(vintageBalance, 18, 2), [vintageBalance]);
+  // const displaySVintageBalance = useMemo(() => getDisplayBalance(svintageBalance, 18, 2), [svintageBalance]);
 
-  const grapePriceInDollars = useMemo(
-    () => (grapeStats ? Number(grapeStats.priceInDollars).toFixed(2) : null),
-    [grapeStats],
-  );
-  const winePriceInDollars = useMemo(
-    () => (wineStats ? Number(wineStats.priceInDollars).toFixed(2) : null),
-    [wineStats],
-  );
-  const grapeMimSWPriceInDollars = useMemo(
-    () => (grapeMimSWStats ? Number(grapeMimSWStats.priceOfOne).toFixed(2) : null),
-    [grapeMimSWStats],
-  );
+  // const grapePriceInDollars = useMemo(
+  //   () => (grapeStats ? Number(grapeStats.priceInDollars).toFixed(2) : null),
+  //   [grapeStats],
+  // );
+  // const winePriceInDollars = useMemo(
+  //   () => (wineStats ? Number(wineStats.priceInDollars).toFixed(2) : null),
+  //   [wineStats],
+  // );
+  // const grapeMimSWPriceInDollars = useMemo(
+  //   () => (grapeMimSWStats ? Number(grapeMimSWStats.priceOfOne).toFixed(2) : null),
+  //   [grapeMimSWStats],
+  // );
 
-  const xGrapePrice = useXGrapePrice();
-  const vintagePrice = useVintagePrice();
-  const sVintagePrice = useSVintagePrice();
+  // const xGrapePrice = useXGrapePrice();
+  // const vintagePrice = useVintagePrice();
+  // const sVintagePrice = useSVintagePrice();
 
-  const [userNftTickets, setUserNftTickets] = useState<number>();
-  const [userNodeTickets, setUserNodeTickets] = useState<number>();
-  const walletsNodesAndNFTs = useWalletNodesAndNFTs();
-  const nodeRewardPoolStats = useNodeRewardPoolStats();
-  const totalGrapeNodes = useGrapeTotalNode();
-  const totalWineNodes = useWineTotalNode();
-  const totalGrapeMIMSWNodes = useGrapeMimSWTotalNode();
+  // const [userNftTickets, setUserNftTickets] = useState<number>();
+  // const [userNodeTickets, setUserNodeTickets] = useState<number>();
+  // const walletsNodesAndNFTs = useWalletNodesAndNFTs();
+  // const nodeRewardPoolStats = useNodeRewardPoolStats();
+  // const totalGrapeNodes = useGrapeTotalNode();
+  // const totalWineNodes = useWineTotalNode();
+  // const totalGrapeMIMSWNodes = useGrapeMimSWTotalNode();
 
-  useEffect(() => {
-    if (walletsNodesAndNFTs) {
-      setUserNodeTickets(
-        walletsNodesAndNFTs.grapes * GRAPE_NODE_MULTIPLIER +
-          walletsNodesAndNFTs.wines * WINE_NODE_MULTIPLIER +
-          walletsNodesAndNFTs.grapeMimSWs * GRAPEMIMSW_NODE_MULTIPLIER,
-      );
+  // useEffect(() => {
+  //   if (walletsNodesAndNFTs) {
+  //     setUserNodeTickets(
+  //       walletsNodesAndNFTs.grapes * GRAPE_NODE_MULTIPLIER +
+  //         walletsNodesAndNFTs.wines * WINE_NODE_MULTIPLIER +
+  //         walletsNodesAndNFTs.grapeMimSWs * GRAPEMIMSW_NODE_MULTIPLIER,
+  //     );
 
-      setUserNftTickets(
-        walletsNodesAndNFTs.goonBags * GOON_MULTIPLIER +
-          walletsNodesAndNFTs.glasses * GLASS_MULTIPLIER +
-          walletsNodesAndNFTs.decanters * DECANTER_MULTIPLIER +
-          walletsNodesAndNFTs.goblets * GOBLET_MULTIPLIER,
-      );
-    }
-  }, [walletsNodesAndNFTs, grapeFinance.myAccount]);
+  //     setUserNftTickets(
+  //       walletsNodesAndNFTs.goonBags * GOON_MULTIPLIER +
+  //         walletsNodesAndNFTs.glasses * GLASS_MULTIPLIER +
+  //         walletsNodesAndNFTs.decanters * DECANTER_MULTIPLIER +
+  //         walletsNodesAndNFTs.goblets * GOBLET_MULTIPLIER,
+  //     );
+  //   }
+  // }, [walletsNodesAndNFTs, grapeFinance.myAccount]);
 
-  const getPriceForNodes = (coin: string) => {
-    if (coin === 'GRAPE') {
-      return Number((nodeRewardPoolStats.grapes * Number(grapePriceInDollars)).toFixed(0));
-    } else if (coin === 'WINE') {
-      return Number((nodeRewardPoolStats.wines * Number(winePriceInDollars)).toFixed(0));
-    } else if (coin === 'GRAPE-MIM SW') {
-      return Number((nodeRewardPoolStats.grapeMimSWs * Number(grapeMimSWPriceInDollars)).toFixed(0));
-    }
-  };
+  // const getPriceForNodes = (coin: string) => {
+  //   if (coin === 'GRAPE') {
+  //     return Number((nodeRewardPoolStats.grapes * Number(grapePriceInDollars)).toFixed(0));
+  //   } else if (coin === 'WINE') {
+  //     return Number((nodeRewardPoolStats.wines * Number(winePriceInDollars)).toFixed(0));
+  //   } else if (coin === 'GRAPE-MIM SW') {
+  //     return Number((nodeRewardPoolStats.grapeMimSWs * Number(grapeMimSWPriceInDollars)).toFixed(0));
+  //   }
+  // };
 
-  const getTotalPriceForNodes = () => {
-    return getPriceForNodes('GRAPE') + getPriceForNodes('WINE') + getPriceForNodes('GRAPE-MIM SW');
-  };
+  // const getTotalPriceForNodes = () => {
+  //   return getPriceForNodes('GRAPE') + getPriceForNodes('WINE') + getPriceForNodes('GRAPE-MIM SW');
+  // };
 
-  const allTicketsFromNFTs = 9600;
-  const allTicketsFromNodes = useMemo(() => {
-    if (totalGrapeNodes && totalWineNodes && totalGrapeMIMSWNodes) {
-      return Number(totalGrapeNodes) + Number(totalWineNodes[0]) + Number(totalGrapeMIMSWNodes[0]);
-    }
-    return null;
-  }, [totalGrapeNodes, totalWineNodes, totalGrapeMIMSWNodes]);
+  // const allTicketsFromNFTs = 9600;
+  // const allTicketsFromNodes = useMemo(() => {
+  //   if (totalGrapeNodes && totalWineNodes && totalGrapeMIMSWNodes) {
+  //     return Number(totalGrapeNodes) + Number(totalWineNodes[0]) + Number(totalGrapeMIMSWNodes[0]);
+  //   }
+  //   return null;
+  // }, [totalGrapeNodes, totalWineNodes, totalGrapeMIMSWNodes]);
 
-  const totalTicketsWorth = useMemo(() => {
-    if (
-      nodeRewardPoolStats &&
-      grapePriceInDollars &&
-      allTicketsFromNodes &&
-      winePriceInDollars &&
-      grapeMimSWPriceInDollars &&
-      userNftTickets &&
-      userNodeTickets
-    ) {
-      return (
-        ((userNftTickets + userNodeTickets) * getTotalPriceForNodes()) / (allTicketsFromNodes + allTicketsFromNFTs)
-      );
-    }
-    return 0;
-  }, [
-    nodeRewardPoolStats,
-    allTicketsFromNodes,
-    grapePriceInDollars,
-    winePriceInDollars,
-    grapeMimSWPriceInDollars,
-    userNftTickets,
-    userNodeTickets,
-  ]);
+  // const totalTicketsWorth = useMemo(() => {
+  //   if (
+  //     nodeRewardPoolStats &&
+  //     grapePriceInDollars &&
+  //     allTicketsFromNodes &&
+  //     winePriceInDollars &&
+  //     grapeMimSWPriceInDollars &&
+  //     userNftTickets &&
+  //     userNodeTickets
+  //   ) {
+  //     return (
+  //       ((userNftTickets + userNodeTickets) * getTotalPriceForNodes()) / (allTicketsFromNodes + allTicketsFromNFTs)
+  //     );
+  //   }
+  //   return 0;
+  // }, [
+  //   nodeRewardPoolStats,
+  //   allTicketsFromNodes,
+  //   grapePriceInDollars,
+  //   winePriceInDollars,
+  //   grapeMimSWPriceInDollars,
+  //   userNftTickets,
+  //   userNodeTickets,
+  // ]);
 
-  useEffect(() => {
-    const hash = location.hash;
-    if (hash === '#farms') {
-      setActiveTab('Farms');
-    } else if (hash === '#winery') {
-      setActiveTab('Winery');
-    } else if (hash === '#nodes') {
-      setActiveTab('Nodes');
-    } else if (hash === '#presses') {
-      setActiveTab('Presses');
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   const hash = location.hash;
+  //   if (hash === '#farms') {
+  //     setActiveTab('Farms');
+  //   } else if (hash === '#winery') {
+  //     setActiveTab('Winery');
+  //   } else if (hash === '#nodes') {
+  //     setActiveTab('Nodes');
+  //   } else if (hash === '#presses') {
+  //     setActiveTab('Presses');
+  //   }
+  // }, [location]);
 
-  const totalInvested = useMemo(() => {
-    if (walletStats) {
-      return (
-        walletStats.totalInNodes +
-        walletStats.totalInSodaPress +
-        walletStats.totalInVineyard +
-        walletStats.totalInWinePress +
-        walletStats.totalInSoleraPress +
-        walletStats.totalInWinery +
-        Number(displayGrapeBalance) * Number(grapePriceInDollars) +
-        Number(displayWineBalance) * Number(winePriceInDollars) +
-        Number(displayXGrapeBalance) * Number(xGrapePrice) +
-        Number(displayVintageBalance) * Number(vintagePrice)
-      );
-    }
-    return -1;
-  }, [walletStats]);
+  // const totalInvested = useMemo(() => {
+  //   if (walletStats) {
+  //     return (
+  //       walletStats.totalInNodes +
+  //       walletStats.totalInSodaPress +
+  //       walletStats.totalInVineyard +
+  //       walletStats.totalInWinePress +
+  //       walletStats.totalInSoleraPress +
+  //       walletStats.totalInWinery +
+  //       Number(displayGrapeBalance) * Number(grapePriceInDollars) +
+  //       Number(displayWineBalance) * Number(winePriceInDollars) +
+  //       Number(displayXGrapeBalance) * Number(xGrapePrice) +
+  //       Number(displayVintageBalance) * Number(vintagePrice)
+  //     );
+  //   }
+  //   return -1;
+  // }, [walletStats]);
 
-  const totalRewards = useMemo(() => {
-    if (walletStats) {
-      // include individual tokens as well
-      return (
-        walletStats.rewardsInNodes +
-        walletStats.rewardsInSodaPress +
-        walletStats.rewardsInSoleraPress +
-        walletStats.rewardsInVineyard +
-        walletStats.rewardsInWinePress +
-        walletStats.rewardsInWinery
-      );
-    }
-    return -1;
-  }, [walletStats]);
+  // const totalRewards = useMemo(() => {
+  //   if (walletStats) {
+  //     // include individual tokens as well
+  //     return (
+  //       walletStats.rewardsInNodes +
+  //       walletStats.rewardsInSodaPress +
+  //       walletStats.rewardsInSoleraPress +
+  //       walletStats.rewardsInVineyard +
+  //       walletStats.rewardsInWinePress +
+  //       walletStats.rewardsInWinery
+  //     );
+  //   }
+  //   return -1;
+  // }, [walletStats]);
 
   const [activesOnly, setActivesOnly] = React.useState(false);
   const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -281,29 +281,29 @@ const Dashboard = () => {
                         </Grid>
                       </Grid>
 
-                      <Typography color="textPrimary" align="center" variant="h5" style={{fontWeight: 700}}>
+                      {/* <Typography color="textPrimary" align="center" variant="h5" style={{fontWeight: 700}}>
                         {totalInvested !== -1 ? (
                           <CountUp end={totalInvested} separator="," prefix="≈$" />
                         ) : (
                           <SyncLoader color="white" size={8} />
                         )}
-                      </Typography>
+                      </Typography> */}
 
                       <Typography style={{color: '#f9b857', marginTop: '10px'}} align="center">
                         Rewards
                       </Typography>
 
-                      <Typography style={{color: '#f9b857', fontWeight: 700}} align="center">
+                      {/* <Typography style={{color: '#f9b857', fontWeight: 700}} align="center">
                         {totalRewards !== -1 ? (
                           <CountUp end={Number(totalRewards)} separator="," prefix="≈$" />
                         ) : (
                           <SyncLoader color="white" size={8} />
                         )}
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                   </Card>
                 </Grid>
-                <Grid item xs={6} sm={6} md={3} lg={2}>
+                {/* <Grid item xs={6} sm={6} md={3} lg={2}>
                   <Card>
                     <CardContent>
                       <Typography color="textSecondary" align="center" variant="h6" gutterBottom>
@@ -336,8 +336,8 @@ const Dashboard = () => {
                       </Typography>
                     </CardContent>
                   </Card>
-                </Grid>
-                <Grid item xs={6} sm={6} md={3} lg={2}>
+                </Grid> */}
+                {/* <Grid item xs={6} sm={6} md={3} lg={2}>
                   <Card>
                     <CardContent>
                       <Typography color="textSecondary" align="center" variant="h6" gutterBottom>
@@ -371,8 +371,8 @@ const Dashboard = () => {
                       </Typography>
                     </CardContent>
                   </Card>
-                </Grid>
-                <Grid item xs={6} sm={6} md={3} lg={2}>
+                </Grid> */}
+                {/* <Grid item xs={6} sm={6} md={3} lg={2}>
                   <Card>
                     <CardContent>
                       <Typography color="textSecondary" align="center" variant="h6" gutterBottom>
@@ -406,9 +406,9 @@ const Dashboard = () => {
                       </Typography>
                     </CardContent>
                   </Card>
-                </Grid>
+                </Grid> */}
 
-                <Grid item xs={6} sm={6} md={3} lg={2}>
+                {/* <Grid item xs={6} sm={6} md={3} lg={2}>
                   <Card>
                     <CardContent>
                       <Typography color="textSecondary" align="center" variant="h6" gutterBottom>
@@ -458,10 +458,10 @@ const Dashboard = () => {
                       </Typography>
                     </CardContent>
                   </Card>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <Grid container spacing={1} justifyContent="space-between" alignItems="center">
                 <Grid item xs={4} sm={4} md={2}>
                   <a
@@ -661,7 +661,7 @@ const Dashboard = () => {
                   </div>
                 </Grid>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Grid>
           <div style={{height: '3px', backgroundColor: '#930993', borderRadius: '5px', marginTop: '40px'}}></div>
           <Box mt={4}>
@@ -676,13 +676,17 @@ const Dashboard = () => {
                     );
                     setActiveTab('Farms');
                   }}
-                  className={activeTab === 'Farms' ? 'button-first dashboard-tab-item-active' : 'button-first dashboard-tab-item'}
+                  className={
+                    activeTab === 'Farms' ? 'button-first dashboard-tab-item-active' : 'button-first dashboard-tab-item'
+                  }
                 >
                   <Grid container justifyContent="center" alignItems="center" className="p2">
                     <Grid item>
                       <img src={grapeImg} alt="Grape" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
                     </Grid>
-                    <Grid item style={{paddingLeft: '5px'}}>VINEYARD</Grid>
+                    <Grid item style={{paddingLeft: '5px'}}>
+                      VINEYARD
+                    </Grid>
                   </Grid>
                 </div>
               </Grid>
@@ -700,9 +704,11 @@ const Dashboard = () => {
                 >
                   <Grid container justifyContent="center" alignItems="center" className="p2">
                     <Grid item>
-                      <img src={wineImg} alt="Wine" height={25} width={25} style={{verticalAlign: 'text-bottom'}}/>
+                      <img src={wineImg} alt="Wine" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
                     </Grid>
-                    <Grid item style={{paddingLeft: '5px'}}>WINERY</Grid>
+                    <Grid item style={{paddingLeft: '5px'}}>
+                      WINERY
+                    </Grid>
                   </Grid>
                 </div>
               </Grid>
@@ -720,9 +726,11 @@ const Dashboard = () => {
                 >
                   <Grid container justifyContent="center" alignItems="center" className="p2">
                     <Grid item>
-                      <img src={nodesImg} alt="Node" height={25} width={25} style={{verticalAlign: 'text-bottom'}}/>
+                      <img src={nodesImg} alt="Node" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
                     </Grid>
-                    <Grid item style={{paddingLeft: '7px'}}>NODES</Grid>
+                    <Grid item style={{paddingLeft: '7px'}}>
+                      NODES
+                    </Grid>
                   </Grid>
                 </div>
               </Grid>
@@ -736,13 +744,17 @@ const Dashboard = () => {
                     );
                     setActiveTab('Presses');
                   }}
-                  className={activeTab === 'Presses' ? 'button-last dashboard-tab-item-active' : 'button-last dashboard-tab-item'}
+                  className={
+                    activeTab === 'Presses' ? 'button-last dashboard-tab-item-active' : 'button-last dashboard-tab-item'
+                  }
                 >
                   <Grid container justifyContent="center" alignItems="center" className="p2">
                     <Grid item>
-                      <img src={soda} alt="Press" height={25} width={25} style={{verticalAlign: 'text-bottom'}}/>
+                      <img src={soda} alt="Press" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
                     </Grid>
-                    <Grid item style={{paddingLeft: '5px'}}>PRESSES</Grid>
+                    <Grid item style={{paddingLeft: '5px'}}>
+                      PRESSES
+                    </Grid>
                   </Grid>
                 </div>
               </Grid>
@@ -791,13 +803,13 @@ const Dashboard = () => {
           </Grid>
 
           <Box hidden={activeTab !== 'Farms'} mt={2}>
-            <Farms pools={vineyardPools} activesOnly={activesOnly} />
+            {/* <Farms pools={vineyardPools} activesOnly={activesOnly} /> */}
           </Box>
           <Box hidden={activeTab !== 'Winery'} mt={2}>
-            <BoardroomCard />
+            {/* <BoardroomCard /> */}
           </Box>
           <Box hidden={activeTab !== 'Nodes'} mt={2}>
-            <Nodes pools={nodePools} activesOnly={activesOnly} />
+            {/* <Nodes pools={nodePools} activesOnly={activesOnly} /> */}
           </Box>
 
           <Box hidden={activeTab !== 'Presses'} mt={2}>

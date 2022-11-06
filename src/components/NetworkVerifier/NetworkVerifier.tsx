@@ -11,7 +11,7 @@ const NetworkVerifier: React.FC = () => {
   useEffect(() => {
     function verifyEthereum() {
       if (window.ethereum) {
-        setCurrentChain(parseInt(window.ethereum.chainId));
+        setCurrentChain(43113);
         window.ethereum.on('chainChanged', (chainId: any) => {
           window.location.reload();
         });
@@ -23,7 +23,7 @@ const NetworkVerifier: React.FC = () => {
 
   return (
     <>
-      {currentChain !== 0 && currentChain !== config.chainId ? (
+      {currentChain !== 0 && currentChain !== 43113 ? (
         <Snackbar open style={{marginTop: '80px'}} anchorOrigin={{vertical, horizontal}}>
           <Alert severity="warning" sx={{width: '100%'}}>
             Switch to Avalanche Network

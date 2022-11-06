@@ -33,15 +33,18 @@ function useApprove(token: ERC20, spender: string) {
       : ApprovalState.APPROVED;
   }, [currentAllowance, pendingApproval]);
 
+  console.log(' approveStatus = ' + approveStatus);
   const addTransaction = useTransactionAdder();
 
   const approve = useCallback(async (): Promise<void> => {
+    console.log('in approve, ' + approveStatus)
     if (approveStatus !== ApprovalState.NOT_APPROVED) {
       console.error('approve was called unnecessarily');
-      return;
+      // return;
     }
 
     try {
+      console.log('SPENDER = ' + spender + ' for token ' + token.symbol + ' of address ' + token.address);
       const response = await token.approve(spender, APPROVE_AMOUNT);
       addTransaction(response, {
         summary: `Approve ${token.symbol}`,
