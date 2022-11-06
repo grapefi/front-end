@@ -78,7 +78,7 @@ import useLpStats from '../../hooks/useLpStats';
 const Dashboard = () => {
   // const matches = useMediaQuery('(min-width:900px)');
 
-  const [activeTab, setActiveTab] = useState('Farms');
+  const [activeTab, setActiveTab] = useState('Presses');
 
   const {account} = useWallet();
   // const grapeFinance = useGrapeFinance();
@@ -261,9 +261,9 @@ const Dashboard = () => {
             <Grid item xs={12}>
               <Grid container spacing={1}>
                 <Grid item xs={12} lg={4}>
-                  <Card>
-                    <CardContent>
-                      <Grid container justifyContent="center" spacing={1} alignContent="center" alignItems="center">
+                  {/* <Card>
+                    <CardContent> */}
+                      {/* <Grid container justifyContent="center" spacing={1} alignContent="center" alignItems="center">
                         <Grid item>
                           <Typography color="textPrimary" align="center" variant="h6" gutterBottom>
                             MY TOTAL
@@ -279,7 +279,7 @@ const Dashboard = () => {
                             <InfoIcon fontSize="small" />
                           </Tooltip>
                         </Grid>
-                      </Grid>
+                      </Grid> */}
 
                       {/* <Typography color="textPrimary" align="center" variant="h5" style={{fontWeight: 700}}>
                         {totalInvested !== -1 ? (
@@ -289,9 +289,9 @@ const Dashboard = () => {
                         )}
                       </Typography> */}
 
-                      <Typography style={{color: '#f9b857', marginTop: '10px'}} align="center">
+                      {/* <Typography style={{color: '#f9b857', marginTop: '10px'}} align="center">
                         Rewards
-                      </Typography>
+                      </Typography> */}
 
                       {/* <Typography style={{color: '#f9b857', fontWeight: 700}} align="center">
                         {totalRewards !== -1 ? (
@@ -300,8 +300,8 @@ const Dashboard = () => {
                           <SyncLoader color="white" size={8} />
                         )}
                       </Typography> */}
-                    </CardContent>
-                  </Card>
+                    {/* </CardContent>
+                  </Card> */}
                 </Grid>
                 {/* <Grid item xs={6} sm={6} md={3} lg={2}>
                   <Card>
@@ -666,74 +666,74 @@ const Dashboard = () => {
           <div style={{height: '3px', backgroundColor: '#930993', borderRadius: '5px', marginTop: '40px'}}></div>
           <Box mt={4}>
             <Grid container justifyContent={'center'} spacing={0} className="dashboard-tabs">
-              <Grid item>
-                <div
-                  onClick={() => {
-                    window.history.replaceState(
-                      {additionalInformation: '/dashboard#farms'},
-                      'Dashboard: Farms',
-                      '/dashboard#farms',
-                    );
-                    setActiveTab('Farms');
-                  }}
-                  className={
-                    activeTab === 'Farms' ? 'button-first dashboard-tab-item-active' : 'button-first dashboard-tab-item'
-                  }
-                >
-                  <Grid container justifyContent="center" alignItems="center" className="p2">
-                    <Grid item>
-                      <img src={grapeImg} alt="Grape" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
+                {/* <Grid item>
+                  <div
+                    onClick={() => {
+                      window.history.replaceState(
+                        {additionalInformation: '/dashboard#farms'},
+                        'Dashboard: Farms',
+                        '/dashboard#farms',
+                      );
+                      setActiveTab('Farms');
+                    }}
+                    className={
+                      activeTab === 'Farms' ? 'button-first dashboard-tab-item-active' : 'button-first dashboard-tab-item'
+                    }
+                  >
+                    <Grid container justifyContent="center" alignItems="center" className="p2">
+                      <Grid item>
+                        <img src={grapeImg} alt="Grape" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
+                      </Grid>
+                      <Grid item style={{paddingLeft: '5px'}}>
+                        VINEYARD
+                      </Grid>
                     </Grid>
-                    <Grid item style={{paddingLeft: '5px'}}>
-                      VINEYARD
+                  </div>
+                </Grid>
+                <Grid item>
+                  <div
+                    onClick={() => {
+                      window.history.replaceState(
+                        {additionalInformation: '/dashboard#winery'},
+                        'Dashboard: Winery',
+                        '/dashboard#winery',
+                      );
+                      setActiveTab('Winery');
+                    }}
+                    className={activeTab === 'Winery' ? 'dashboard-tab-item-active' : 'dashboard-tab-item'}
+                  >
+                    <Grid container justifyContent="center" alignItems="center" className="p2">
+                      <Grid item>
+                        <img src={wineImg} alt="Wine" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
+                      </Grid>
+                      <Grid item style={{paddingLeft: '5px'}}>
+                        WINERY
+                      </Grid>
                     </Grid>
-                  </Grid>
-                </div>
-              </Grid>
-              <Grid item>
-                <div
-                  onClick={() => {
-                    window.history.replaceState(
-                      {additionalInformation: '/dashboard#winery'},
-                      'Dashboard: Winery',
-                      '/dashboard#winery',
-                    );
-                    setActiveTab('Winery');
-                  }}
-                  className={activeTab === 'Winery' ? 'dashboard-tab-item-active' : 'dashboard-tab-item'}
-                >
-                  <Grid container justifyContent="center" alignItems="center" className="p2">
-                    <Grid item>
-                      <img src={wineImg} alt="Wine" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
+                  </div>
+                </Grid>
+                <Grid item>
+                  <div
+                    onClick={() => {
+                      window.history.replaceState(
+                        {additionalInformation: '/dashboard#nodes'},
+                        'Dashboard: Nodes',
+                        '/dashboard#nodes',
+                      );
+                      setActiveTab('Nodes');
+                    }}
+                    className={activeTab === 'Nodes' ? 'dashboard-tab-item-active' : 'dashboard-tab-item'}
+                  >
+                    <Grid container justifyContent="center" alignItems="center" className="p2">
+                      <Grid item>
+                        <img src={nodesImg} alt="Node" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
+                      </Grid>
+                      <Grid item style={{paddingLeft: '7px'}}>
+                        NODES
+                      </Grid>
                     </Grid>
-                    <Grid item style={{paddingLeft: '5px'}}>
-                      WINERY
-                    </Grid>
-                  </Grid>
-                </div>
-              </Grid>
-              <Grid item>
-                <div
-                  onClick={() => {
-                    window.history.replaceState(
-                      {additionalInformation: '/dashboard#nodes'},
-                      'Dashboard: Nodes',
-                      '/dashboard#nodes',
-                    );
-                    setActiveTab('Nodes');
-                  }}
-                  className={activeTab === 'Nodes' ? 'dashboard-tab-item-active' : 'dashboard-tab-item'}
-                >
-                  <Grid container justifyContent="center" alignItems="center" className="p2">
-                    <Grid item>
-                      <img src={nodesImg} alt="Node" height={25} width={25} style={{verticalAlign: 'text-bottom'}} />
-                    </Grid>
-                    <Grid item style={{paddingLeft: '7px'}}>
-                      NODES
-                    </Grid>
-                  </Grid>
-                </div>
-              </Grid>
+                  </div>
+                </Grid> */}
               <Grid item>
                 <div
                   onClick={() => {
