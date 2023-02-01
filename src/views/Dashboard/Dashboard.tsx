@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, {useState, useEffect, useRef} from 'react';
 import {useWallet} from 'use-wallet';
 import {Box, Grid, Typography, Switch, FormGroup, FormControlLabel} from '@material-ui/core';

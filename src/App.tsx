@@ -28,10 +28,9 @@ const Roadmap = lazy(() => import('./views/Roadmap'));
 const Raffle = lazy(() => import('./views/Raffle'));
 const Strategies = lazy(() => import('./views/Strategies'));
 const Help = lazy(() => import('./views/Help'));
-const Leaderboard = lazy(() => import('./views/Leaderboard'));
+
 const NFTRaffle = lazy(() => import('./views/NFTRaffle'));
 const Rebates = lazy(() => import('./views/Rebates'));
-const Peg = lazy(() => import('./views/Extinction'));
 
 const NoMatch = () => (
   <h3 style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
@@ -66,9 +65,6 @@ const App: React.FC = () => {
             <Route path="/rebates">
               <Rebates />
             </Route>
-            <Route path="/leaderboard">
-              <Leaderboard />
-            </Route>
             <Route path="/bond">
               <Bond />
             </Route>
@@ -90,9 +86,6 @@ const App: React.FC = () => {
             </Route>
             <Route path="/help">
               <Help />
-            </Route>
-            <Route path="/pegpool">
-              <Peg />
             </Route>
             <Route path="*">
               <NoMatch />

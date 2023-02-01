@@ -26,7 +26,7 @@ const LaunchCountdown: React.FC<LaunchCountdownProps> = ({deadline, description,
     <StyledCard>
         <StyledCountdownWrapper>
           <StyledCountdownTitle>{description}</StyledCountdownTitle>
-          <Countdown date={deadline} renderer={countdownRenderer} />
+          {/*<Countdown date={deadline} renderer={countdownRenderer} />*/}
         </StyledCountdownWrapper>
     </StyledCard>
   );

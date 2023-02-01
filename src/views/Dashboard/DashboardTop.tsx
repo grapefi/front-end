@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {useMemo, useState, useEffect} from 'react';
 import {useWallet} from 'use-wallet';
 import {Grid, Typography, Card, CardContent, Tooltip} from '@material-ui/core';
