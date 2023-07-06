@@ -1369,7 +1369,7 @@ const Page: React.FC = ({children}) => {
               <Grid item style={{marginTop: '50px'}}>
                 <Grid container spacing={2} justifyContent={'center'} alignItems="center">
                   <Grid item>
-                    <a href="https://discord.gg/grapefinance" rel="noopener noreferrer" target="_blank">
+                    <a href="https://discord.gg/c2kaN9ZVeW" rel="noopener noreferrer" target="_blank">
                       <IconDiscord style={{fill: '#fff', width: '50px', transform: 'scale(0.6)'}} />
                     </a>
                   </Grid>

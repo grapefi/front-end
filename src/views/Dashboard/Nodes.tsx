@@ -21,7 +21,7 @@ const Nodes: React.FC<NodesProps> = ({pools, activesOnly}) => {
       <p>
         <Box style={{color: 'orange'}}>
           Nodes were migrated into Presses. You can learn more about this on{' '}
-          <a style={{color: 'orange'}} href="https://discord.gg/grapefinance" rel="noopener noreferrer" target="_blank">
+          <a style={{color: 'orange'}} href="https://discord.gg/c2kaN9ZVeW" rel="noopener noreferrer" target="_blank">
             discord.
           </a>
         </Box>

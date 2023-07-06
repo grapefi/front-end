@@ -146,7 +146,7 @@ const Footer = () => {
         <Grid item xs={12} sm={6}>
           <Grid container spacing={2} justifyContent={screenSM ? 'center' : 'flex-end'} alignItems="center">
             <Grid item>
-              <a href="https://discord.gg/grapefinance" rel="noopener noreferrer" target="_blank">
+              <a href="https://discord.gg/c2kaN9ZVeW" rel="noopener noreferrer" target="_blank">
                 <IconDiscord style={{fill: '#fff', width: '50px', transform: 'scale(0.6)'}} />
               </a>
             </Grid>
